@@ -1,0 +1,2385 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A collection of my learnings and projects on Quantum Computing and Cryptography.">
+      
+      
+        <meta name="author" content="Your Name">
+      
+      
+      
+        <link rel="prev" href="../../qcryptography/BB84/">
+      
+      
+        <link rel="next" href="../AQQA/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Quadratic Unconstrained Binary Optimization (QUBO) - Quantum & Cryptography Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quadratic-unconstrained-binary-optimization-problems" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Quantum &amp; Cryptography Docs" class="md-header__button md-logo" aria-label="Quantum & Cryptography Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Quantum & Cryptography Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quadratic Unconstrained Binary Optimization (QUBO)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="pink"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Math_Fundamentals/modular_arithmetic/" class="md-tabs__link">
+          
+  
+  Math Fundamentals
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quantum_mechanics/Qubit/" class="md-tabs__link">
+          
+  
+  Quantum Mechanics
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quantum/basics/" class="md-tabs__link">
+          
+  
+  Quantum Computing
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cryptography/fundamentals/" class="md-tabs__link">
+          
+  
+  Cryptography
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../qcryptography/fundamentals/" class="md-tabs__link">
+          
+  
+  Quantum Cryptography
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Quantum machine learning and optimization
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../projects/QuantumComputingTools/" class="md-tabs__link">
+          
+  
+  Real-world projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+    
+  
+  About Me
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Quantum &amp; Cryptography Docs" class="md-nav__button md-logo" aria-label="Quantum & Cryptography Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Quantum & Cryptography Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Math Fundamentals
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Math Fundamentals
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math_Fundamentals/modular_arithmetic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modular Arithmetic
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math_Fundamentals/logic_gates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logic Gates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Linear Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math_Fundamentals/linear_algebr_tensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quantum Mechanics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Quantum Mechanics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Basics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Basics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/Qubit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Qubit(s)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/Quantum_logic_gates/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum gates
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/TheBlochSphereAndRotation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Bloch sphere and rotations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Theorems
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Theorems
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/No-cloing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    No-cloning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/No-deleting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    No-deleting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/No-hiding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    No-hiding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum_mechanics/No-teleportation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    No-teleportation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quantum Computing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Quantum Computing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Basics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Basics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum/basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum/algorithms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum/computation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum Computation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quantum/applications/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Applications
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cryptography
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fundamentals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/symmetric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symmetric Cryptography
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/asymmetric/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Asymmetric Cryptography
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cryptography/quantum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum Cryptography
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Quantum Cryptography
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Quantum Cryptography
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qcryptography/fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fundamentals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    QKD
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            QKD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qcryptography/BB84/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BB84
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Quantum machine learning and optimization
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Quantum machine learning and optimization
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7_1" id="__nav_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Optimization Algorithms
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Optimization Algorithms
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Quadratic Unconstrained Binary Optimization (QUBO)
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Quadratic Unconstrained Binary Optimization (QUBO)
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-max-cut-problem-and-the-ising-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Max-Cut problem and the Ising model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Max-Cut problem and the Ising model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem formulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ising-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ising model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formulating-optimization-problems-the-quantum-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulating optimization problems the quantum way
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miving-from-ising-to-qubo-and-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      Miving from Ising to QUBO and back
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinatorial-optimization-problems-with-the-qubo-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinatorial optimization problems with the QUBO model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinatorial optimization problems with the QUBO model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-linear-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary linear programming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Knapsack problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-coloring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph coloring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-traveling-salesperson-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Traveling Salesperson Problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AQQA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Adiabatic Quantum Computing & Quantum Annealing (AQQA)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QAOA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum Approximate Optimization Algorithm (QAOA)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GAS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grover Adaptive Search (GAS)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Real-world projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Real-world projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/QuantumComputingTools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum Computing Tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/quantum-simulations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quantum Simulations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/crypto-implementations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cryptography Implementations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About Me
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-max-cut-problem-and-the-ising-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Max-Cut problem and the Ising model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Max-Cut problem and the Ising model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem formulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-ising-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Ising model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#formulating-optimization-problems-the-quantum-way" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formulating optimization problems the quantum way
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miving-from-ising-to-qubo-and-back" class="md-nav__link">
+    <span class="md-ellipsis">
+      Miving from Ising to QUBO and back
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#combinatorial-optimization-problems-with-the-qubo-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combinatorial optimization problems with the QUBO model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combinatorial optimization problems with the QUBO model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-linear-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary linear programming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Knapsack problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-coloring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph coloring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-traveling-salesperson-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Traveling Salesperson Problem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="quadratic-unconstrained-binary-optimization-problems">Quadratic unconstrained Binary Optimization Problems</h1>
+<h2 id="the-max-cut-problem-and-the-ising-model">The Max-Cut problem and the Ising model</h2>
+<p>That is, it is a partition of the graph's vertices into two complementary sets S and T, such that the number of edges between S and T is as large as possible. Finding such a cut is known as the max-cut problem.</p>
+<p><img alt="MaxCut" src="../images/MaxCut.png" /></p>
+<h3 id="problem-formulation">Problem formulation</h3>
+<p><img alt="MaxCut2" src="../images/MaxCut2.png" /></p>
+<p>We can formulate the above graph as the follwoing:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+    \text{Minimize} &amp; z_{0}z_{1}+z_{0}z_{2}+z_{1}z_{0}+z_{1}z_{2}+z_{1}z_{4}+z_{2}z_{0}+z_{2}z_{1}+z_{2}z_{3}\\
+     &amp; +z_{3}z_{4}+z_{3}z_{5}+z_{4}z_{5}\\
+    \text{subject to} &amp; z_{j} \in {-1,1}, j = 0, \cdots,4.
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+    \text{Minimize} & z_{0}z_{1}+z_{0}z_{2}+z_{1}z_{0}+z_{1}z_{2}+z_{1}z_{4}+z_{2}z_{0}+z_{2}z_{1}+z_{2}z_{3}\\
+     & +z_{3}z_{4}+z_{3}z_{5}+z_{4}z_{5}\\
+    \text{subject to} & z_{j} \in {-1,1}, j = 0, \cdots,4.
+\end{array}
+</script>
+</div>
+<h3 id="the-ising-model">The Ising model</h3>
+<p>As you can easily check that if <span class="arithmatex"><span class="MathJax_Preview">J_{jk}</span><script type="math/tex">J_{jk}</script></span> coefficients are <span class="arithmatex"><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span> and all the <span class="arithmatex"><span class="MathJax_Preview">h_j</span><script type="math/tex">h_j</script></span> coefficients are <span class="arithmatex"><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span>, the problem is exactly the same as the max-cut problem.</p>
+<h2 id="formulating-optimization-problems-the-quantum-way">Formulating optimization problems the quantum way</h2>
+<h2 id="miving-from-ising-to-qubo-and-back">Miving from Ising to QUBO and back</h2>
+<p>Let's say taht you are given a set of integers <span class="arithmatex"><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span> and <span class="arithmatex"><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>, and you are asked whether there is any subset of <span class="arithmatex"><span class="MathJax_Preview">S</span><script type="math/tex">S</script></span> whose sum is <span class="arithmatex"><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>. For example, if <span class="arithmatex"><span class="MathJax_Preview">S = \{1,3,4,7,-4\}</span><script type="math/tex">S = \{1,3,4,7,-4\}</script></span> and <span class="arithmatex"><span class="MathJax_Preview">T = 6</span><script type="math/tex">T = 6</script></span>, then the answer is affirmative because <span class="arithmatex"><span class="MathJax_Preview">3+7-4 = 6</span><script type="math/tex">3+7-4 = 6</script></span>. If <span class="arithmatex"><span class="MathJax_Preview">S = \{2,-2,4,8,-12 \}</span><script type="math/tex">S = \{2,-2,4,8,-12 \}</script></span> and <span class="arithmatex"><span class="MathJax_Preview">T=1</span><script type="math/tex">T=1</script></span>, the answer is <strong>negative</strong> because all the numbers in the set are even and they cannot add up to an odd number.</p>
+<p>This problem is so called the <strong>Subset Sum</strong> problem and known for a <span class="arithmatex"><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span><strong>-complete</strong>. It turns out that we can <strong>reduce</strong> the Subset Sum problem to finding a spin configuration of minimal energy for any Ising model.</p>
+<p>Let's consider a binery values instead of <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> and <span class="arithmatex"><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span> in this case. if we are given a case <span class="arithmatex"><span class="MathJax_Preview">S = {a_{0},\cdots,a_{m}}</span><script type="math/tex">S = {a_{0},\cdots,a_{m}}</script></span> and an integer <span class="arithmatex"><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>, we can define binary variable <span class="arithmatex"><span class="MathJax_Preview">x_j, j=0,\cdots,m</span><script type="math/tex">x_j, j=0,\cdots,m</script></span> and consider</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+c(x_{0},x_{1},\cdots,x_{m}) = (a_{0}x_{0}+a_{1}x_{1}+ \cdots +a_{m}x_{m} - T)^{2}
+</div>
+<script type="math/tex; mode=display">
+c(x_{0},x_{1},\cdots,x_{m}) = (a_{0}x_{0}+a_{1}x_{1}+ \cdots +a_{m}x_{m} - T)^{2}
+</script>
+</div>
+<p>and we can find the positive answer if and only if we can find the binary values <span class="arithmatex"><span class="MathJax_Preview">x_j, j=0,\cdots, m</span><script type="math/tex">x_j, j=0,\cdots, m</script></span> such that <span class="arithmatex"><span class="MathJax_Preview">c(x_{0},x_{1}, \cdots, x_{m}) = 0</span><script type="math/tex">c(x_{0},x_{1}, \cdots, x_{m}) = 0</script></span>.</p>
+<p>For example, if we are given a set of <span class="arithmatex"><span class="MathJax_Preview">S = \{1,4,-2 \}</span><script type="math/tex">S = \{1,4,-2 \}</script></span> and <span class="arithmatex"><span class="MathJax_Preview">T=2</span><script type="math/tex">T=2</script></span>, we can formulate the question as:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; (x_{0}+4x_{1}-2x_{2}-2)^{2}\\
+\text{subject to} &amp; x_{j}\in \{0,1\}, \ j = 0, \cdots,m
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & (x_{0}+4x_{1}-2x_{2}-2)^{2}\\
+\text{subject to} & x_{j}\in \{0,1\}, \ j = 0, \cdots,m
+\end{array}
+</script>
+</div>
+<p>and we have to expand <span class="arithmatex"><span class="MathJax_Preview">(x_{0}+4x_{1}-2x_{2}-2)^{2}</span><script type="math/tex">(x_{0}+4x_{1}-2x_{2}-2)^{2}</script></span> to obtain the epxression to be optimized. For this case, we need <span class="arithmatex"><span class="MathJax_Preview">x_{0}, x_{1} = x_{2} = 1</span><script type="math/tex">x_{0}, x_{1} = x_{2} = 1</script></span> to find a optimal solution.</p>
+<p>Notice that, in all of these cases, the function <span class="arithmatex"><span class="MathJax_Preview">c(x_{0},x_{1},\cdots,x_{m})</span><script type="math/tex">c(x_{0},x_{1},\cdots,x_{m})</script></span> that we need to minimize is a polynomial of degree <span class="arithmatex"><span class="MathJax_Preview">2</span><script type="math/tex">2</script></span> on the binary variables <span class="arithmatex"><span class="MathJax_Preview">x_j</span><script type="math/tex">x_j</script></span>. We thus generalize this setting and define <mark class="critic"><strong>Quadratic Unconstrained Binary Optimization (QUBO)</strong></mark> problems.</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; q(x_{0},\cdots,x_{m})\\
+\text{subject to} &amp; x_{j}\in \{0,1\}, \ j = 0, \cdots,m
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & q(x_{0},\cdots,x_{m})\\
+\text{subject to} & x_{j}\in \{0,1\}, \ j = 0, \cdots,m
+\end{array}
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">q(x_{0},\cdots,x_{m})</span><script type="math/tex">q(x_{0},\cdots,x_{m})</script></span> is a quadratic polynomial on the <span class="arithmatex"><span class="MathJax_Preview">x_j</span><script type="math/tex">x_j</script></span> variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are calling this QUBO since we are minimizing quadratic expressions over binary variables with no restrictions (every combinations of ones and zeros are acceptable).</p>
+</div>
+<p>For an Ising problem, if you want to minimize:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+-\sum_{j,k}J_{j,k}z_{j}z_{k} - \sum_{j} h_{j}z_{j}
+</div>
+<script type="math/tex; mode=display">
+-\sum_{j,k}J_{j,k}z_{j}z_{k} - \sum_{j} h_{j}z_{j}
+</script>
+</div>
+<p>with some variables <span class="arithmatex"><span class="MathJax_Preview">z_{j}</span><script type="math/tex">z_{j}</script></span>, <span class="arithmatex"><span class="MathJax_Preview">j = 0,\cdots,m</span><script type="math/tex">j = 0,\cdots,m</script></span>, taking values <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> or <span class="arithmatex"><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span>, you can define new variables <span class="arithmatex"><span class="MathJax_Preview">x_{j} = (1-z_{j})/2</span><script type="math/tex">x_{j} = (1-z_{j})/2</script></span>. <span class="arithmatex"><span class="MathJax_Preview">x_{j}</span><script type="math/tex">x_{j}</script></span> will be <span class="arithmatex"><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> when <span class="arithmatex"><span class="MathJax_Preview">z_{j}</span><script type="math/tex">z_{j}</script></span> is <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>, and <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> when <span class="arithmatex"><span class="MathJax_Preview">z_{j}</span><script type="math/tex">z_{j}</script></span> is <span class="arithmatex"><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span>.</p>
+<p>On the other hand, you can define a new variable called <span class="arithmatex"><span class="MathJax_Preview">z_{j} = 1-2x_{j}</span><script type="math/tex">z_{j} = 1-2x_{j}</script></span>, which leads you to a quadratic polynomial in the binary variable <span class="arithmatex"><span class="MathJax_Preview">x_j</span><script type="math/tex">x_j</script></span> that takes exactly the same values as the energy function of the original Ising model. If you minimize the polynomical for the variables <span class="arithmatex"><span class="MathJax_Preview">x_{j}</span><script type="math/tex">x_{j}</script></span>, you can then recover the spin value <span class="arithmatex"><span class="MathJax_Preview">z_{j}</span><script type="math/tex">z_{j}</script></span> that achieve the minimal energy. As you may wonder, you can also use <span class="arithmatex"><span class="MathJax_Preview">z_{j} = 2x_{j}-1</span><script type="math/tex">z_{j} = 2x_{j}-1</script></span> to transform Ising problem into QUBO.</p>
+<p>For example, if the Icing energy is given by <span class="arithmatex"><span class="MathJax_Preview">\frac{1}{2}z_{0}z_{1}+z_{2}</span><script type="math/tex">\frac{1}{2}z_{0}z_{1}+z_{2}</script></span>, then, under the transformation <span class="arithmatex"><span class="MathJax_Preview">z_{j} = 1-2x_{j}</span><script type="math/tex">z_{j} = 1-2x_{j}</script></span>, the corresponding QUBO problem will be (by substitute <span class="arithmatex"><span class="MathJax_Preview">z_{0} = 1-2x_{0}</span><script type="math/tex">z_{0} = 1-2x_{0}</script></span>, <span class="arithmatex"><span class="MathJax_Preview">z_{1} = 1-2x_{1}</span><script type="math/tex">z_{1} = 1-2x_{1}</script></span>, and <span class="arithmatex"><span class="MathJax_Preview">z_{2} = 1-2x_{2}</span><script type="math/tex">z_{2} = 1-2x_{2}</script></span> in to Ising energy <span class="arithmatex"><span class="MathJax_Preview">\frac{1}{2}z_{0}z_{1}+z_{2}</span><script type="math/tex">\frac{1}{2}z_{0}z_{1}+z_{2}</script></span>.):</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -2x_{0}x_{1}+x_{0}+x_{1}-2x_{2}+\frac{1}{2}\\
+\text{subject to} &amp; x_{j}\in \{0,1\}, \ j =0, 1, 2.
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -2x_{0}x_{1}+x_{0}+x_{1}-2x_{2}+\frac{1}{2}\\
+\text{subject to} & x_{j}\in \{0,1\}, \ j =0, 1, 2.
+\end{array}
+</script>
+</div>
+<h2 id="combinatorial-optimization-problems-with-the-qubo-model">Combinatorial optimization problems with the QUBO model</h2>
+<h3 id="binary-linear-programming">Binary linear programming</h3>
+<p><strong>Binary linear programming</strong> problems involve optimizaing a linear function on binary variables subject to linear constraints. </p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; c_{0}x_{0}+c_{1}x_{1}+\cdots+c_{m}x_{m}\\
+\text{subject to} &amp; Ax \leq b, \\
+&amp; x_{j}\in \{0,1\}, \ j = 0,\cdots,m,
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & c_{0}x_{0}+c_{1}x_{1}+\cdots+c_{m}x_{m}\\
+\text{subject to} & Ax \leq b, \\
+& x_{j}\in \{0,1\}, \ j = 0,\cdots,m,
+\end{array}
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">c_{j}</span><script type="math/tex">c_{j}</script></span> are integer coefficients, <span class="arithmatex"><span class="MathJax_Preview">A</span><script type="math/tex">A</script></span> is an integer matrix, <span class="arithmatex"><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> is the transpose of <span class="arithmatex"><span class="MathJax_Preview">(x_{0},\cdots,x_{m})</span><script type="math/tex">(x_{0},\cdots,x_{m})</script></span>, and <span class="arithmatex"><span class="MathJax_Preview">b</span><script type="math/tex">b</script></span> is an integer column vector.</p>
+<p>For an example:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -5x_{0}+3x_{1}-2x_{2} \\
+\text{subject to} &amp; x_{0}+x_{2} \leq 1, \\
+                &amp; 3x_{0} - x_{1}+3x_{2} \leq 4,\\
+                &amp; x_{j}\in \{0,1\}, \ j = 0, 1, 2,
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -5x_{0}+3x_{1}-2x_{2} \\
+\text{subject to} & x_{0}+x_{2} \leq 1, \\
+                & 3x_{0} - x_{1}+3x_{2} \leq 4,\\
+                & x_{j}\in \{0,1\}, \ j = 0, 1, 2,
+\end{array}
+</script>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Binary linear programming (<strong>zero-one programming</strong>) is <span class="arithmatex"><span class="MathJax_Preview">NP</span><script type="math/tex">NP</script></span>-hard.</p>
+</div>
+<p>To write a binary linear program in QUBO, we need to perfrom some transformations. The first one is to convert the inequality constraints into equality constraints by adding <strong>slack variables</strong>. In the previous example, we have inquality constraints <span class="arithmatex"><span class="MathJax_Preview">x_{0}+x_{2} \leq 1</span><script type="math/tex">x_{0}+x_{2} \leq 1</script></span> and <span class="arithmatex"><span class="MathJax_Preview">3x_{0} - x_{1}+3x_{2} \leq 4</span><script type="math/tex">3x_{0} - x_{1}+3x_{2} \leq 4</script></span>. We know that the minimum value for the left hand side of the first equation is 0 and -1 for the left hand side of the second equation. The goal here is to add slack variable(s) to make the equation equal when left hand side of the original inequality has its minimum. To add <strong>non-negative</strong> slack variable(s), we can modify the first inequality into:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+x_0 + x_2 + y_0 = 1
+</div>
+<script type="math/tex; mode=display">
+x_0 + x_2 + y_0 = 1
+</script>
+</div>
+<p>and since the minimum of the second inequality is when <span class="arithmatex"><span class="MathJax_Preview">x_0 = x_2 =0</span><script type="math/tex">x_0 = x_2 =0</script></span> and <span class="arithmatex"><span class="MathJax_Preview">x_1 = 1</span><script type="math/tex">x_1 = 1</script></span>, <span class="arithmatex"><span class="MathJax_Preview">3x_{0} - x_{1}+3x_{2} = -1</span><script type="math/tex">3x_{0} - x_{1}+3x_{2} = -1</script></span>. We need to add at least 3 different slaock variables with a proper coefficient to make <span class="arithmatex"><span class="MathJax_Preview">3x_{0} - x_{1}+3x_{2} = 5</span><script type="math/tex">3x_{0} - x_{1}+3x_{2} = 5</script></span>. Therefore,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+3x_0-x_1+3x_2+y_1+2y_2+2y_3 = 4
+</div>
+<script type="math/tex; mode=display">
+3x_0-x_1+3x_2+y_1+2y_2+2y_3 = 4
+</script>
+</div>
+<p>can be  satisfied if and only if <span class="arithmatex"><span class="MathJax_Preview">3x_{0} - x_{1}+3x_{2} \leq 4</span><script type="math/tex">3x_{0} - x_{1}+3x_{2} \leq 4</script></span> can be satified. Now, we rewrite the original problem as,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -5x_{0}+3x_{1}-2x_{2} \\
+\text{subject to} &amp; x_0 + x_2 + y_0 = 1, \\
+                &amp; 3x_0-x_1+3x_2+y_1+2y_2+2y_3 = 4,\\
+                &amp; x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                &amp; y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -5x_{0}+3x_{1}-2x_{2} \\
+\text{subject to} & x_0 + x_2 + y_0 = 1, \\
+                & 3x_0-x_1+3x_2+y_1+2y_2+2y_3 = 4,\\
+                & x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                & y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3
+\end{array}
+</script>
+</div>
+<p>Next, we introduce <strong>penalty terms</strong> in the expression that we are trying to minimize. For that, we use an integer <span class="arithmatex"><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span> (for which we will select a concrete value later on) and consider the problem,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -5x_{0}+3x_{1}-2x_{2} + B(x_0 + x_2 + y_0-1)^2\\
+                &amp; + B(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2 \\
+\text{subject to} &amp; x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                  &amp; y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3,
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -5x_{0}+3x_{1}-2x_{2} + B(x_0 + x_2 + y_0-1)^2\\
+                & + B(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2 \\
+\text{subject to} & x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                  & y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3,
+\end{array}
+</script>
+</div>
+<p>which is <em>already in QUBO form</em>.</p>
+<p>Let's us breakdown why and how to choose the <span class="arithmatex"><span class="MathJax_Preview">B</span><script type="math/tex">B</script></span>. </p>
+<ol>
+<li>First, <span class="arithmatex"><span class="MathJax_Preview">B(x_0 + x_2 + y_0-1)^2</span><script type="math/tex">B(x_0 + x_2 + y_0-1)^2</script></span> term will penalizes solutions where the sum of the <span class="arithmatex"><span class="MathJax_Preview">x_0, x_2, and y_0</span><script type="math/tex">x_0, x_2, and y_0</script></span> does not equal <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>.</li>
+<li>Second, <span class="arithmatex"><span class="MathJax_Preview">B(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2</span><script type="math/tex">B(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2</script></span> term will pernalizes solutions where this sum does not equal to <span class="arithmatex"><span class="MathJax_Preview">4</span><script type="math/tex">4</script></span>, which means, not a minimim solution.</li>
+<li>The choose of <span class="arithmatex"><span class="MathJax_Preview">B=11</span><script type="math/tex">B=11</script></span> is based on the range of the solution, which, in this case is <span class="arithmatex"><span class="MathJax_Preview">[-7,3]</span><script type="math/tex">[-7,3]</script></span>. We choose <span class="arithmatex"><span class="MathJax_Preview">11 &gt; 10</span><script type="math/tex">11 > 10</script></span> (range of the solution).</li>
+<li>What if I don't know the exact range? <ul>
+<li>You can use $B &gt; \alpha \times \beta $</li>
+<li>where <span class="arithmatex"><span class="MathJax_Preview">\alpha</span><script type="math/tex">\alpha</script></span> is the largest coefficient in the objective, <span class="arithmatex"><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span> is the number of variable in penalty terms. In this case, <span class="arithmatex"><span class="MathJax_Preview">B &gt; 5 \times 7 = 35</span><script type="math/tex">B > 5 \times 7 = 35</script></span>.</li>
+<li>Poper turning.</li>
+</ul>
+</li>
+</ol>
+<p>Re-write our QUBO,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -5x_{0}+3x_{1}-2x_{2} + 11(x_0 + x_2 + y_0-1)^2\\
+                &amp; + 11(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2 \\
+\text{subject to} &amp; x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                  &amp; y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3,
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -5x_{0}+3x_{1}-2x_{2} + 11(x_0 + x_2 + y_0-1)^2\\
+                & + 11(3x_0-x_1+3x_2+y_1+2y_2+2y_3-4)^2 \\
+\text{subject to} & x_{j}\in \{0,1\}, \ j = 0, 1, 2,\\
+                  & y_{j}\in \{0,1\}, \ j = 0, 1, 2, 3,
+\end{array}
+</script>
+</div>
+<p><strong>Integer linear programming</strong> is a generalization of binary linear programming where non=negative variables are used instead of <span class="arithmatex"><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> and <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span>. For example, we have a constraint</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+2a_0 + 3a_1 \leq 10
+</div>
+<script type="math/tex; mode=display">
+2a_0 + 3a_1 \leq 10
+</script>
+</div>
+<p>where, we can replace <span class="arithmatex"><span class="MathJax_Preview">a_0</span><script type="math/tex">a_0</script></span> with <span class="arithmatex"><span class="MathJax_Preview">x_0 + 2x_1 + 4x_2</span><script type="math/tex">x_0 + 2x_1 + 4x_2</script></span> (<span class="arithmatex"><span class="MathJax_Preview">a_{0} \leq 5</span><script type="math/tex">a_{0} \leq 5</script></span>) and <span class="arithmatex"><span class="MathJax_Preview">a_1</span><script type="math/tex">a_1</script></span> with <span class="arithmatex"><span class="MathJax_Preview">x_3 + 2x_4</span><script type="math/tex">x_3 + 2x_4</script></span> (<span class="arithmatex"><span class="MathJax_Preview">a_{1} \leq 3</span><script type="math/tex">a_{1} \leq 3</script></span>) where <span class="arithmatex"><span class="MathJax_Preview">x_{j} \in \{0,1\}</span><script type="math/tex">x_{j} \in \{0,1\}</script></span>. By doing this, we successfully transform the integer linear programming to a QUBO problem. There is a general rule that tells you how many <span class="arithmatex"><span class="MathJax_Preview">x_{j}</span><script type="math/tex">x_{j}</script></span> you need. For the fist constraint, <span class="arithmatex"><span class="MathJax_Preview">a_{0} \leq 5</span><script type="math/tex">a_{0} \leq 5</script></span>, we need <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> of <span class="arithmatex"><span class="MathJax_Preview">x_{j}</span><script type="math/tex">x_{j}</script></span> such that <span class="arithmatex"><span class="MathJax_Preview">2^{j} - 1 \geq 5</span><script type="math/tex">2^{j} - 1 \geq 5</script></span>. by solving this, we can get <span class="arithmatex"><span class="MathJax_Preview">j=3</span><script type="math/tex">j=3</script></span>, in the same fashion, we can get <span class="arithmatex"><span class="MathJax_Preview">j=2</span><script type="math/tex">j=2</script></span> to satisfy <span class="arithmatex"><span class="MathJax_Preview">2^{2}-1 \geq 3</span><script type="math/tex">2^{2}-1 \geq 3</script></span>.</p>
+<h3 id="the-knapsack-problem">The Knapsack problem</h3>
+<p>It is straightforward to write the Knapsack problem as a binary linear problem. The Knapsack problem is a <span class="arithmatex"><span class="MathJax_Preview">NP</span><script type="math/tex">NP</script></span>-hard problem. We need to define binary variables <span class="arithmatex"><span class="MathJax_Preview">x_j</span><script type="math/tex">x_j</script></span>, <span class="arithmatex"><span class="MathJax_Preview">j=0,\cdots,m</span><script type="math/tex">j=0,\cdots,m</script></span> that indicate <strong>whether we choose object <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> (x_j = 1) or not (x_j = 0)</strong>.</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -(c_{0}x_{0} + c_{1}x_{1} + \cdots + c_{m}x_{m})\\
+\text{subject to} &amp; w_{0}x_{0} + w_{1}x_{1}+ \cdots + w_{m}x_{m} \leq W,\\
+                &amp; x_{j}\in \{0,1\}, \ j = 0, \cdots, m,
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -(c_{0}x_{0} + c_{1}x_{1} + \cdots + c_{m}x_{m})\\
+\text{subject to} & w_{0}x_{0} + w_{1}x_{1}+ \cdots + w_{m}x_{m} \leq W,\\
+                & x_{j}\in \{0,1\}, \ j = 0, \cdots, m,
+\end{array}
+</script>
+</div>
+<p>where <span class="arithmatex"><span class="MathJax_Preview">c_j</span><script type="math/tex">c_j</script></span> are the object values, <span class="arithmatex"><span class="MathJax_Preview">w_j</span><script type="math/tex">w_j</script></span> are their weights, and <span class="arithmatex"><span class="MathJax_Preview">W</span><script type="math/tex">W</script></span> is the maximum weight of the knapsack. Since we are asking the maximum, so we are now minimizing the negative value. Let's write a Knapsack problem as a binary linear program.</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; -(3x_{0} + 1x_{1} + 7x_{2} + 7x_{3})\\
+\text{subject to} &amp; 2x_{0} + x_{1}+ 5x_{1} + 4x_{1} \leq 8,\\
+                &amp; x_{j}\in \{0,1\}, \ j = 0, 1, 2,3, 
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & -(3x_{0} + 1x_{1} + 7x_{2} + 7x_{3})\\
+\text{subject to} & 2x_{0} + x_{1}+ 5x_{1} + 4x_{1} \leq 8,\\
+                & x_{j}\in \{0,1\}, \ j = 0, 1, 2,3, 
+\end{array}
+</script>
+</div>
+<p>which has values of <span class="arithmatex"><span class="MathJax_Preview">3,1,7,7</span><script type="math/tex">3,1,7,7</script></span> and weight <span class="arithmatex"><span class="MathJax_Preview">2,1,5,4</span><script type="math/tex">2,1,5,4</script></span> with the maximum weight of <span class="arithmatex"><span class="MathJax_Preview">8</span><script type="math/tex">8</script></span>.</p>
+<h3 id="graph-coloring">Graph coloring</h3>
+<p><mark class="critic">In its simplest form, it is a way of coloring the vertices of a graph such that no two adjacent vertices are of the same color.</mark></p>
+<p>In the graph coloring problem, we are given a graph and we are asked to assign a color to each vertex in such a way that vertices that are connected by and edge (also called <strong>adjacent</strong>) receive different colors. We also are asked to do this using the minimum possible numebr of colors or using no mroe than a given number of different colors. If we can color a graph with <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> colors, we say that it is <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span>-<strong>colorable.</strong> The minimum number of colors needed to color a graph is called its <strong>chromatic number</strong>.</p>
+<p><img alt="GraphColoring" src="../images/GraphColoring%20.png" /></p>
+<p>Let's get start to formulate the graph coloring problem to a QUBO framework!</p>
+<ol>
+<li>first, we have to define some binary variables, let's say we have <span class="arithmatex"><span class="MathJax_Preview">m</span><script type="math/tex">m</script></span> vertices from <span class="arithmatex"><span class="MathJax_Preview">j=0,\cdots,m</span><script type="math/tex">j=0,\cdots,m</script></span>, and <span class="arithmatex"><span class="MathJax_Preview">k-1</span><script type="math/tex">k-1</script></span> of different colors with <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>th on each vertices.
+To ensure each vertice <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> only recieve <strong>one</strong> color <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>, we can have the following condition:</li>
+</ol>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\sum_{l=0}^{k-1}x_{jl} = 1.
+</div>
+<script type="math/tex; mode=display">
+\sum_{l=0}^{k-1}x_{jl} = 1.
+</script>
+</div>
+<p>For an example, this ensure that every <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>-th vertice only receive one <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>-th color. We also have to consider for every vertice <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>, there must exist <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span> such that <span class="arithmatex"><span class="MathJax_Preview">x_{jl}=1</span><script type="math/tex">x_{jl}=1</script></span> and such that <span class="arithmatex"><span class="MathJax_Preview">x_{jh}=0</span><script type="math/tex">x_{jh}=0</script></span> for any <span class="arithmatex"><span class="MathJax_Preview">h\neq l</span><script type="math/tex">h\neq l</script></span>. </p>
+<p>Now, we can impose a constraint that adjacent vertice are not assigned the same color. We know that if two vertices <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> and <span class="arithmatex"><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> receive the same color <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>, then we would have <span class="arithmatex"><span class="MathJax_Preview">x_{jl}X_{hl}=1</span><script type="math/tex">x_{jl}X_{hl}=1</script></span>. Therefore, the sum of any <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> and <span class="arithmatex"><span class="MathJax_Preview">h</span><script type="math/tex">h</script></span> must be <span class="arithmatex"><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span>, that is,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\sum_{l=0}{k-1}x_{jl}x_{hl} = 0.
+</div>
+<script type="math/tex; mode=display">
+\sum_{l=0}{k-1}x_{jl}x_{hl} = 0.
+</script>
+</div>
+<p>Then we can write this graph coloring problem into a QUBO framework as,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; \sum_{j=0}^{m}\bigg(\sum_{l=0}^{k-1}x_{jl}-1\bigg)^{2} + \sum_{(j,h)\in E}\sum_{l=0}^{k-1}x_{jl}x_{hl}\\
+\text{subject to} &amp; x_{jl}\in \{0,1\}, \ j = 0,\cdots,m, \ l = 0,\cdots,k-1.
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & \sum_{j=0}^{m}\bigg(\sum_{l=0}^{k-1}x_{jl}-1\bigg)^{2} + \sum_{(j,h)\in E}\sum_{l=0}^{k-1}x_{jl}x_{hl}\\
+\text{subject to} & x_{jl}\in \{0,1\}, \ j = 0,\cdots,m, \ l = 0,\cdots,k-1.
+\end{array}
+</script>
+</div>
+<p>We added <span class="arithmatex"><span class="MathJax_Preview">-1</span><script type="math/tex">-1</script></span> term to ensure when the result deviates from 1, our framework impose a penalty on it. And we don't need to square the second term since they are always non-negative.</p>
+<h3 id="the-traveling-salesperson-problem">The Traveling Salesperson Problem</h3>
+<p>The Traveling salesperon problem is one of the most famous problems in combinatorial optimization. The problem is wasy to state: you need to find a route that goes through each of the cities in a given set once and only once while minimizing some global quantity (distance traveled, time spent, total cost...). </p>
+<p>First, let's deal with visiting each vertex  <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> once and route <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span> once. Let's says we have <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> vertices and <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>th different route. If vertex <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> is the <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>-th in our travel route, the <span class="arithmatex"><span class="MathJax_Preview">x_{ij}</span><script type="math/tex">x_{ij}</script></span> will be <span class="arithmatex"><span class="MathJax_Preview">1</span><script type="math/tex">1</script></span> and <span class="arithmatex"><span class="MathJax_Preview">x_{jh}</span><script type="math/tex">x_{jh}</script></span> will be <span class="arithmatex"><span class="MathJax_Preview">0</span><script type="math/tex">0</script></span> for <span class="arithmatex"><span class="MathJax_Preview">h \neq l</span><script type="math/tex">h \neq l</script></span>. Thus, for every vertex <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span>, we must impose a constraint,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\sum_{l=0}^{m}x_{ij}=1
+</div>
+<script type="math/tex; mode=display">
+\sum_{l=0}^{m}x_{ij}=1
+</script>
+</div>
+<p>because every vertex needs to be visited exactly once. Next, since we can only visit one city at a time for each <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span> travel route. </p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\sum_{j=0}^{m}x_{jl} = 1.
+</div>
+<script type="math/tex; mode=display">
+\sum_{j=0}^{m}x_{jl} = 1.
+</script>
+</div>
+<p>If these two constraints are met, we will have a path that visit every vertex once and only once. However, that's not enough. Remember that we may want to minimize some global quantity (distance traveled, time spent, total cost...)? We need an expression that gives us that alobal quantity in terms of the <span class="arithmatex"><span class="MathJax_Preview">x_{jl}</span><script type="math/tex">x_{jl}</script></span> varialbles. Notice that an edge <span class="arithmatex"><span class="MathJax_Preview">(j,k)</span><script type="math/tex">(j,k)</script></span> is used if and only if the vertices <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> and <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> are consecutive in the path. That is, if and only if there exists an <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span> such that <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> is visited in position <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span> and <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> is visited in position <strong><span class="arithmatex"><span class="MathJax_Preview">l+1</span><script type="math/tex">l+1</script></span></strong>. in that case, the cost of using the edge will be given by <span class="arithmatex"><span class="MathJax_Preview">w_{jk}x_{jl}x_{kl+1}</span><script type="math/tex">w_{jk}x_{jl}x_{kl+1}</script></span>, because <span class="arithmatex"><span class="MathJax_Preview">x_{jl}x_{kl+1} =1</span><script type="math/tex">x_{jl}x_{kl+1} =1</script></span>. and if <span class="arithmatex"><span class="MathJax_Preview">j</span><script type="math/tex">j</script></span> and <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> are not consecutive in the path, then <span class="arithmatex"><span class="MathJax_Preview">x_{jl}x_{kl+1} = 0</span><script type="math/tex">x_{jl}x_{kl+1} = 0</script></span> for every <span class="arithmatex"><span class="MathJax_Preview">l</span><script type="math/tex">l</script></span>.</p>
+<p>This ensure that we only visit <span class="arithmatex"><span class="MathJax_Preview">kl+1</span><script type="math/tex">kl+1</script></span> after vertiex <span class="arithmatex"><span class="MathJax_Preview">kl</span><script type="math/tex">kl</script></span>, thus we calculate the cost(or any global quantity). As a resutl, the cost of our tour is given by,</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\sum_{l=0}^{m-1}\sum_{j=0}^{m}\sum_{k=0}^{m} w_{jk}x_{jl}x_{kl+1},
+</div>
+<script type="math/tex; mode=display">
+\sum_{l=0}^{m-1}\sum_{j=0}^{m}\sum_{k=0}^{m} w_{jk}x_{jl}x_{kl+1},
+</script>
+</div>
+<p>then we conbine our constraints and get:</p>
+<div class="arithmatex">
+<div class="MathJax_Preview">
+\begin{array}{ll}
+\text{minimize} &amp; \sum_{l=0}^{m-1}\sum_{j=0}^{m}\sum_{k=0}^{m} w_{jk}x_{jl}x_{kl+1} + B_{1}(\sum_{l=0}^{m}x_{ij}-1)^{2}+B_{2}(\sum_{j=0}^{m}x_{jl}-1)^{2}\\
+\text{subject to} &amp; x_{jl}\in \{0,1\}, \ j = 0,\cdots,m, \ l = 0,\cdots,k-1.
+\end{array}
+</div>
+<script type="math/tex; mode=display">
+\begin{array}{ll}
+\text{minimize} & \sum_{l=0}^{m-1}\sum_{j=0}^{m}\sum_{k=0}^{m} w_{jk}x_{jl}x_{kl+1} + B_{1}(\sum_{l=0}^{m}x_{ij}-1)^{2}+B_{2}(\sum_{j=0}^{m}x_{jl}-1)^{2}\\
+\text{subject to} & x_{jl}\in \{0,1\}, \ j = 0,\cdots,m, \ l = 0,\cdots,k-1.
+\end{array}
+</script>
+</div>
+<p>where penalty constants <span class="arithmatex"><span class="MathJax_Preview">B_1</span><script type="math/tex">B_1</script></span> and <span class="arithmatex"><span class="MathJax_Preview">B_2</span><script type="math/tex">B_2</script></span> is choosen so that any deviated results will generate large outcome in our cost function.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2024 <a href="https://github.com/pcchouCR97"  target="_blank" rel="noopener">Po-Chih Chou</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/pcchouCR97/mkdocs-material-tutorial" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/po-chih-chou-0638941ab/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "search.highlight", "search.share", "math"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
