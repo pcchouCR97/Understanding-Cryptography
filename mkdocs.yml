@@ -33,6 +33,7 @@ nav:
       - Hilbert Space: Math_Fundamentals/hilbert_space.md
   - Quantum Mechanics:
       - Basics:
+        - Superposition, Entanglement and Reversibility: quantum_mechanics/Sup_Entg_Rev.md
         - Qubit(s): quantum_mechanics/Qubit.md
         - Quantum gates: quantum_mechanics/Quantum_logic_gates.md
         - The Bloch sphere and rotations: quantum_mechanics/TheBlochSphereAndRotation.md

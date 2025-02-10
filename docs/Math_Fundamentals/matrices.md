@@ -1,8 +1,144 @@
 # Matrices
 
+## Column and Row vector
+Here are our definitions of a column vector and a row vector:
+
+$$
+\text{column vector} = |y\rangle = 
+\begin{bmatrix}
+a_1 \\
+a_2 \\
+\vdots\\
+a_n
+\end{bmatrix}
+$$
+
+$$
+\text{row vector} = \langle x| = 
+\begin{bmatrix}
+a_1,a_2,\cdots,a_n
+\end{bmatrix}.
+$$
+
+The vector and row vectors can be represented by **one-dimenstional** matrices.
+
+## Multiplying Vectors
+
+A bracket $\langle x|y\rangle$, is essentially matrix multiplication of a row vector and a column vector. Here is our definition
+
+$$
+\langle x|y\rangle = 
+\begin{bmatrix}
+x_1,x_2,\cdots,x_n
+\end{bmatrix}
+\begin{bmatrix}
+y_1 \\ y_2 \\ \vdots\\ y_n
+\end{bmatrix}
+=x_{1}\cdot y_{1}+x_{2}\cdot y_{2}+\cdots x_{n}\cdot y_{n}
+$$
+
+for example,
+
+$$
+\langle y|x\rangle = 
+\begin{bmatrix}
+3 \ 2 \ 1 \ 4
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 2 \\ 3 \\
+4
+\end{bmatrix}
+=16
+$$
+
+## Matrix-vector multiplication 
+
+If the matrix and column vector are variables, we can write out the product this way:
+$$
+A|x\rangle
+$$
+This denotes the matrix $A$ multiplying the vector $|x\rangle$.
+
+Let's say we have 
+
+$$
+A|x\rangle = 
+\begin{bmatrix}
+4 & 3 & 2\\ 4 & 1 & 3\\ 2 & 4 & 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+w\\ y\\ z
+\end{bmatrix}
+= 
+\begin{bmatrix}
+a\\ b\\ c
+\end{bmatrix}, \quad
+x = 
+\begin{bmatrix}
+w\\ y\\ z
+\end{bmatrix}
+$$
+
+we can seperate matrix $A$ into row vectors
+
+$$
+\begin{array}{c}
+\begin{bmatrix}
+4 & 3 & 2
+\end{bmatrix} = \langle R_{1}|, \quad
+\begin{bmatrix}
+4 & 3 & 3
+\end{bmatrix} = \langle R_{2}|, \quad
+\begin{bmatrix}
+2 & 4 & 2
+\end{bmatrix} = \langle R_{3}|. \quad
+\end{array}
+$$
+
+and we can put things together as 
+
+$$
+A|x\rangle = 
+\begin{bmatrix}
+4 & 3 & 2\\ 4 & 1 & 3\\ 2 & 4 & 2
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+w\\ y\\ z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\langle R_{1}|x\rangle \\ \langle R_{2}|x\rangle\\ \langle R_{3}|x\rangle
+\end{bmatrix}
+$$
+
+In the same fashion, if we perform the product on the two following matrices $A$ and $B$ such that 
+
+$$
+A = 
+\begin{bmatrix}
+1 & 2 \\ 3 & 4
+\end{bmatrix}
+\quad
+B = 
+\begin{bmatrix}
+1 & 2 & 3 \\ 4 & 5 & 6.
+\end{bmatrix}
+$$
+
+Same, we rewrite matirx $A$ into row vectors $\langle R_{1}|,\langle R_{2},\langle R_{3}|$ and $B$ into column vectors $|C_{1}\rangle, |C_{2}\rangle, |C_{3}\rangle$. We can have the product of $A$ and $B$ matrix as 
+
+$$
+A \cdot B = 
+\begin{bmatrix}
+\langle R_{1}|C_{1}\rangle & \langle R_{1}|C_{2}\rangle & \langle R_{1}|C_{3}\rangle \\
+\langle R_{2}|C_{1}\rangle & \langle R_{2}|C_{2}\rangle & \langle R_{2}|C_{3}\rangle
+\end{bmatrix}
+$$
+
+
 ## Hilbert space quantum 
-
-
 
 ## Hermitian matrix
 
@@ -122,9 +258,11 @@ $$
 An orthonormal basis is a set of vectors have a norm of 1 and are pairwise orthogonal. [ref](matrices.md#references)
 
 ## References:
-1. [Conjugate transpose (Wiki)](https://en.wikipedia.org/wiki/Conjugate_transpose)
-2. [Orthogonal matrix (Wiki)](https://en.wikipedia.org/wiki/Orthogonal_matrix)
-3. [Hermitian matrix (Wiki)](https://en.wikipedia.org/wiki/Hermitian_matrix)
-4. [Orthonormal basis](https://www.sciencedirect.com/topics/mathematics/orthonormal-basis#:~:text=A%20basis%20is%20orthonormal%20if,product%20spaces%20to%20orthonormal%20bases.)
-5. [Orthonormal basis](https://en.wikipedia.org/wiki/Orthonormal_basis)
-6. [Hilbert Space Quantum Mechanics](https://quantum.phys.cmu.edu/QCQI/qitd114.pdf)
+1.  Woody III, L. S. (2021). Essential mathematics for quantum computing. Packt Publishing. [https://www.packtpub.com/en-us/product/essential-mathematics-for-quantum-computing-9781801070188](https://www.packtpub.com/en-us/product/essential-mathematics-for-quantum-computing-9781801070188)
+2.  Hidary, J. D. (2019). Quantum computing: An applied approach. Springer. [https://link.springer.com/book/10.1007/978-3-030-23922-0](https://link.springer.com/book/10.1007/978-3-030-23922-0)
+3.  [Conjugate transpose (Wiki)](https://en.wikipedia.org/wiki/Conjugate_transpose)
+4.  [Orthogonal matrix (Wiki)](https://en.wikipedia.org/wiki/Orthogonal_matrix)
+5.  [Hermitian matrix (Wiki)](https://en.wikipedia.org/wiki/Hermitian_matrix)
+6.  [Orthonormal basis](https://www.sciencedirect.com/topics/mathematics/orthonormal-basis#:~:text=A%20basis%20is%20orthonormal%20if,product%20spaces%20to%20orthonormal%20bases.)
+7.  [Orthonormal basis](https://en.wikipedia.org/wiki/Orthonormal_basis)
+8.  [Hilbert Space Quantum Mechanics](https://quantum.phys.cmu.edu/QCQI/qitd114.pdf)
