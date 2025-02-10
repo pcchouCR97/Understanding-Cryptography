@@ -30,6 +30,9 @@ nav:
       - Linear Algebra: 
         - Tensor: Math_Fundamentals/linear_algebr_tensor.md
         - Matrices: Math_Fundamentals/matrices.md
+        - Foundations: Math_Fundamentals/foundation.md
+        - Vector Space: Math_Fundamentals/vector_space.md
+        - Space Transform: Math_Fundamentals/space_transform.md
       - Hilbert Space: Math_Fundamentals/hilbert_space.md
   - Quantum Mechanics:
       - Basics:

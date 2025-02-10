@@ -137,6 +137,35 @@ A \cdot B =
 \end{bmatrix}
 $$
 
+## Quantum example
+
+in quantum circuits, the inputs are qubits (vectors), and the gates are matrices. An example quantum logic gate, `NOT gate`, is show as 
+
+The `NOT` gate in quantum copmuting is represented by the following matrix:
+
+$$
+X =
+\begin{bmatrix}
+0 & 1 \\ 1 & 0
+\end{bmatrix}
+$$
+
+if our input qubits is a $|1\rangle$, then the output would be:
+
+$$
+X|1\rangle = 
+\begin{bmatrix}
+0 & 1 \\ 1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}
+= |0\rangle
+$$
 
 ## Hilbert space quantum 
 
