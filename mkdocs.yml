@@ -91,11 +91,14 @@ nav:
         - Quantum Generative Adversarial Networks: 
           - QGANS Intro: QuantumOpt/QML/QGANS.md
 
-  - Real-world projects:
-      - Quantum Computing Tools: projects/QuantumComputingTools.md
-      - Quantum Simulations: projects/quantum-simulations.md
-      - Cryptography Implementations: projects/crypto-implementations.md
-  - About Me: about.md
+  - Real-world Problems:
+      - Scheduling:
+        - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
+      - Finance:
+        - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
+      - Biology:
+        - RNA Folding: Projs/Projs_Opt/Proj_RNA_Folding.md
+  #- About Me: about.md
 
 # Plugins
 plugins:

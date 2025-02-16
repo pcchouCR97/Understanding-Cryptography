@@ -25,7 +25,6 @@ Advanced:
 1. [Cryptography](cryptography/fundamentals.md)
 2. [Math Prerequisite](quantum_mechanics/Quantum_logic_gates.md)
 3. [Quantum](quantum/basics.md)
-4. [Projects](projects/quantum-simulations.md)
 
 # Mkdocs Troubleshooting:
 if error code shows: 
