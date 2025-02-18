@@ -157,7 +157,7 @@ Notice that $\overrightarrow{w}$ only depends on the training point $\overrighta
 Then we will have to use the technique called **kernel trick**, which maps the original space $\mathbb{R}^{n}$ into a higher dimensional space $\mathbb{R}^{N}$. This higher dimensional space is called **feature space** and we refer to the function $\phi : \mathbb{R}^{n} \rightarrow \mathbb{R}^{N}$ as a **feature map**.
 
 <div style="text-align: center;">
-    <img src="../../images_CML/QSVM_4.png" alt="QSVM_4" style="width: 800px; height: 300px;">
+    <img src="../../Images_CML/QSVM_4.png" alt="QSVM_4" style="width: 800px; height: 300px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         Figure. The original data cannot be separated by a hyperplane linearly. The separating hyperplane is represented by a dashed line in (b) after applying the kernel trick
     </p>

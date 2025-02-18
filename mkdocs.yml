@@ -94,7 +94,7 @@ nav:
     - Optimization Algorithms:
       - Gradient descent: ClscOptML/COpt/Gradient.md
     - Machine Learning: 
-      - Support Vector Machines: ClscOptML/CML/SVM.md
+      - Support Vector Machines (SVM): ClscOptML/CML/SVM.md
   - Real-world Problems:
       - Scheduling:
         - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
