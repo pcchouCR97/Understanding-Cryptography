@@ -9,7 +9,7 @@ The key idea behind the SVM algorithm is to find the hyperplane that best separa
 A support vector machines takes inputs in an $n$-dimentional Euclidean space $(\mathbb{R}^{n})$ and classifies them according to which side of a hyperplane they are on. This hyperplane fully defines the behavior of the SVM, which can be defined by adjustable parameteres $\overrightarrow{w}$ and the constant $b$.
 
 <div style="text-align: center;">
-    <img src="../../images_CML/SVM_margin.png" alt="SVM_Margin" style="width: 400px; height: 400px;">
+    <img src="../../images_CML/SVM_Margin.png" alt="SVM_Margin" style="width: 400px; height: 400px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         SVM Margin
     </p>
@@ -82,7 +82,7 @@ $$
 since we are considering $y_{j} = 1$ when the $j$-th example belongs to the positive class and $y_{j} = -1$ when it belongs to the negative one.
 
 <div style="text-align: center;">
-    <img src="../../images_CML/QSVM_3.png" alt="QSVM_3" style="width: 400px; height: 300px;">
+    <img src="../../Images_CML/QSVM_3.png" alt="QSVM_3" style="width: 400px; height: 300px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         Figure. The hyperplane that could have been returned by an SVM is represented by a black solid line, and the lines in dashed lines are the equidistant parallel hyperplanes that are the furthest apart from each other while still separating the data. The margin is thus half of the thickness of the colored region
     </p>

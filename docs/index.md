@@ -2,14 +2,9 @@
 
 This is a collection of my learnings and projects on quantum optimization and machine learning. You can start _(Optimization)_ from here and _(Machine Learning)_ from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
 
-# Quick Guide
-1. If you are familiar with classical optimization methods, you can start quantum world with 
-2. If you are familiar with classical machine learning methods, you can start quantum world with
-3. If you are not familiar with both, you are welcome to see _(classical opt & ml)_
-4. If you are a beginner in both areas, don't worry, we can start with something easy from here _(math)_!
-
 # Quick links 
 ## Quantum Optimization and Machine Learning
+If you are familiar with classical optimization or machine learning methods, you can start quantum world, please follow any one of these links down below.
 ### Optimization 
 *   [Quadratic Unconstrained Binary Optimization (QUBO)](QuantumOpt/QOpt/QUBO.md)
 *   [Adiabatic Quantum Computing & Quantum Annealing (AQQA)](QuantumOpt/QOpt/AQQA.md)
@@ -24,9 +19,17 @@ This is a collection of my learnings and projects on quantum optimization and ma
 *   [Quantum Generative Adversarial Networks (QGANs)](QuantumOpt/QML/QGANS.md) 
 
 ## Classical Optimization and Machine Learning 
+If you are not familiar with both, you are welcome to start with any one of classical methods below.
 ### Optimization 
 
 ### Machine Learning
 *   [Support Vector Machines (SVM)](ClscOptML/CML/SVM.md)
+
+### Quantum Mechanics, Machine Learning, and Optimization 101
+If you are a beginner in these areas, don't worry, we can start with something easy from 
+
+*   [Quantum 101](Math_Fundamentals/foundation.md)
+*   Mahcine Learning 101
+*   Optimization 101
 
 # Please explore some real-world problem!
