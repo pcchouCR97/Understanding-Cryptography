@@ -82,13 +82,13 @@ nav:
           - VQE Example: QuantumOpt/jupyter_QOpt/VQE_Qiskit_molecule.ipynb
       - Optimization Machine Learning:
         - Machine Learning Refresher: QuantumOpt/MachineLearningRefresher.md
-        - Quantum Support Vector Machines: 
+        - Quantum Support Vector Machines (QSVM): 
           - QSVM Intro: QuantumOpt/QML/QSVM.md
-        - Quantum Neural Networks: 
+        - Quantum Neural Networks (QNN): 
           - QNN Intro: QuantumOpt/QML/QNN.md
-        - Quantum Hybrid Architectures: 
+        - Quantum Hybrid Architectures (QHybrid): 
           - QHybrid Intro: QuantumOpt/QML/QHyb.md
-        - Quantum Generative Adversarial Networks: 
+        - Quantum Generative Adversarial Networks (QGAN): 
           - QGANS Intro: QuantumOpt/QML/QGANS.md
   - Classical ML and Optimization:
     - Optimization Algorithms:

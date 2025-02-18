@@ -9,7 +9,7 @@ The key idea behind the SVM algorithm is to find the hyperplane that best separa
 A support vector machines takes inputs in an $n$-dimentional Euclidean space $(\mathbb{R}^{n})$ and classifies them according to which side of a hyperplane they are on. This hyperplane fully defines the behavior of the SVM, which can be defined by adjustable parameteres $\overrightarrow{w}$ and the constant $b$.
 
 <div style="text-align: center;">
-    <img src="../../images_CML/SVM_margin.png" alt="QSVM_1" style="width: 400px; height: 400px;">
+    <img src="../../images_CML/SVM_margin.png" alt="SVM_Margin" style="width: 400px; height: 400px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         SVM Margin
     </p>
