@@ -1,43 +1,13 @@
-# Welcome to Quantum-Cryptography
+# Welcome to Quantum Optimization and Machine Learning
 
-This is a collection of my learnings and projects on Quantum Computing and Cryptography. This page includes not only just the fundamental of *Quantum Computing* and *Cryptography*, but also give a prerequisite knowledge like Linear Algebra. More we are also discussing the Quantum-Cryptography such as post Quantum Cryptography (PQC).
+This is a collection of my learnings and projects on quantum optimization and machine learning. You can start _(Optimization)_ from here and _(Machine Learning)_ from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
 
-Last but not least, some `code` examples and projects are also inlcudes for the real life demonstratation.
+# Quick Guide
+1. If you are familiar with classical optimization methods, you can start quantum world with 
+2. If you are familiar with classical machine learning methods, you can start quantum world with
+3. If you are not familiar with both, you are welcome to see _(classical opt & ml)_
+4. If you are a beginner in both areas, don't worry, we can start with something easy from here _(math)_!
 
-Highlight:
+# Quick links 
 
-1. Quantum Optimization:
-2. Quantum Multidisciplinary Design Analysis and Optimization (QMDAO)
-    - Realizing QMDAO: Quantum + OpenMDAO on real world aircraft design
-    - Quantum Annealing 
-
-Beginner:
-1. Quantum mechanics
-2. Linear algebra
-
-Imtermediate:
-1. Quantum Algorithm
-
-Advanced:
-1. optimization
-
-# Quick Guide:
-1. [Cryptography](cryptography/fundamentals.md)
-2. [Math Prerequisite](quantum_mechanics/Quantum_logic_gates.md)
-3. [Quantum](quantum/basics.md)
-
-# Mkdocs Troubleshooting:
-if error code shows: 
-
-``` py title="ERROR.py"
-ERROR   -  Config value 'theme': Unrecognised theme name: 'material'. The available installed themes are: mkdocs, readthedocs
-```
-Please makesure run the following installation in the terminal
-
-``` py title="python -m pip install mkdocs.py"
-python -m pip install mkdocs
-```
-and
-``` py title="python -m pip install mkdocs-material.py"
-python -m pip install mkdocs-material
-```
+# Please explore some real-world problem!

@@ -24,7 +24,7 @@ theme:
 # Navigation structure
 nav:
   - Home: index.md
-  - Math Fundamentals:
+  - Quantum 101:
       - Modular Arithmetic: Math_Fundamentals/modular_arithmetic.md
       - Logic Gates: Math_Fundamentals/logic_gates.md
       - Linear Algebra: 
@@ -51,16 +51,16 @@ nav:
         - Algorithms: quantum/algorithms.md
       - Quantum Computation: quantum/computation.md
       - Applications: quantum/applications.md
-  - Cryptography:
-      - Fundamentals: cryptography/fundamentals.md
-      - Symmetric Cryptography: cryptography/symmetric.md
-      - Asymmetric Cryptography: cryptography/asymmetric.md
-      - Quantum Cryptography: cryptography/quantum.md
-  - Quantum Cryptography:
-      - Fundamentals: qcryptography/fundamentals.md
-      - QKD: 
-        - BB84: qcryptography/BB84.md
-  - Quantum machine learning and optimization:
+  #- Cryptography:
+  #    - Fundamentals: cryptography/fundamentals.md
+  #    - Symmetric Cryptography: cryptography/symmetric.md
+  #    - Asymmetric Cryptography: cryptography/asymmetric.md
+  #    - Quantum Cryptography: cryptography/quantum.md
+  #- Quantum Cryptography:
+  #    - Fundamentals: qcryptography/fundamentals.md
+  #    - QKD: 
+  #      - BB84: qcryptography/BB84.md
+  - Quantum ML and Optimization:
       - Optimization Algorithms:
         - Quadratic Unconstrained Binary Optimization (QUBO): 
           - QUBO Intro: QuantumOpt/QOpt/QUBO.md
@@ -90,6 +90,11 @@ nav:
           - QHybrid Intro: QuantumOpt/QML/QHyb.md
         - Quantum Generative Adversarial Networks: 
           - QGANS Intro: QuantumOpt/QML/QGANS.md
+  - Classical ML and Optimization:
+    - Optimization Algorithms:
+      - Gradient descent: ClscOptML/COpt/Gradient.md
+    - Machine Learning: 
+      - Support Vector Machines: ClscOptML/CML/SVM.md
   - Real-world Problems:
       - Scheduling:
         - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
@@ -98,7 +103,7 @@ nav:
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
         - RNA Folding: Projs/Projs_Opt/Proj_RNA_Folding.md
-  #- About Me: about.md
+  - About Me: about.md
 
 # Plugins
 plugins:

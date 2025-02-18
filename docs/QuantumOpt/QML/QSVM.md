@@ -1,4 +1,4 @@
-# Quantum Vector Support Machine 
+# Quantum Support Vector Machine
 
 ## Support vector machine
 A support vector machines takes inputs in an $n$-dimentional Euclidean space $(R^{n})$ and classifies them according to which side of a hyperplane they are on. This hyperplane fully defines the behavior of the SVM, which can be defined by adjustable parameteres $\overrightarrow{w}$ and the constant $b$.
@@ -144,7 +144,7 @@ Sometimes, it's hard to separat effectively a model by any SVM linearly. For exa
     </p>
 </div>
 
-Luckly, we can apply **kernel trick** technique, which maps the original space $R^{n}$ into a higher dimensional space $R^{N}$. This higher dimenstional space is also called **feature space** and we refer to the function $\phi : R^{n} \rightarrow R^{N}$ as a **feature map**.
+Luckly, we can apply **kernel trick** technique, which maps the original space $\mathbb{R}^{n}$ into a higher dimensional space $\mathbb{R}^{N}$. This higher dimensional space is called **feature space** and we refer to the function $\phi : R^{n} \rightarrow R^{N}$ as a **feature map**.
 
 For example, figure above shows that a kernel trick is implemented to map 1-dimensional real line into a 2-dimensional plane with the function 
 
