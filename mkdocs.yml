@@ -90,10 +90,10 @@ nav:
           - QHybrid Intro: QuantumOpt/QML/QHyb.md
         - Quantum Generative Adversarial Networks: 
           - QGANS Intro: QuantumOpt/QML/QGANS.md
-
   - Real-world Problems:
       - Scheduling:
         - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
+        - Nurse Scheduling Using Qiskit: Projs/jupyter_Opt/(C)nurse_scheduling_qiskit.ipynb
       - Finance:
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
