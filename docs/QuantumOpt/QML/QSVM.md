@@ -50,7 +50,7 @@ These parameters should be properly normaliezd within a certian interval before 
 
 ### Amplitude encoding
 
-Alghouth the Angle encoding can take $n$ inputs on $n$ qubits, the Amplitude encoding can take $2^{x}$ inputs when implemnted on an $n$-qubit circuit. If the amplitude encoding feature map is given an input $x_{0}, \cdots, x_{2^{n}-1}$, it simply prepares the state
+Alghouth the Angle encoding can take $n$ inputs on $n$ qubits, the Amplitude encoding can take $2^{n}$ inputs when implemnted on an $n$-qubit circuit. If the amplitude encoding feature map is given an input $x_{0}, \cdots, x_{2^{n}-1}$, it simply prepares the state
 
 $$
 | \phi(\overrightarrow{a}\rangle) = \frac{1}{\sqrt{\sum_{k}x_{k}^{2}}}\sum_{k=0}^{2^{n}-1}x_{k} |k\rangle.
@@ -74,7 +74,7 @@ Normally, we don't use all the $2^{n}$ parameters that amplititude encoding prov
 <div style="text-align: center;">
     <img src="../../images_QML/QSVM_6_ZZ_feature.png" alt="QSVM_6_ZZ_feature" style="width: 800px; height: 300px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
-        Figure. \( ZZ \) feature map three qubits with inputs \(x_{1}, x_{2}, x_{3} \).
+        Figure. \( ZZ \) feature map of three qubits with inputs \(x_{1}, x_{2}, x_{3} \).
     </p>
 </div>
 

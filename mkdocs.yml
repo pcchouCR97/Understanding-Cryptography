@@ -84,6 +84,7 @@ nav:
         - Machine Learning Refresher: QuantumOpt/MachineLearningRefresher.md
         - Quantum Support Vector Machines (QSVM): 
           - QSVM Intro: QuantumOpt/QML/QSVM.md
+          - QSVM Example: QuantumOpt/jupyter_QML/(C)load_wine_QSVM_PennyLane.ipynb
         - Quantum Neural Networks (QNN): 
           - QNN Intro: QuantumOpt/QML/QNN.md
         - Quantum Hybrid Architectures (QHybrid): 
@@ -99,6 +100,7 @@ nav:
       - Scheduling:
         - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
         - Nurse Scheduling Using Qiskit: Projs/jupyter_Opt/(C)nurse_scheduling_qiskit.ipynb
+        - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
       - Finance:
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
