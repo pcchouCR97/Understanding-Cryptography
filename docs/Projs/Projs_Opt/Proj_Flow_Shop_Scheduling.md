@@ -229,6 +229,57 @@ $$
 This ensures that **machines are used efficiently, preventing job conflicts**. 
 
 
+### **Understanding the Precedence Constraint**
+
+The given constraint ensures that operations within the **same job** follow the correct order.
+
+#### **Mathematical Formulation**
+$$
+\sum_{k_{n-1} < i < k_n, \ t + p_i > t'} x_{i,t} x_{i+1,t'} = 0
+$$
+for each job $n$.
+
+#### **What It Means**
+- **$x_{i,t}$** → Operation $O_i$ starts at time $t$.
+- **$x_{i+1,t'}$** → Next operation $O_{i+1}$ starts at time $t'$.
+- **$t + p_i > t'$** → Operation $O_{i+1}$ must not start before $O_i$ finishes.
+
+#### **How It Works**
+- If **$O_i$** starts at $t$, then **$O_{i+1}$** **must** start at $t'$ such that:
+  $$
+  t' \geq t + p_i
+  $$
+- If **$O_{i+1}$** starts **too early** (before $O_i$ finishes), the constraint is violated.
+- The sum **counts the number of violations**—the goal is to keep this **zero**.
+
+#### **Example**
+- Suppose Job 1 has two operations:
+  - $O_1$ runs from $t = 2$ to $t = 5$ ($p_1 = 3$).
+  - $O_2$ must **not** start before $t' = 5$.
+- If $O_2$ starts at $t' = 4$, it **violates the constraint**.
+
+### **Understanding Why the Constraint Must Equal 0 and Why $I_m \times I_m$ is Not Used**
+
+#### **1. Meaning of the Constraint $= 0$**  
+$$
+\sum_{k_{n-1} < i < k_n, \ t + p_i > t'} x_{i,t} x_{i+1,t'} = 0
+$$
+- This ensures that **no precedence violations occur** in job sequencing.
+- If this sum **is greater than 0**, it means at least **one operation starts before its predecessor finishes**, which is incorrect.
+- Setting it to **0** guarantees that **every operation waits for the previous one to finish**.
+
+#### **2. Why Not Use $I_m \times I_m$?**
+- **$I_m \times I_m$** deals with **machine constraints**, ensuring no two operations run at the same time on the same machine.
+- The current constraint **only enforces job order** (i.e., within the same job, not across different jobs).
+- **Here, we only consider consecutive operations within a single job**, which is why we sum over **job indices $i$** and not machine assignments.
+
+#### **Key Difference**
+| Constraint Type | Ensures |
+|---------------|---------|
+| **$R_m = A_m \cup B_m$** (uses $I_m \times I_m$) | Only one job runs on a machine at a time |
+| **This precedence constraint (no $I_m \times I_m$)** | Operations within a job happen in the correct order |
+
+
 ## References
 
 [1]. D. Venturelli, D. Marchand, and G. Rojo, "Quantum Annealing Implementation of Job-Shop Scheduling", [arXiv:1506.08479v2](https://arxiv.org/abs/1506.08479v2)

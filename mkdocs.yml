@@ -101,6 +101,7 @@ nav:
         - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
         - Nurse Scheduling Using Qiskit: Projs/jupyter_Opt/(C)nurse_scheduling_qiskit.ipynb
         - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
+        - Air traffic control - Optimal Runway Allocation for Single-Plane Assignments in a Multi-Runway Airport: Projs/jupyter_Opt/(C)Air_Traffic_Control_1_Runway.ipynb
       - Finance:
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
