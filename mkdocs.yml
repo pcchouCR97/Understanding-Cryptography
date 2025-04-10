@@ -103,6 +103,7 @@ nav:
         - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
         - Air traffic control - Optimal Runway Allocation for Single-Plane Assignments in a Multi-Runway Airport: Projs/jupyter_Opt/(C)Air_Traffic_Control_1_Runway.ipynb
       - Finance:
+        - Quantum Amplitude Estimation: Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md
         - Portfolio Optimization: Projs/Projs_Opt/Proj_Portfolio_Optimization.md
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
