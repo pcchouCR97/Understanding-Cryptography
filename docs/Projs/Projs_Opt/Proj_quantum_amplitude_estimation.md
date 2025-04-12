@@ -6,7 +6,34 @@ $$
 $$ 
 for some normalized states $|\psi_{0}\rangle_{n}$ and $|\psi_{1}\rangle_{n}$, where $a\in [0,1]$ is unknown. 
 
-Amplitude estimation allows the efficient estimation of $a$, i.e., the probability of measuring $|1\rangle$ in the last qubit.[[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) This is done by using an opeartor $Q$, and Quantum Phase Estimation [[2].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) to approximate certain eigenvalues of $Q$. 
+Amplitude estimation allows the efficient estimation of $a$, i.e., the probability of measuring $|1\rangle$ in the last qubit.[[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) This is done by using an opeartor $Q$, and Quantum Phase Estimation [[2]](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) to approximate certain eigenvalues of $Q$. 
+
+<div style="text-align: center;">
+    <img src="../../Projs/Projs_Opt/images/Qcurcuit_ae.png" alt="Quantum circuit for amplitude estimation" style="width: 300px; height: 200px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Quantum circuit for amplitude estimation. \(H\) and is the Hadamard gate and \(F^{\dagger}_{m}\) denotes the inverse Quantum Fourier Transform on m qubits.
+    </p>
+</div>
+
+???+ note "How to read this quantum circuit?"
+    There are 3 sections in this quantum circuit. The first one is the top $m$ qubits (in figure, these are 0 to j to $m-1$). These are the counting qubits [Quantum counting algorithm(wiki)](https://en.wikipedia.org/wiki/Quantum_counting_algorithm) and [Grover's algorithm(wiki)](https://en.wikipedia.org/wiki/Grover%27s_algorithm). Each starts in $|0\rangle$ and gets a Hadamard gate. After the Hadamard gate, these $m$ qubits are in equal supersposition $\frac{1}{\sqrt{2^{m}}}\sum_{k=0}^{2^{m}-1}|k\rangle$. Second is the middle $n$ qubits (its the $|0\rangle_{n}$ in the above image). This is the state register that will store $|i\rangle$, drawn from a distribution $p_{i}$. And the last bottom 1 qubit is the ancilla qubit. This is where $f(i) \in [0,1]$ is encoded as a rotation amplitude.
+
+???+ note "What is operator $A$"
+    Operator $A$ acts on the bottom $n+1$ wires, $A|0\rangle^{\otimes (n+1)} \mapsto \sum_{i}\sqrt{p_i}|i\rangle_{n}(\sqrt{1-f(i)}|0\rangle + \sqrt{f(i)}|1\rangle)$, **this prepares your quantum probability distirbution and encodes your function $f{i}$** into the ancilla amplitude. Here, "acts on the bottom $n+1$ wires" mean that operator $A$ acts simultaneously on $n$ qubits (which store $|i\rangle$) and the 1 ancilla qubit (used to encode $f(i)$).
+
+???+ note "What is operator $Q$"
+    An Operator $Q$ is a Grover opeartor. Each counting qubit (top wire) controls powers of the Q, acting on the bottom $n+1$ register. The notation $Q^{2^{0}}$ means controlled by qubit 0, $Q^{2^{j}}$ means by controll qubit $j$, and $Q^{2^{m-1}}$ means its controlled by qubit $m-1$.
+
+???+ note "Inverse QFT $F^{\dagger}_{m}$"
+    The inverse quantum fourier transform applies to the counting resiger, which decodes the eigenphase that encodes the amplitude $a =\mathbb{E}[f(X)]$.
+
+???+ note "What is a "register" qubits?"
+    In the circuit, $n$ is the number of **state qubits**, which encoded input distribution $|\psi\rangle$, 1 is the **ancilla qubit** which will be used to encode $f(i)$, rotate to encode $\sqrt{f(i)}|1\rangle$. The operator $A$ acts on a **combined register** of
+    $$
+    |0\rangle_{n}\otimes |0\rangle
+    $$
+    which is a **total of $n+1$ qubits** such that $n$ is for preparing $\sum\sqrt{p_{i}}|i\rangle$ and 1 is for loading amplitude via fcuntion $f(i)$.
+
 
 ### Step 1.
 This Quantum Phase Estimation requies $m$ addiational qubits and $M = 2^{m}$ applications of $Q$. The $m$ qubits are first put into equal superposition by applying Hadamard gates. Then these superposition $m$ qubits are used to control different powers of $Q$.
@@ -31,7 +58,7 @@ $$
 |\psi\rangle_{n} = \sum_{i = 0}^{N-1} \sqrt{p_{i}}|i\rangle_{n},
 $$
 
-where the probability of measuring the state $|i\rangle_{n}$ is $p_{i} \in [0,1]$, with $\sum_{i=0}^{N-1} p_{i} =1$ and $N = 2^{m}$. The state $|i\rangle_{n}$ is one of the $N$ possible realizations of a bounded discrete random variable $X$. For instance, $|i\rangle$ can represent a discretized interest rate or the value of a portfolio.
+where the probability of measuring the state $|i\rangle_{n}$ is $p_{i} \in [0,1]$, with $\sum_{i=0}^{N-1} p_{i} =1$ and $N = 2^{m}$. The state $|i\rangle_{n}$ is one of the $N$ possible realizations of a bounded discrete random variable $X$. For instance, $|i\rangle$ can represent a discretized interest rate or the value of a portfolio. For example, if $n=2$, the range of $i$ is $i \in \{0,1,2,3\}$, where we may say the interest rate of 0, 1, 2, or 3%.
 
 ### Step 3
 
