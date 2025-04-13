@@ -9,25 +9,25 @@ for some normalized states $|\psi_{0}\rangle_{n}$ and $|\psi_{1}\rangle_{n}$, wh
 Amplitude estimation allows the efficient estimation of $a$, i.e., the probability of measuring $|1\rangle$ in the last qubit.[[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) This is done by using an opeartor $Q$, and Quantum Phase Estimation [[2]](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) to approximate certain eigenvalues of $Q$. 
 
 <div style="text-align: center;">
-    <img src="../../Projs/Projs_Opt/images/Qcurcuit_ae.png" alt="Quantum circuit for amplitude estimation" style="width: 300px; height: 200px;">
+    <img src="../../Projs_Opt/images/Qcurcuit_ae.png" alt="Quantum circuit for amplitude estimation" style="width: 550px; height: 300px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         Quantum circuit for amplitude estimation. \(H\) and is the Hadamard gate and \(F^{\dagger}_{m}\) denotes the inverse Quantum Fourier Transform on m qubits.
     </p>
 </div>
 
-???+ note "How to read this quantum circuit?"
+??? note "How to read this quantum circuit??"
     There are 3 sections in this quantum circuit. The first one is the top $m$ qubits (in figure, these are 0 to j to $m-1$). These are the counting qubits [Quantum counting algorithm(wiki)](https://en.wikipedia.org/wiki/Quantum_counting_algorithm) and [Grover's algorithm(wiki)](https://en.wikipedia.org/wiki/Grover%27s_algorithm). Each starts in $|0\rangle$ and gets a Hadamard gate. After the Hadamard gate, these $m$ qubits are in equal supersposition $\frac{1}{\sqrt{2^{m}}}\sum_{k=0}^{2^{m}-1}|k\rangle$. Second is the middle $n$ qubits (its the $|0\rangle_{n}$ in the above image). This is the state register that will store $|i\rangle$, drawn from a distribution $p_{i}$. And the last bottom 1 qubit is the ancilla qubit. This is where $f(i) \in [0,1]$ is encoded as a rotation amplitude.
 
-???+ note "What is operator $A$"
+??? note "What is operator $A$?"
     Operator $A$ acts on the bottom $n+1$ wires, $A|0\rangle^{\otimes (n+1)} \mapsto \sum_{i}\sqrt{p_i}|i\rangle_{n}(\sqrt{1-f(i)}|0\rangle + \sqrt{f(i)}|1\rangle)$, **this prepares your quantum probability distirbution and encodes your function $f{i}$** into the ancilla amplitude. Here, "acts on the bottom $n+1$ wires" mean that operator $A$ acts simultaneously on $n$ qubits (which store $|i\rangle$) and the 1 ancilla qubit (used to encode $f(i)$).
 
-???+ note "What is operator $Q$"
+??? note "What is operator $Q$?"
     An Operator $Q$ is a Grover opeartor. Each counting qubit (top wire) controls powers of the Q, acting on the bottom $n+1$ register. The notation $Q^{2^{0}}$ means controlled by qubit 0, $Q^{2^{j}}$ means by controll qubit $j$, and $Q^{2^{m-1}}$ means its controlled by qubit $m-1$.
 
-???+ note "Inverse QFT $F^{\dagger}_{m}$"
+??? note "Inverse QFT $F^{\dagger}_{m}$?"
     The inverse quantum fourier transform applies to the counting resiger, which decodes the eigenphase that encodes the amplitude $a =\mathbb{E}[f(X)]$.
 
-???+ note "What is a "register" qubits?"
+??? note "What is a "register" qubits?"
     In the circuit, $n$ is the number of **state qubits**, which encoded input distribution $|\psi\rangle$, 1 is the **ancilla qubit** which will be used to encode $f(i)$, rotate to encode $\sqrt{f(i)}|1\rangle$. The operator $A$ acts on a **combined register** of
     $$
     |0\rangle_{n}\otimes |0\rangle
@@ -72,8 +72,23 @@ $$
 $$
 Now we can use amplitude estimation to approximate the probability of measuring $|1\rangle$ in the last qubit, which equals $\sum_{i=0}^{N-1}p_{i}f(i) = \mathbb{E}[f(X)]$. Choosing $f(i) = i/(N-1)$ allows us to estimate $\mathbb{E}[\frac{X}{N-1}]$ and hence $\mathbb{E}[X]$. If we choose $f(i) = i^{2}/(N-1)^{2}$ we can efficiently estimate $\mathbb{E}[X^{2}]$ which yields the variance $\text{Var}(X) = \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2}$.
 
+??? note "Why does measuing $|1\rangle$ in the ancilla gives $\mathbb{E}[f(X)]$?"
+    After we applying for the opeartion $A$, our quantum state becomes
+    $$
+    |\psi\rangle = \sum_{i=1}^{N-1}|i\rangle_{n}\bigg(\sqrt{1-f(i)}\sqrt{p_i}|0\rangle + \sqrt{f(i)}\sqrt{p_i}|1\rangle\bigg)
+    $$
+    the **total amplitude on $|1\rangle$** in the ancilla qubit is 
+    $$
+    \sum_{i=0}^{N-1} \sqrt{p_i} \cdot \sqrt{f(i)}|i\rangle_{n}|1\rangle
+    $$
+    squaring this gives the **total probability of measuring** $|1\rangle$ in the ancilla
+    $$
+    \text{Pr}[\text{ancilla} = |1\rangle] = \sum_{i=0}^{N-1}p_{i}f(i) = \mathbb{E}[f(X)].
+    $$
+    The final probaliity of seeing $|1\rangle = $ average of $f(i)$ weighted by $p_i$.
+
 ### How to evaluate risk measures such as VaR and CVaR
-For a given confidence level $\alpha \in [0,1]$. $\text{VaR}_{\alpha}(X)$ can be defined as the smallest value $x \in \{0,\cdots,N-1\}$ such that $\mathbb{P}[X \leq x]\leq (1-\alpha)$, which simply implies that with $1-\alpha$ probability, losses will not exceed $x$. To find $\text{VaR}_{\alpha}(X)$ on a quantum computer, we define the function 
+For a given confidence level $\alpha \in [0,1]$. $\text{VaR}_{\alpha}(X)$ (X is a random variable, can be loss or value) can be defined as the smallest value $x \in \{0,\cdots,N-1\}$ such that $\mathbb{P}[X \leq x]\geq (1-\alpha)$, which simply implies that with $1-\alpha$ probability, losses will not exceed $x$. To find $\text{VaR}_{\alpha}(X)$ on a quantum computer, we define the function 
 
 $$
 f_l(i) = 
