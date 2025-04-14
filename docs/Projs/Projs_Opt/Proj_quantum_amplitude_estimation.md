@@ -6,7 +6,7 @@ $$
 $$ 
 for some normalized states $|\psi_{0}\rangle_{n}$ and $|\psi_{1}\rangle_{n}$, where $a\in [0,1]$ is unknown. 
 
-Amplitude estimation allows the efficient estimation of $a$, i.e., the probability of measuring $|1\rangle$ in the last qubit.[[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) This is done by using an opeartor $Q$, and Quantum Phase Estimation [[2]](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) to approximate certain eigenvalues of $Q$. 
+Amplitude estimation allows the efficient estimation of $a$, i.e., the probability of measuring $|1\rangle$ in the last qubit.[[2].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) This is done by using an opeartor $Q$, and Quantum Phase Estimation [[3]](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) to approximate certain eigenvalues of $Q$. 
 
 <div style="text-align: center;">
     <img src="../../Projs_Opt/images/Qcurcuit_ae.png" alt="Quantum circuit for amplitude estimation" style="width: 550px; height: 300px;">
@@ -132,9 +132,93 @@ CVaR_{\alpha}(X) = \frac{l_{\alpha}}{\mathbb{P}[X \leq l_{\alpha}]}\sum_{i=0}^{l
 $$
 We also multiplied by $l_{\alpha}$, otherwise we would estimate $\text{CVaR}_{\alpha}(\frac{X}{l_{\alpha}})$. Even though we replace $\mathbb{P}[X \leq l_{\alpha}]$ by an estimation, the error on CVaR, shows that we still achieve a quadratic speed up compated to classical Monte Carlo methods.
 
+
+## Construction of Quantum Circuit
+
+Approximating $\mathbb{E}$ using amplitude estiamtion requires the operator $F$ for $f(x) = x/(N-1)$. In general, representing $F$ for the expected value or for the CVaR either additional ancillas to pre-compute the (discretized) function $f$ into qubits, using quantum arithmetic, before applying the rotation (ref)/ And the exact number of ancillas depends on the desired accuracy of the approximation of $F$. 
+
+In the following, paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) will show how to approximate $F$ without ancillas using polynomially many gates, at the cost of a lower - but still faster than classical - rate of convergence. Note that the operator required for estimating VaR is easier to construct and we can always achieve the optimal rate of convergence as discussed later.
+
+### Polynomial Approximate Quantum Circuit without Ancillas
+
+the contribution in paper paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) rests on the fact that an operator 
+$$
+P: |x\rangle_{n}|0\rangle \mapsto |x\rangle_{n}(\text{cos}(p(x))|0\rangle + \text{sin}(p(x))|1\rangle)
+$$
+for a given polynomial $p(x) = \sum_{j=0}^{k}p_{j}x^{j}$ of order $k$, can be efficiently constructed using multi-controlled Y-rotations.
+
+(image)
+*Here, we use qiskit for illustration, since Qiskit doesnt have native Ry-controlled gate with 2+ controlls, we use $\text{MCX}(q_{0},q_{1}) \mapsto R_y(4a) \mapsto \text{MCX}(q_{0},q_{1})$. See [Qiskit Quantum library](https://docs.quantum.ibm.com/api/qiskit/circuit_library), for more infomation.
+
+In the single qubit operations with $n-1$ control qubits, it can be exactly constructed using $O(n)$ gates and $O(n)$ ancillas or $O(n^{2})$ gates without ancilla. Here, peper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) uses $O(n)$ gates and $O(n)$ ancillas. Since the binary variable representation of $p$, leads to at most $n^{k}$ terms, the operator $P$ can be constructed using $O(n^{k+1})$ gates and $O(n)$ ancillas.
+
+For every analytic function f, there exists a sequence of polynomials such that the approximation error converges exponentially fast to zero with increasing order of the polynomials [[4].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference). 
+
+
+If we can find a polynomial $p(y)$ wuch that $\text{sin}^{2}(p(y)) = y$, then we can set $y=f(x)$, and the previous discussion provides a way to construct the operator $F$. Since [the expected value is linear](../../Math_Fundamentals/probability_theory.md#linearity-of-expectation), we may choose to estimate $\mathbb{E}[c(f(X) - \frac{1}{2}) + \frac{1}{2}]$ instead of $\mathbb{E}[f(X)]$ for a parameter $c\in(0,1]$, and then map the result back to an estimatior for $\mathbb{E}[f(X)]$. The rationale behind this choice is that $\text{sin}^{2}(y+\frac{\pi}{4}) = y+\frac{1}{2} + O(y^3)$.
+
+??? note "What is $\mathbb{E}[c(f(X) - \frac{1}{2}) + \frac{1}{2}]$ and Why?"
+    By the linearity of expected value, we may define a function $g(X)$ such that
+    $$
+    g(X) := c(f(X) - \frac{1}{2}) + \frac{1}{2} \Rightarrow \mathbb{E}[g(X)] = c\mathbb{E}[f(X)] + (\frac{1}{2}+\frac{c}{2})
+    $$
+    therefore, you can estiamte $\mathbb{E}[g(X)]$ (via amplitude estimation), you can solve for 
+    $$
+    \mathbb{E}[f(X)] = \frac{1}{c}(\mathbb{E}[g(X)]-\frac{1}{2})+\frac{1}{2}.
+    $$
+    Since paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) wants to approximate 
+    $$
+    \text{sin}^{2}\bigg(cp(y) + \frac{\pi}{4} \bigg) \approx \bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}
+    $$
+
+    1. The $\text{sin}^{2}$ term is how amplitude is encoded in a quantum circuit.
+    2. We can map term $\bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}$ without ancilla on a quantum circuit. 
+
+**Thus, we want to find $p(y)$ such that $c(y - \frac{1}{2}) + \frac{1}{2}$ is sufficiently well approximated by $\text{sin}^{2}(cp(y)+\frac{\pi}{4})$.** Thus, we try to solve $p(y)$ for 
+$$
+c(y - \frac{1}{2}) + \frac{1}{2} = \text{sin}^{2}(cp(y)+\frac{\pi}{4})
+$$
+we have 
+$$
+p(y) = \frac{1}{c}\bigg(\text{sin}^{-1}\bigg(\sqrt{c\bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}}\bigg)-\frac{\pi}{4}\bigg)
+$$
+and we choose $p(y)$ as Taylor approximation of above equation around $y = 1/2$. From Taylor approximation, term $y-1/2$ makes a approximation an odd function and thus all sum of even function are zero. This approximation of order $2u+1$ leads to a maximal approximation error for above equation of 
+
+$$
+\frac{c^{2u+3}}{(2u+3)2^{u+1}}+O(c^{2u+5}),
+$$
+
+for all $y\in[0,1]$.
+
+??? note "Why are we constructing $p(x)$ like this?"
+    Amplitude estimation measures the probability:
+    $$
+    a = \sin^2(\theta)
+    \Rightarrow \theta = \sin^{-1}(\sqrt{a})
+    $$
+    To encode a target probability $a \in [0,1]$, we compute this angle $\theta$ and apply the rotation gate:
+    $$
+    R_y(2\theta)|0\rangle = \cos(\theta)|0\rangle + \sin(\theta)|1\rangle
+    $$
+    This creates a quantum state where the amplitude of $|1\rangle$ is $\sin(\theta)$, so measuring the ancilla gives:
+    $$
+    P(|1\rangle) = \sin^2(\theta) = a
+    $$
+    Therefore, to prepare an amplitude that reflects $f(x)$, we construct $p(x)$ such that:
+    $$
+    p(x) = 2 \cdot \sin^{-1}(\sqrt{f(x)})
+    $$
+    This lets amplitude estimation recover $\mathbb{E}[f(X)]$ through quantum measurement.
+
+## Convergence
+
 ## Reference
-1. Quantum Amplitude Amplification and Estimation, G. Brassard, P. Hoyer, M. Mosca, and A. Tapp,
+1. Quantum Risk Analysis
+
+2. Quantum Amplitude Amplification and Estimation, G. Brassard, P. Hoyer, M. Mosca, and A. Tapp,
 arXiv:0005055 (2000). [https://arxiv.org/abs/quant-ph/0005055](https://arxiv.org/abs/quant-ph/0005055)
 
-2. Quantum measurements and the Abelian Stabilizer Problem, A. Y. Kitaev (1995), [https://arxiv.org/abs/quant-ph/9511026](https://arxiv.org/abs/quant-ph/9511026)
+3. Quantum measurements and the Abelian Stabilizer Problem, A. Y. Kitaev (1995), [https://arxiv.org/abs/quant-ph/9511026](https://arxiv.org/abs/quant-ph/9511026)
+
+4. L. N. L. N. Trefethen, Approximation theory and approximation practice (2013), ISBN 1611972396.
 

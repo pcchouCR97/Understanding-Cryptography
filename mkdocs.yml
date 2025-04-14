@@ -34,6 +34,8 @@ nav:
         - Vector Space: Math_Fundamentals/vector_space.md
         - Space Transform: Math_Fundamentals/space_transform.md
       - Hilbert Space: Math_Fundamentals/hilbert_space.md
+      - Probability:
+        - Probability theory: Math_Fundamentals/probability_theory.md
   - Quantum Mechanics:
       - Basics:
         - Superposition, Entanglement and Reversibility: quantum_mechanics/Sup_Entg_Rev.md
