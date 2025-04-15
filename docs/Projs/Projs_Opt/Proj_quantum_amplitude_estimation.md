@@ -166,13 +166,61 @@ If we can find a polynomial $p(y)$ wuch that $\text{sin}^{2}(p(y)) = y$, then we
     $$
     \mathbb{E}[f(X)] = \frac{1}{c}(\mathbb{E}[g(X)]-\frac{1}{2})+\frac{1}{2}.
     $$
-    Since paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) wants to approximate 
+    Paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) wants to approximate 
     $$
     \text{sin}^{2}\bigg(cp(y) + \frac{\pi}{4} \bigg) \approx \bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}
     $$
 
     1. The $\text{sin}^{2}$ term is how amplitude is encoded in a quantum circuit.
     2. We can map term $\bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}$ without ancilla on a quantum circuit. 
+
+
+???+ note "Why this weird-looking expression?"
+    Paper [[1].](../../Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md#reference) wants to approximate 
+    $$
+    \text{sin}^{2}\bigg(cp(y) + \frac{\pi}{4} \bigg) \approx \bigg( y - \frac{1}{2}\bigg) + \frac{1}{2}
+    $$
+    And the reason is that 1. Function $\text{sin}^{2}(y+\frac{\pi}{4} \approx y + \frac{1}{2})$ when $y$ is small (Taylor expression). By doing this,
+
+???+ note "Why do we use $c(f(x) - \tfrac{1}{2}) + \tfrac{1}{2}$ and how does it relate to amplitude estimation?"
+    Quantum amplitude estimation (QAE) measures probabilities of the form:
+    $$
+    a = \sin^2(\theta) \quad \Rightarrow \quad \theta = \sin^{-1}(\sqrt{a})
+    $$
+    To encode a desired probability $a \in [0,1]$, we prepare the state:
+    $$
+    R_y(2\theta)|0\rangle = \cos(\theta)|0\rangle + \sin(\theta)|1\rangle
+    $$
+    which yields:
+    $$
+    P(|1\rangle) = \sin^2(\theta) = a \ (\text{Born rule})
+    $$
+    So to encode a function $f(x)$ as a measurable amplitude, we must construct a function $p(x)$ such that:
+    $$
+    \sin^2(p(x)) = f(x)
+    \quad \Rightarrow \quad p(x) = \sin^{-1}(\sqrt{f(x)})
+    $$
+    But since arbitrary functions are hard to implement on quantum circuits, we use a **polynomial approximation** of this $p(x)$. Instead of encoding $f(x)$ directly, we approximate a more convenient form:
+    $$
+    c(f(x) - \tfrac{1}{2}) + \tfrac{1}{2}
+    $$
+    Why this form? Because of the Taylor expansion:
+    $$
+    \sin^2(y + \tfrac{\pi}{4}) = \tfrac{1}{2} + y - \tfrac{4y^3}{6} + \cdots
+    \Rightarrow \boxed{\sin^2(y + \tfrac{\pi}{4}) \approx \tfrac{1}{2} + y} \text{ for small } y
+    $$
+    This motivates encoding:
+    $$
+    \sin^2(cp(f(x)) + \tfrac{\pi}{4}) \approx c(f(x) - \tfrac{1}{2}) + \tfrac{1}{2}
+    $$
+    - $f(x) - \tfrac{1}{2}$: centers the value around 0
+    - $c \in (0,1]$: scales down for small-angle accuracy
+    - $+ \tfrac{1}{2}$: shifts result back to \([0,1]\)
+
+    This form enables accurate encoding of $f(x)$ into amplitude using polynomially approximated quantum rotations.
+
+
+
 
 **Thus, we want to find $p(y)$ such that $c(y - \frac{1}{2}) + \frac{1}{2}$ is sufficiently well approximated by $\text{sin}^{2}(cp(y)+\frac{\pi}{4})$.** Thus, we try to solve $p(y)$ for 
 $$
