@@ -35,3 +35,33 @@ By minimizing the number of required $M$ (M is the number of quantum queries or 
 $$
 \sqrt{2}\bigg(1- \frac{1}{2u+3}\bigg)\epsilon^{1+\frac{1}{2u+2}} = \frac{\pi}{M}.
 $$
+
+From formula
+
+$$
+c\epsilon  - \frac{c^{2u+3}}{(2u+3)2^{u+1}} = \frac{\pi}{M}.
+$$
+
+we wants to minimize the error, which the first error is QAE error and the second one is Taylor truncation error. By setting these two the same, 
+
+$$
+\frac{c^{2u+3}}{(2u+3)2^{u+1}} = \frac{\pi}{M},
+$$
+
+we know that c $\varpropto M^{\frac{-1}{2u+3}}$. Since we already know that Quantum Amplitude Estimation has a error of
+
+$$
+\epsilon  = |a - \widetilde{1}| \leq \frac{\pi}{M} + \frac{\pi^2}{M^2} = O(M^{-2})
+$$
+
+therefore, 
+
+$$
+\epsilon \varpropto \frac{1}{M}\cdot M^{\frac{-1}{2u+3}} = M^{-(1-\frac{1}{2u+3})} = M^{-\frac{2u+2}{2u+3}} = O(M^{-\frac{2u+2}{2u+3}}).
+$$
+
+For $u = 0$, we get $O(M^{-\frac{2}{3}})$, which is already better than the classical convergence rate of $O(M^{-\frac{1}{2}})$. As $u$ increase, we can get the convergence rate of nearly $O(M^{-1})$.
+
+### Variance 
+
+When we evaluate variance $\text{Var}(X) = \mathbb{E}[X^{2}] - \mathbb{E}[X]^{2}$, we apply the same idea but using $\text{sin}^{2}(y) \varpropto y^{2}$. The resulting convergence rate is again equal to $O(M^{-\frac{2u+2}{2u+3}})$.
