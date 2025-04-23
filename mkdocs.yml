@@ -110,6 +110,8 @@ nav:
           - Constructing Quantum Circuit: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_Q_circuit.md
           - Convergence and Accuracy: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_conv_accuracy.md
           - VaR and CVaR: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_Var_n_CVaR.md
+        - Credit Risk Analysis: 
+          - Credit Risk Analysis: Projs/Projs_Opt/Proj_credit_risk_credit_risk.md
         - Portfolio Optimization: Projs/Projs_Opt/Proj_Portfolio_Optimization.md
         - Portfolio Diversification: Projs/Projs_Opt/Proj_Portfolio_Diversification.md
       - Biology:
