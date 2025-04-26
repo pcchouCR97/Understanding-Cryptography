@@ -1,5 +1,4 @@
-# Credit Risk
-
+# Credit Risk Glossory
 
 Imagine you are manaing credit portfolio of 10 million, which has 100 bonds, each of them worth 100,000 dollar across 100 diffferent firms. And we and to estimate the loss under systemetic shock.
 
@@ -11,7 +10,6 @@ Assumptions:
     - Correlation to system factor $\rho_{k} = 0.2$.
 
 - System factor realization (for example, recession) = $z = 1$.
-
 
 ## What is a Default?
 
@@ -121,9 +119,47 @@ Z = \frac{X - \mu}{\sigma}
 $$
 where $X$ is the raw value (this can be return, credit score), $\mu$ is the mean of the distrubtion, $\sigma$ is the standard deviation, $Z \sim \mathcal{N}(0,1)$: always stardard normal
 
+## Loss given default 
+A Loss Given Default (LGD) for asset $k$ means the fraction of value you loss if asset $k$ defaults. 
+$$
+\lambda_{k} = 1 - \text{Recovery Rate}.
+$$
+For example, if a bond pays back $40\%$ when defaulting, we have a $\text{Recovery Rate}$ of 0.4. Thus, $\lambda_{k} = 1 - 0.4 = 0.6$. This means that you lose $60\%$ of the value upon default.
 
+## Recover Rate
+The recovery rate is the percentages of defaulted debt that a lender can recover.[2]
 
+## Bernoulli Variable
+A Bernoulli variable is a random variable with only two outcomes:
 
+- 1 if event happens, e.g. default.
+- 0 if event does not happen
+
+$$
+D_k \sim \text{Bernoulli}(p_{k}(z))
+$$
+
+This means that:
+
+- $D_k = 1$: asset $k$ defaults with probability $p_{k}(z)$
+- $D_k = 0$: asset $k$ survivies with probability $1 - p_{k}(z)$
+
+## Uncentainty Models
+In finance, an uncertainty model referes to any mathematical or probabilistic framework used to quantify and manage unknowns espeically future outcomes that are not deterministic.
+
+> We know that Finance is full of randomness, such as returns, defaults, interest rate, asset prices, and uncertainty models helps you describe, simulate, and price that radomness.
+
+Below are some common types of uncertainty models:
+
+-   Probabilistic models: This model uses distributuions to describe outcomes. For example: Value-at-Risk (VaR), default models. 
+-   Stochastic models: This model uses random variables/ processes to model time evolution. For example: Black–Scholes model for option pricing.
+-   Scenario-based model: This model define possible future paths or economic regiimes. For example, stress testing. 
+-   Bayuesian models: This model combines prior beliefs with observed data. For example: Portfolio updating, risk estimation.
 
 ## Reference
+
 [1]. https://en.wikipedia.org/wiki/Cumulative_distribution_function
+
+[2]. https://www.investopedia.com/terms/r/recovery-rate.asp
+
+[3]. https://en.wikipedia.org/wiki/Bernoulli_distribution
