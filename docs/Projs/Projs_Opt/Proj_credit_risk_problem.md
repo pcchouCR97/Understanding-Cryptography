@@ -93,7 +93,7 @@ $$
 
 #### 1. Linear Dependency Between Risk and Latent Factor
 
-From paper [Regulatory Capital Modelling for Credit Risk](https://arxiv.org/abs/1412.1183), we know taht given a firm $k$, the default probabilites and the latent vairable can be linearlized as 
+From paper [Regulatory Capital Modelling for Credit Risk](https://arxiv.org/abs/1412.1183), we know that given a firm $k$, the default probabilites and the latent vairable can be linearlized as 
 
 $$
 X_k = a_{k} Z_{k} + b_k
@@ -114,7 +114,7 @@ where $p^{0}_{k}$ is the baseline (unconditional) default probability.
 From above, the conditional probability that firm $k$ defaults given $Z = z$ is:
 
 $$
-p_{k}(z) = \Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho+k}} \bigg)
+p_{k}(z) = \Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho_{k}}} \bigg)
 $$
 
 where $\Phi(z)$ is a standard normal CDF. This models how worsening economy (negative $z$) increases default probability.
@@ -138,7 +138,7 @@ $$
 \theta_k(z) \approx \underbrace{\theta_k(0)}_{\text{offset}} + \underbrace{ \left. \frac{d\theta_k}{dz} \right|_{z=0} }_{\text{slope}} \cdot z
 $$
 
-where $\theta_{k}(0) = 2 \text{sin}^{-1}(\sqrt{p_{k}(0)})$ is the offset and $\frac{d\theta_k}{dz} \right$ is the slope computed using chain rule.
+where $\theta_{k}(0) = 2 \text{sin}^{-1}(\sqrt{p_{k}(0)})$ is the offset and $\frac{d\theta_k}{dz}$ is the slope computed using chain rule.
 
 Here we go through the details of chain rule. We want to expand: 
 
@@ -149,7 +149,7 @@ $$
 where 
 
 $$
-p_{k}(z) = \Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho+k}} \bigg)
+p_{k}(z) = \Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho_{k}}} \bigg)
 $$
 
 we compute the chain rule by 
@@ -167,13 +167,13 @@ $$
 then $\frac{dp_{k}}{dz}$ is 
 
 $$
-\frac{dp_{k}}{dz} = \frac{d}{dz}\Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho+k}} \bigg) = -\sqrt{\rho_k} \times \frac{1}{1-\rho_k} \times \phi \bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho+k}} \bigg)
+\frac{dp_{k}}{dz} = \frac{d}{dz}\Phi\bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho_{k}}} \bigg) = -\sqrt{\rho_k} \times \frac{1}{1-\rho_k} \times \phi \bigg(\frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}z}{\sqrt{1-\rho_{k}}} \bigg)
 $$
 
 where $\phi(\cdot)$ is the standard normal PDF. Since we expand our function around $z = 0$, 
 
 $$
-\psi = \frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}0}{\sqrt{1-\rho+k}} = \frac{\Phi^{-1}(p_{k}^{0})}{\sqrt{1-\rho+k}}
+\psi = \frac{\Phi^{-1}(p_{k}^{0}) - \sqrt{\rho_k}0}{\sqrt{1-\rho_{k}}} = \frac{\Phi^{-1}(p_{k}^{0})}{\sqrt{1-\rho_{k}}}
 $$
 
 thus, 
@@ -200,10 +200,143 @@ $$
 $$
 
 The quantum circuit can easily implement rotation $\text{RY}(\theta_{k})$ using only a simple linear function of the quantum register represenattaing $z$. In short,
+
 $$
 Z \xrightarrow{ X_k = a_{k} Z_{k} + b_k} X_k \xrightarrow{\Phi(\cdot)} p_{k}(Z) \xrightarrow{2 \text{sin}^{-1}\sqrt{\cdot}} \theta_{k}(z) \xrightarrow{\text{Linear Approx}} \text{Quantum Rotatopm RY}
 $$
 
+#### 8. Scaling 
+
+##### Motivation: Why Do We Shift and Scale?
+
+In quantum circuits (like Qiskit's GCI model), quantum registers naturally hold **integer states**:
+
+$$
+i \in [0, 2^n-1]
+$$
+
+But the real-world credit risk model operates in a **continuous real domain**:
+
+$$
+z \in [-c, c]
+$$
+
+Our goal is to correctly map quantum integer states $i$ to real systemic risk factors $z$ and preserve the real-world meaning: systemic factor $z$ drives default probabilities and quantum rotations.
+
+> Adjusting for integer to normal range ensures that quantum integers correctly simulate real-world systemic risk factors in $[-c,c].$
+
+
+##### Step 1: Shifting (Centering)
+
+**Problem:**
+
+- Quantum integers start from 0.
+- Real $z$ domain is centered at 0 ( $-c$ to $c$).
+
+**Solution:**
+
+- Shift $i$ so that the middle integer maps to $z = 0$.
+- Use shift:
+
+$$
+\text{shift} = \frac{2^n-1}{2}
+$$
+
+- Adjust offset:
+
+$$
+\text{offset} += \text{real slope} \times (-\text{normal_max_value})
+$$
+
+##### Step 2: Scaling (Stretching/Compressing)
+
+**Problem:**
+
+- Integer domain $[0, 2^n-1]$ is not the same size as real $[-c, c]$.
+
+**Solution:**
+
+- Scale slope to match step sizes:
+
+$$
+\text{scale factor} = \frac{2c}{2^n-1}
+$$
+
+- Adjust slope:
+
+$$
+\text{slope} *= \text{scale factor}
+$$
+
+---
+
+##### Super Simple Example
+
+Given:
+
+-   $c = 3$
+-   $n = 3$ qubits → $2^3 = 8$ states
+-   Real slope = $-0.02$
+-   Real offset = $0.1$
+
+**Correct Process:**
+
+1.  **Shift:**
+
+$$
+\text{offset} += (-0.02) \times (-3) = 0.1 + 0.06 = 0.16
+$$
+
+2.  **Scale:**
+
+$$
+\text{scale factor} = \frac{6}{7} \approx 0.857
+$$
+
+$$
+\text{new slope} = (-0.02) \times 0.857 \approx -0.01714
+$$
+
+Now $i=0$ maps to $z=-3$ and $i=7$ maps to $z=+3$ correctly. Makesure you always adjust offset using real (unscaled) slope and only scale slope once after shifting. Thus, real-world meaning is preserved while quantum integers are mapped correctly into physical systemic factors $z$. Combininig shift and scale:
+
+$$
+z(i) = \frac{2c}{2^{n}-1}\bigg(i - \frac{2^{n}-1}{2}\bigg)
+$$
+
+Now the ==quantum states $|i\rangle$==s behave as if they are sampling real $z \in [-c,c]$.
+
+
+### Normal Distribution Quantum Circuit Modeling
+
+The probability density function of a normal distribution is defined as 
+
+$$
+\mathbb{P}(X = x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x - \mu)^2}{\sigma^2}}
+$$
+
+Note that $\sigma^{2}$ is the **variance**. This is fro consistency with multivariate distributions, where the uppercase sigma $\Sigma$ is associated with the covariance.
+
+The circuit considers the discretized version of the normal distribution on $2^{\text{num_qubits}}$ equidistant points, $x_i$, truncated to $\text{bonds}$. For a one-dimensional random variable, which means the `num_qubits` is a single integer, it applies the operation 
+
+$$
+\mathcal{P}_X |0\rangle^n = \sum_{i=0}^{2^n - 1} \sqrt{\mathbb{P}(x_i)} |i\rangle
+$$
+
+ where $n$ is `num_qubits`. The circuit loads the **square root** of the probabilities into the qubit amplitudes such that the sampling probability, which is the square of the amplitude, equals the probability of the distribution.
+
+In the multi-dimensional case, the distribution is defined as
+
+$$
+\mathbb{P}(X = x) = \frac{1}{\sqrt{2\pi\Sigma^{2}}} e^{-\frac{(x - \mu)^2}{\Sigma}}
+$$
+
+where $\Sigma$ is the covariance. To specify a multivariate normal distribution `num_qubits` is a list of integers, each specifying how many qubits are used to discretize the respective dimension. The arguments $\mu$ and $\sigma$ in this case are a vector and square matrix.
+ 
+If for instance, `num_qubits = [2, 3]` then $\mu$ is a 2d vector and $\sigma$ is the $2 \times 2$ covariance matrix. The first dimension is discretized using 2 qubits, hence on 4 points, and the second dimension on 3 qubits, hence 8 points. Therefore the random variable is discretized on $4 \times 8 = 32$ points.
+
+Since, in general, it is not yet known how to efficiently prepare the qubit amplitudes to represent a normal distribution, this class computes the expected amplitudes and then uses the `QuantumCircuit.initialize` method to construct the corresponding circuit.
+
+This circuit is for example used in amplitude estimation applications, such as finance [1, 2], where customer demand or the return of a portfolio could be modeled using a normal distribution.
 
 
 # References
