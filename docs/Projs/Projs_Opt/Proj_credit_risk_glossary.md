@@ -11,7 +11,7 @@ Assumptions:
 
 - System factor realization (for example, recession) = $z = 1$.
 
-## What is a Default?
+## Default?
 
 A **default** occurs when a borrower fails to meet debt obligations, such as interest or principal payments on a bond or loan.
 
@@ -26,7 +26,7 @@ For example, with a 40% recovery on a \$100,000 bond:
 Loss = (1 - 0.4) × 100,000 = 60,000
 
 
-## What is a Credit Portfolio?
+## Credit Portfolio?
 
 A **credit portfolio** consists of credit-risky financial assets, including:
 
@@ -36,14 +36,14 @@ A **credit portfolio** consists of credit-risky financial assets, including:
 
 Such portfolios are exposed to the risk of borrower default.
 
-## What is Baseline Default Probability $p_k^0$?
+## Baseline Default Probability $p_k^0$?
 
 This is the **unconditional probability** that a firm will default, assuming normal market conditions.
 
 - Estimated from credit ratings, CDS spreads, or historical default rates.
 - Example: A BB-rated firm may have $p_k^0 = 0.01$ (1% default probability).
 
-## What is Systemic Factor Correlation $\rho_k$?
+## Systemic Factor Correlation $\rho_k$?
 
 $\rho_k$ measures how strongly asset $k$'s default risk is correlated with the macroeconomy.
 
@@ -55,7 +55,7 @@ Typical values:
 - $\rho_k = 0.1–0.2$: Low to moderate sensitivity.
 - $\rho_k = 0.3–0.5$: High sensitivity to economic downturns.
 
-## What is Systemic Factor Realization $z$?
+## Systemic Factor Realization $z$?
 
 The variable $z ~ N(0,1)$ models the **macroeconomic environment**:
 
@@ -65,7 +65,7 @@ The variable $z ~ N(0,1)$ models the **macroeconomic environment**:
 
 This is used to simulate default probabilities under stress.
 
-## Why Use This Model?
+## Why Gaussian Conditional Independence?
 
 The Gaussian Conditional Independence (GCI) model allows:
 
@@ -75,7 +75,7 @@ The Gaussian Conditional Independence (GCI) model allows:
 - Regulatory capital and stress-testing applications.
 
 
-## Whats the CDF (Cumulatuve Distribution Function)?
+## CDF (Cumulatuve Distribution Function)?
 
 The cumulative distribution function of a real-valued random variable 
 $X$ is the function given by
@@ -126,6 +126,30 @@ $$
 $$
 For example, if a bond pays back $40\%$ when defaulting, we have a $\text{Recovery Rate}$ of 0.4. Thus, $\lambda_{k} = 1 - 0.4 = 0.6$. This means that you lose $60\%$ of the value upon default.
 
+## Why use CDF for Risk Estimation? 
+Because **Value-at-Risk (VaR)** is defined as a quantile, which is the inverse of the CDF.
+> "Find the smallest $x$ such that at least $\alpha %$ of losses are below it"
+
+$$
+\text{VaR}_{\alpha} = \text{inf}\{x | F_{L}(x)\geq \alpha \}
+$$
+
+Therefore, if you already know $F_{L}(x)$, you can 
+
+find VaR by solving:
+    
+$$
+F_{L}(x^{*}) = \alpha \rightarrow x^{*} = \text{VaR}_{\alpha}
+$$
+
+and find CVaR:
+
+$$
+\text{CVaR}_{\alpha} = \mathbb{E}[L|L\leq\text{VaR}_{\alpha}]
+$$
+
+Then you average all loeese up to the VaR threshold.
+
 ## Recover Rate
 The recovery rate is the percentages of defaulted debt that a lender can recover.[2]
 
@@ -155,6 +179,16 @@ Below are some common types of uncertainty models:
 -   Stochastic models: This model uses random variables/ processes to model time evolution. For example: Black–Scholes model for option pricing.
 -   Scenario-based model: This model define possible future paths or economic regiimes. For example, stress testing. 
 -   Bayuesian models: This model combines prior beliefs with observed data. For example: Portfolio updating, risk estimation.
+
+## Latent Variables and Observables
+Latent variables in finance refer to hidden forces—such as investor sentiment, creditworthiness, or real earnings quality—that influence market behavior but cannot be directly measured or retrieved from any financial terminal. Unlike observable quantities like stock prices, volumes, or P/E ratios, latent variables are not directly recorded. Instead, they must be inferred from patterns in observable data, which makes them essential yet elusive components in financial modeling.
+
+-   Observable variable: You see it directly, i,e,. stock price, trading volume, P/E ratio.
+-   Latent variable: Sits in the background, driving what you see, but you cannot measure it with a single gauge.
+
+These variables are typically abstract, multidimensional, and expressed only indirectly through their impact on observable metrics. For instance, a rise in market fear may cause VIX to spike, bond yields to fall, and equity prices to decline. None of these alone fully captures fear, but together they imply its presence. The problem is worsened by noise—macroeconomic surprises, news shocks, and irregular market reactions—making latent signals hard to isolate or measure cleanly.
+
+To extract latent variables, finance relies on statistical inference tools. Principal Component Analysis (PCA) can uncover dominant hidden drivers behind correlated movements. Factor models help decompose asset returns into exposure to unobserved risks. Kalman filters track time-varying latent states under noisy conditions. These techniques don’t let us see the latent variables directly—but they allow us to reconstruct and quantify them, enabling more robust understanding of markets and better decision-making under uncertainty.
 
 ## Reference
 
