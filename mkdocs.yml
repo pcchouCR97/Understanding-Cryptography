@@ -107,6 +107,7 @@ nav:
       - Finance:
         - Quantum Amplitude Estimation: 
           - Quantum Amplitude Estimation: Projs/Projs_Opt/Proj_quantum_amplitude_estimation.md
+          - Iterative Amplitude Estimation: Projs/Projs_Opt/Proj_iterative_amplitude_estimation.md
           - Constructing Quantum Circuit: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_Q_circuit.md
           - Convergence and Accuracy: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_conv_accuracy.md
           - VaR and CVaR: Projs/Projs_Opt/Proj_quantum_amplitude_estimation_Var_n_CVaR.md
