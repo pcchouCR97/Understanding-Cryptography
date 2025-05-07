@@ -31,3 +31,27 @@ $$
 $$
 
 ## Iterative Quantum Amplitude Estimation
+
+We use thee quantum computer to approximate $\mathbb{P}[|1\rangle] = \text{sin}^{2}((2k+1)\theta_{a})$ for the last qubit in $\mathcal{Q}^{k} \mathcal{A}|0\rangle_{n}|0\rangle$ for different power $k$.
+
+Suppose a confidence interval $[\theta_{i},\theta_{u}] \subseteq [0, \pi/2]$ for $\theta_{a}$ and a power $k$ of $\mathcal{Q}$ as well as an esitmate for $\text{sin}^{2}((2k+1)\theta_{a})$. From trigonometric, we transform our estimate from $\text{sin}^{2}((2k+1)\theta_{a})$ into estimate for $\text{cos}^{2}((4k+2)\theta_{a})$ from the fact $\text{sin}^{2} = (1-\text{cos}(2x))/2$.
+
+!!! Note "One-to-one"
+    Here, we are trying to estimate $\theta_{a}$, where:
+    $$
+    a = \text{sin}^{2}(\theta_{a}) \Rightarrow \text{cos}((4k+2)\theta_{2a})
+    $$
+    But $\text{cos}$ is not one-to-ont over $[0,2\pi]$. To uniquely determine $\theta_{a}$ from $\text{cos}((4k+2)\theta_{a})$, we must ensure the possible value of $((4k+2)\theta_{a}) {\text{mod} \ 2\pi}$ fall entirely within either $[0,\pi]$ or $[\pi, 2\pi]$
+
+The one-to-one facts allows us to invert the cosine. If $((4k+2)\theta_{a})_{\text{mod} \ 2\pi}$ falls into $[0,\pi]$, cosine is decreasing, we said that inverse is unique, vice versa. An Iterative Amplitude Estimation picks a $k$ such that 
+
+$$
+((4k+2)[\theta_{l},\theta_{u})] \ {\text{mod} \ 2\pi} \subset [0,\pi] \ \text{or} \ [\pi, 2\pi]
+$$
+
+IAE: 
+-   Applying controlled Grover operations $Q^{k}$.
+-   Measuring $\text{cos}(K_{i}\theta)$
+-   Inverting to recover $\theta$
+-   Narrowing your estimate iteratively
+
