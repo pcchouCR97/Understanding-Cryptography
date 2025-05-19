@@ -29,21 +29,37 @@ $$
 \mathbb{E}[X|X\leq l_{\alpha}]
 $$
 
-## Example
+## Bisection Search
 
-**Definition:**  
-Value at Risk estimates the **maximum expected loss** over a specified time horizon at a given confidence level.
+Suppose a university uses SAT scores to determine admissions. You want to estimate the cutoff SAT score such that 95% of applicants score below that value. This is essentially finding the 95th percentile in the score distribution. Your goal is to find the smallest SAT score such that 
 
-**Interpretation:**  
-> *“I am 95% confident that I will not lose more than \$2,000 in one day.”*
+$$
+\text{admitted_perventage(score)} \leq 95%
+$$
 
-**Example:**  
-You have a \$100,000 portfolio.  
-- 1-day 95% VaR = **\$2,000**
+Let's start with an initial score range with `low_scroe = 1000` (konwn to admit ~0%) and `high_score = 1600` (known to admit ~ 100%). Then we compute the middle 
 
-This means:  
-There is a 95% chance your portfolio **will not lose more than \$2,000** in a single day.  
-There’s a 5% chance it could lose more.
+$$
+\text{mid_score} = \frac{1000 + 1600}{2} = 1300
+$$
+
+then we plug in this `mid_score` into our Iterative Quantum Amplitude Estimation to evalute the probability. Suppose we have a out come of `80%`, which doesn't meet our requirement. Then we start a new search in upper half by updating the `lower_score = 1300`. Repeat this process untill, for example, we found a `mid = 1450` get `92%` and `mid = 1500` and get 96%. We then set the `high_score = 1500`. We repeat this process untill the interval is sufficiently small, for example, `score = 1492` and we get a probability of 95%.
+
+
+## CVaR
+
+From[Conditional Value at Risk (investopedia)](https://www.investopedia.com/terms/c/conditional_value_at_risk.asp) Since CVaR values are derived from the calcualtion of VaR itself, factors such as the shape of the distribution of retrun, the cut-off level used, and the periodicity of the data, and the assumptions about stochastic volatility, will affect the value of CVaR. Once the VaR has been calculated, we can derive our CVaR as 
+
+$$
+\text{CVaR}_{\alpha} = \frac{1}{1-\alpha}\int_{-1}^{\text{VaR}_{\alpha}} xp(x)dx
+$$
+
+where $p(x)dx$ is the probability density of getting a return with value $x$, $c$ is the cut-off point on the discritubtion where tha analyst sets the $\text{VaR}$ breakpoint, and lastly, $\text{VaR}$ is the agree-upon $\text{VaR}$ level. We can write this in a discrete form as 
+
+$$
+\text{CVaR}_{\alpha} = \frac{1}{1-\alpha}\sum_{x\geq \text{VaR}_{\alpha}} xp(x)dx
+$$
+
 
 ---
 **Definition:**  

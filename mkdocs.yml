@@ -36,6 +36,9 @@ nav:
       - Hilbert Space: Math_Fundamentals/hilbert_space.md
       - Probability:
         - Probability theory: Math_Fundamentals/probability_theory.md
+      - Quantum Embeding: Math_Fundamentals/quantum_embedding.md
+      - Quantum Feature Map: Math_Fundamentals/quantum_feature_map.md
+      - Variational Circuit: Math_Fundamentals/variational_circuit.md
   - Quantum Mechanics:
       - Basics:
         - Superposition, Entanglement and Reversibility: quantum_mechanics/Sup_Entg_Rev.md

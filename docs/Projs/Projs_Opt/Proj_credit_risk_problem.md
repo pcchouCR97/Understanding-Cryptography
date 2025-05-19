@@ -6,7 +6,7 @@ $$
 p_{k}(z) = \Phi \bigg(\frac{\Phi^{-1}(p_{k}^{0} - \sqrt{\rho_k}z)}{\sqrt{1-\rho_{k}}} \bigg)
 $$
 
-where $F\Phi$ denotes the [cumulative distribution function](../Projs_Opt/Proj_credit_risk_glossary.md#whats-the-cdf-cumulatuve-distribution-function) of $Z$, $p_{k}^{0}$ is the default probability of asset $k$ for $z = 0$ and $\rho_{k}$ is the sensitivity of the default probability of asset $k$ with respect to $Z$. By giving a concrete realization of $Z$ the individual default events are assumed to be independent from each other. 
+where $\Phi$ denotes the [cumulative distribution function](../Projs_Opt/Proj_credit_risk_glossary.md#cdf-cumulatuve-distribution-function) of $Z$, $p_{k}^{0}$ is the default probability of asset $k$ for $z = 0$ and $\rho_{k}$ is the sensitivity of the default probability of asset $k$ with respect to $Z$. By giving a concrete realization of $Z$ the individual default events are assumed to be independent from each other. 
 
 Then, the topic we are interested in is measuring the total loss 
 
@@ -16,7 +16,7 @@ $$
 
 where $\lambda_k$ denotes the [*loss given default*](../Projs_Opt/Proj_credit_risk_glossary.md#loss-given-default) of asset $k$, and $X_{k}(Z)$ denotes a [Bernoulli variable](../Projs_Opt/Proj_credit_risk_glossary.md#bernoulli-variable) representing the default event of asset $k$.
 
-In reality, we are insterested in the expected value $\mathbb{E}[L]$, the Value at Risk (VaR) of $L$ and the Conditional Value at Risk of $L$ (Expected Shortfall). The VaR and CVaR are defined as 
+In reality, we are insterested in the expected value $\mathbb{E}[L]$, the Value at Risk (VaR) of $L$ and the Conditional Value at Risk of $L$. The VaR and CVaR are defined as 
 
 $$
 \text{VaR}_{\alpha}(L) = \text{inf}\{x|\mathbb{P}[L\leq x] \geq 1 - \alpha\}
