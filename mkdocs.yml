@@ -24,27 +24,31 @@ theme:
 # Navigation structure
 nav:
   - Home: index.md
-  - Quantum 101:
-      - Modular Arithmetic: Math_Fundamentals/modular_arithmetic.md
-      - Logic Gates: Math_Fundamentals/logic_gates.md
-      - Linear Algebra: 
-        - Tensor: Math_Fundamentals/linear_algebr_tensor.md
-        - Matrices: Math_Fundamentals/matrices.md
-        - Foundations: Math_Fundamentals/foundation.md
-        - Vector Space: Math_Fundamentals/vector_space.md
-        - Space Transform: Math_Fundamentals/space_transform.md
-      - Hilbert Space: Math_Fundamentals/hilbert_space.md
-      - Probability:
-        - Probability theory: Math_Fundamentals/probability_theory.md
-      - Quantum Embeding: Math_Fundamentals/quantum_embedding.md
-      - Quantum Feature Map: Math_Fundamentals/quantum_feature_map.md
-      - Variational Circuit: Math_Fundamentals/variational_circuit.md
-  - Quantum Mechanics:
+  - Quantum Algorithm 101:
       - Basics:
-        - Superposition, Entanglement and Reversibility: quantum_mechanics/Sup_Entg_Rev.md
-        - Qubit(s): quantum_mechanics/Qubit.md
-        - Quantum gates: quantum_mechanics/Quantum_logic_gates.md
-        - The Bloch sphere and rotations: quantum_mechanics/TheBlochSphereAndRotation.md
+        - Superposition, Entanglement and Reversibility: Quantum_Algorithm_101/Sup_Entg_Rev.md
+        - Qubit(s): Quantum_Algorithm_101/Qubit.md
+        - Quantum gates: Quantum_Algorithm_101/Quantum_logic_gates.md
+        - The Bloch sphere and rotations: Quantum_Algorithm_101/TheBlochSphereAndRotation.md
+      - Born Rule: Quantum_Algorithm_101/born_rule.md
+      - Computational Basis: Quantum_Algorithm_101/computational_basis.md
+      - Hilbert Space: Quantum_Algorithm_101/hilbert_space.md
+      - Logic Gates: Quantum_Algorithm_101/logic_gates.md
+      - Linear Algebra: 
+        - Tensor: Quantum_Algorithm_101/linear_algebr_tensor.md
+        - Matrices: Quantum_Algorithm_101/matrices.md
+        - Foundations: Quantum_Algorithm_101/foundation.md
+        - Vector Space: Quantum_Algorithm_101/vector_space.md
+        - Space Transform: Quantum_Algorithm_101/space_transform.md
+      - Modular Arithmetic: Quantum_Algorithm_101/modular_arithmetic.md
+      - Probability:
+        - Probability theory: Quantum_Algorithm_101/probability_theory.md
+      - Quantum Embeding: Quantum_Algorithm_101/quantum_embedding.md
+      - Quantum Feature Map: Quantum_Algorithm_101/quantum_feature_map.md
+      - Qubit Dimensionality: Quantum_Algorithm_101/qubit_dimensionality.md
+      - Qiskit Primitives: Quantum_Algorithm_101/qiskit_primitives.md
+      - Variational Circuit: Quantum_Algorithm_101/variational_circuit.md
+  - Quantum Mechanics:
       - Theorems:
         - No-cloning: quantum_mechanics/No-cloing.md
         - No-deleting: quantum_mechanics/No-deleting.md
