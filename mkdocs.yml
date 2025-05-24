@@ -26,6 +26,7 @@ nav:
   - Home: index.md
   - Quantum Algorithm 101:
       - Basics:
+        - Quantum State Space Basics: Quantum_Algorithm_101/quantum_state_space_basics.md
         - Superposition, Entanglement and Reversibility: Quantum_Algorithm_101/Sup_Entg_Rev.md
         - Qubit(s): Quantum_Algorithm_101/Qubit.md
         - Quantum gates: Quantum_Algorithm_101/Quantum_logic_gates.md
