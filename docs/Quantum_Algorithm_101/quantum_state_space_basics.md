@@ -71,25 +71,105 @@ As you dig into the quantum algorithm, you will constantly hear a term called **
 
 They are jsut different labes for the same computational basis vectors.
 
-## Quantum Gates as Rotations
-
-- Gates = unitary transformations
-- Example: Z gate, Hadamard gate
-- Acts like rotation/reflection in complex space
-
-## Amplitudes and Measurement
-
-- Amplitude = vector component = vector coefficient if we are talking about the conventional Cartesian coordinates.
-- Probability = squared magnitude: $ |\alpha|^2 $
-
 ## Tensor Products? Never heard that before!
 
-In quantum algorithm, you will faced 
-Tensor prouct.
+In quantum algorithm, you will have to deal with tensor product, which you will probally never heard this before. or maybve you just hear of inner product. But here is the thing. Tensor product in Hilbert space:
 
-- Combine states: $ |0\rangle \otimes |1\rangle = |01\rangle $
-- Grows basis: $[2^n]$ space
-- Manual computation:
+
+$$
+\mathcal{H}_{A} \otimes \mathcal{H}_{B}
+$$
+
+combines two quantum system into a joint space. It's like stacks coordinates, no interaction or entanglement.
+
+Let's do some exampels, 
+
+$$
+|0\rangle = 
+\begin{bmatrix}
+1\\0
+\end{bmatrix}, \
+|1\rangle = 
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+$$
+
+we do the tensor product $|0\rangle \otimes |0\rangle$ and $|0\rangle \otimes |1\rangle$
+
+$$
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\otimes 
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \cdot 1 \\
+1 \cdot 0 \\
+0 \cdot 1 \\
+0 \cdot 0 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1\\0\\0\\0
+\end{bmatrix}
+= |00\rangle
+$$
+
+$$
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\otimes 
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \cdot 1 \\
+1 \cdot 1 \\
+0 \cdot 0 \\
+0 \cdot 1 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+0\\1\\0\\0
+\end{bmatrix}
+= |01\rangle
+$$
+
+A basic idea of tensor product of column vectors. Let
+
+$$
+u = 
+\begin{bmatrix}
+u_{1}\\ u_{2}
+\end{bmatrix}, \
+v = 
+\begin{bmatrix}
+v_{1}\\ v_{2}
+\end{bmatrix}
+$$
+
+then 
+
+$$
+u\otimes v = 
+\begin{bmatrix}
+u_{1} \cdot v_{1} \\
+u_{1} \cdot v_{2} \\
+u_{2} \cdot v_{1} \\
+u_{2} \cdot v_{2} \\
+\end{bmatrix}
+\in \mathbb{C}^{4\times 1}
+$$
+
+> Tensor of two $n \times 1$ vectors $\rightarrow$ $n^{2} \times 1$. The dimensional expands via [Kronecker product](../Quantum_Algorithm_101/kronecker_product.md).
+
+The python realization will be:
 
 ```python
 def tensor_product(a, b):
@@ -102,13 +182,13 @@ def tensor_product(a, b):
 In Linear Algebra, Euclidean space, an inner product is 
 
 $$
-<v,w> = ||v|| \cdot ||w|| \cdot \text{cos} \theta
+\langle v,w\rangle = ||v|| \cdot ||w|| \cdot \text{cos} \theta
 $$
 
 If **$w$** is a unit vector, then
 
 $$
-<w,v> = \text{length of projection of} \ v \ \text{onto} \ w
+\langle w,v\rangle = \text{length of projection of} \ v \ \text{onto} \ w
 $$
 
 In Hilbert space $\mathbb{H}$, the inner product between quantum state $|\psi\rangle$ and $|\phi\rangle$ is:
@@ -123,8 +203,50 @@ $$
 |\psi\rangle = \frac{1}{\sqrt{5}} \begin{bmatrix} 2\\1 \end{bmatrix} = \frac{2}{\sqrt{5}}|0\rangle + \frac{1}{\sqrt{5}}|1\rangle,
 $$
 
-you want to find the projection onto $|0\rangle$.
+you want to find the projection onto $|0\rangle$. Next we compute
+
+$$
+\langle 0|\psi \rangle = [1 \ 0] \cdot \frac{1}{\sqrt{5}} \begin{bmatrix} 2\\1 \end{bmatrix} = \frac{1}{\sqrt{5}} \cdot (1 \cdot 2 + 0 \cdot 1) = \frac{2}{\sqrt{5}}
+$$
+
+and we want to know the probability of measuing $|0\rangle$
+
+$$
+|\langle 0|\psi\rangle|^{2} = \frac{4}{5}
+$$
+
+where $\langle0|\psi\rangle$ is the projection amplitude and $|\langle 0|\psi\rangle|^{2}$ is the porbability of observing $|0\rangle$.
+
+Methematically, 
+
+$$
+\text{Amplitude along} \ v = \langle v, \psi \rangle
+$$
+
+In quantum mechanics:
+
+-   $\langle v_i|\psi \rangle$ is the amplitude of $|\psi\rangle$ in direction $|v_i \rangle$
+-   $|\langle 0|\psi\rangle|^{2}$ is the probability of measuring in tat basis
+
+
+Let's compare a
+
+## Observable
+In quantum mechanics, an observable tells you *what* you are measuring, for example, energy, spin, or position. It defines which basis (eigenvector) you are projecting into and what outcome (eigenvalue) you can get.
+
+> Measuring state $|\psi\rangle$ using observable with eigenvector $|0\rangle$ means computing $\langle 0 | \psi\rangle$. This is the projection of $\psi\rangle$ onto axis $|0\rangle$ with probability = $|\langle 0 |\psi\rangle|^{2}$
+
+For an easy example, lets say you want to measure a room temperature and we will need a thomometer. The temperature is the *observable* in quantum analogy, and the *measurement process* is the tool. The observable is the operator (e.g. Hamiltonian) defining what you measure.
+
+
+## Quantum Gates as Rotations
+
+> Quantum gates = unitary matrices, like rotation matrics in Euclidean geometry - but in complex hilbert space.
+
+When you talk about the rotation xyz, there are no xyz in hilbert space, its all computational basis?
 
 
 
-### Amplitude
+- Gates = unitary transformations
+- Example: Z gate, Hadamard gate
+- Acts like rotation/reflection in complex space

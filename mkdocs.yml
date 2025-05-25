@@ -31,6 +31,9 @@ nav:
         - Qubit(s): Quantum_Algorithm_101/Qubit.md
         - Quantum gates: Quantum_Algorithm_101/Quantum_logic_gates.md
         - The Bloch sphere and rotations: Quantum_Algorithm_101/TheBlochSphereAndRotation.md
+        - Measurement in Quantum Mechanics: Quantum_Algorithm_101/measurement_in_quantum_mechanics.md
+        - Quantum Postulate: Quantum_Algorithm_101/quantum_postulate.md
+        - Bloch sphere: Quantum_Algorithm_101/Bloch_sphere.md
       - Born Rule: Quantum_Algorithm_101/born_rule.md
       - Computational Basis: Quantum_Algorithm_101/computational_basis.md
       - Hilbert Space: Quantum_Algorithm_101/hilbert_space.md
