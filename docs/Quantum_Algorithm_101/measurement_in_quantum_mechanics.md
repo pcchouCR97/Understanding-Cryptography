@@ -61,12 +61,31 @@ $$
 \langle \psi \bigg(\sum_{m}mP_{m}\bigg)\psi\rangle  = \langle \psi |M|\psi\rangle 
 $$
 
+
+## Two qubits example 
+
+Suppose we have two qubits. If these were two classical bits, then there would be four possible states and four *computational basis state* denote $|00\rangle$, $|01\rangle$, $|10\rangle$, and $|11\rangle$. A pair of qubits can also exist in superpositions of these four states, so that quantum state of two qubits involves associating a complex coefficient (ampllitude). We can describe this two qubtis system as
+
+$$
+\lvert\psi\rangle = a_{00}\lvert00\rangle+a_{01}\lvert01\rangle+a_{10}\lvert10\rangle+a_{11}\lvert11\rangle.
+$$
+
+Similiar to the single qubit case, the measurement resutls $x$ (any of the followings: $00$, $01$, $10$, $11$) occurs with probability $|\alpha_{x}|^{2}$, with the state of the qubits after the measurement being $|x\rangle$. For a two-qubit system, we could measure jsut a subset of the qubits, for example, we want to measure the first qubit alone gives $0$ with probability $|\alpha_{00}|^{2}+|\alpha_{01}|^{2}$, leaving the post-measurement state 
+
+$$
+|\psi'\rangle = \frac{\alpha_{00}|00\rangle+\alpha_{01}|01\rangle}{\sqrt{|\alpha_{00}|^{2}+|\alpha_{01}|^{2}}}.
+$$
+
+Note that the post-measurement state is *re-normalized* by the factor $\sqrt{|\alpha_{00}|^{2}+|\alpha_{01}|^{2}}$ so that it still satisfies the normalization condition.
+
 ## References 
 
-[1]. [https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics](https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics)
+[1] M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
 
-[2]. [https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics](https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics)
+[2]. [https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics](https://en.wikipedia.org/wiki/Measurement_in_quantum_mechanics)
 
-[3]. [https://en.wikipedia.org/wiki/Born_rule](https://en.wikipedia.org/wiki/Born_rule)
+[3]. [https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics](https://en.wikipedia.org/wiki/Mathematical_formulation_of_quantum_mechanics)
 
-[4]. [https://en.wikipedia.org/wiki/POVM](https://en.wikipedia.org/wiki/POVM)
+[4]. [https://en.wikipedia.org/wiki/Born_rule](https://en.wikipedia.org/wiki/Born_rule)
+
+[5]. [https://en.wikipedia.org/wiki/POVM](https://en.wikipedia.org/wiki/POVM)

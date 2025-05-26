@@ -8,3 +8,7 @@ $\lvert 0 \rangle$
         The line \((5/4, -1) \cdot \overrightarrow{x} + 0 = 0 \), which is \( y= (5/4)x \), can be used to divide the real plane into two disjoint categories.
     </p>
 </div>
+
+
+reference
+> M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
