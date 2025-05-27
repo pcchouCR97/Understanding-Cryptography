@@ -21,15 +21,15 @@ $$
 We set 
 
 $$
-\alpha = \text{cos} \theta e^{i\delta}, \ \beta = \text{sin} \theta e^{i(\delta+\phi)}
+\alpha = \text{cos} \frac{\theta}{2} e^{i\delta}, \ \beta = \text{sin} \frac{\theta}{2} e^{i(\delta+\phi)}
 $$
 
 thus,
 
 $$
 \begin{array}{ll}
-|\psi\rangle & = \text{cos} \theta e^{i\delta}|0\rangle + \text{sin} \theta e^{i(\delta+\phi)}|1\rangle \\
-& = e^{i\delta}(\text{cos}|0\rangle + \text{sin}e^{i\phi}|1\rangle)
+|\psi\rangle & = \text{cos} \frac{\theta}{2} e^{i\delta}|0\rangle + \text{sin}\frac{\theta}{2} e^{i(\delta+\phi)}|1\rangle \\
+& = e^{i\delta}(\text{cos}\frac{\theta}{2}|0\rangle + \text{sin}e^{i\phi}\frac{\theta}{2}|1\rangle)
 \end{array}
 $$
 
@@ -40,7 +40,7 @@ For the relative phase, $e^{i\phi}$, can canont ignore it. We set $\text{sin}$ a
 $$
 \begin{array}{ll}
 x = \text{sin}\theta\text{cos}\phi\\
-y = \text{sin}\theta\text{sin}\theta\\
+y = \text{sin}\theta\text{sin}\phi\\
 z = \text{cos}\theta
 \end{array}
 $$
@@ -57,7 +57,7 @@ $$
 thus,
 
 $$
-|\psi\rangle = \text{cos} \frac{\theta}{2}|0\rangle + \text{cos} \frac{\theta}{2}e^{i\theta}|1\rangle.
+|\psi\rangle = \text{cos} \frac{\theta}{2}|0\rangle + \text{sin} \frac{\theta}{2}e^{i\theta}|1\rangle.
 $$
 
 ## Common representations

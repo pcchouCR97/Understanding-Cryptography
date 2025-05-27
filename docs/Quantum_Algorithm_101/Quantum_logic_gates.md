@@ -171,6 +171,15 @@ $$
 
 The SWAP gate is extremely useful in hardware settings; if two qubits are not physically connected, we can simply swap one of those qubits with another that is physically connected to the other qubit. The SWAP gate may also appear as a necessary part in building the quantum Fourier transform or in other routines such as the SWAP test.
 
+## Toffoli Gate
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/Toffoli_gate.jpg" alt="Toffoli_gate" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Toffoli gate and its truth table
+    </p>
+</div>
+
 ## Basic
 
 we can write the vector representation for 2 qubits as

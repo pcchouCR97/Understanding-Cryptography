@@ -52,6 +52,8 @@ nav:
       - Qubit Dimensionality: Quantum_Algorithm_101/qubit_dimensionality.md
       - Qiskit Primitives: Quantum_Algorithm_101/qiskit_primitives.md
       - Variational Circuit: Quantum_Algorithm_101/variational_circuit.md
+      - Quantum Paralleslism: Quantum_Algorithm_101/quantum_paralleslism.md
+      - Linear Algebra: Quantum_Algorithm_101/Linear_algebra.md
   - Quantum Mechanics:
       - Theorems:
         - No-cloning: quantum_mechanics/No-cloing.md

@@ -1,0 +1,176 @@
+# Linear Algebra
+
+This page gives some of the basic linear algebra fundation of a quantum information.
+
+## Bases and linear independence
+
+A spinning set for the vector space $\mathbb{C}^{2}$ is the set 
+
+$$
+|v_{1}\rangle \equiv \begin{bmatrix} 1\\0 \end{bmatrix}; \ |v_{2}\rangle \equiv \begin{bmatrix} 0\\1 \end{bmatrix};
+$$
+
+since any vector 
+
+$$
+|v\rangle = \begin{bmatrix} a_{1}\\a_{2} \end{bmatrix}
+$$
+
+in $\mathbb{C}^{2}$ can be written as a linear combination $|v\rangle = a_{1}|v_{1}\rangle + a_{2}|v_{2}\rangle$ of the vectors $|v_{1}\rangle$ and $|v_{2}\rangle$. We say that 
+> Vector $v_{1}$ and $v_{2}$ *span* the vector space $\mathbb{C}^{2}$
+
+A set of non-zero vectors $|v_{1}\rangle, ..., |v_{n}\rangle$ are *linearly dependent* if there exists a set of complex numbers $a_{1},...,a_{n}$ with $a_{i} \neq 0$ for at least one value of $i$, such that 
+
+$$
+a_{1}|v_{1}\rangle + a_{2}|v_{2}\rangle + ... + a_{n}|v_{n}\rangle = 0
+$$
+
+## Linear operators and matrices
+
+A *linear operator* between vector spaces $V$ and $W$ is defined to be any function $A:V \mapsto W$ which is linear in its inputs,
+
+$$
+A\bigg(\sum_{i}a_{i}|v_{i}\rangle\bigg) = \sum_{i}a_{i}A (|v_{i}\rangle).
+$$
+
+We usually write $A|v\rangle$ instead of $A(|v\rangle)$. A is defeined on a vector space, $V$, we mean that $A$ is a linear operator from $V$ to $V$. 
+
+-   An important linear operator on any vector space $V$ is the *identity operator*, $I_{V}$, defined by the equation $I_{V}|v\rangle \equiv |v\rangle$ for all vectors $|v\rangle$.
+-   Another important linear operator is the *zero operator*, which we denote $0$, which maps all vectors to the zero vector, $0|v\rangle \equiv |0\rangle$.
+
+Suppose $V,W$, and $X$ are vector spaces, and $A: V \mapsto W$ and $B: W\mapsto X$ are linear operators. Then we use the notation $BA$ to denote the *composition* of $B$ with $A$, defined by $(BA)|v\rangle \equiv B(A|v\rangle) \equiv BA|v\rangle$.
+
+The most common way to understand linear operator is in terms of their matirx representation. In fact, the linear opreator and matrix viewpoints turns out to be common completely equivalant. more precisely, the claim that the matrix $A$ is a linear operator means
+
+$$
+A\bigg( \sum_{i}a_{i}|v_{i}\rangle\bigg) = \sum_{i}a_{i}A_{ij}|v_{i}\rangle
+$$
+
+is true as an equation where the operation is matrix multiplication of $A$ by column vectors. $A_{ij}$ is just a *matrix representation* of the operator $A$.
+
+## The Pauli matrices 
+
+Four extremely useful matrices which we should know are the *Pauli matrices*.
+
+$$
+\begin{array}{rr}
+\sigma_{0} \equiv I \equiv \begin{bmatrix} 1 & 0 \\ 0 &1 \end{bmatrix} & 
+\sigma_{1} \equiv \sigma_{x} \equiv X \equiv \begin{bmatrix} 1 & 0 \\ 0 &1 \end{bmatrix} \\
+\sigma_{2} \equiv \sigma_{y} \equiv Y \equiv \begin{bmatrix} 0 & -i \\ i &0 \end{bmatrix} &
+\sigma_{3} \equiv \sigma_{z} \equiv Z \equiv \begin{bmatrix} 1 & 0 \\ 0 &-1 \end{bmatrix} \\
+\end{array}
+$$
+
+## Inner products
+In quantum mechanical notation for the inner product $(|v\rangle,|w\rangle)$ is $\langle v|w\rangle$, where $|v\rangle$ and $|w\rangle$ are vectors in the inner product sapce. A function $(\cdot,\cdot)$ from $V\times V$ to $\mathbb{C}$ is an inner product if 
+
+1.  $(\cdot,\cdot)$ is linear in the second argument,
+
+$$
+\bigg(|v\rangle , \sum_{i}\lambda_{i}|w_{i}\rangle \bigg) = \sum_{i}\lambda_{i}(|v\rangle,|w]\rangle) = \sum_{i}\lambda_{i}\langle v|w\rangle.
+$$
+
+2.  $(|v\rangle,|w\rangle) = (|w\rangle,|v\rangle)^{*}$.
+3.  $(|v\rangle,|v\rangle) \geq 0$ with equality if and only if $|v\rangle = 0$.
+
+For example, $\mathbb{C}^{n}$ has an inner product defeined by 
+
+$$
+((y_{1},...,y_{n}),((z_{1},...,z_{n}))) \equiv \sum_{i}y_{i}^{*}z_{i} = \begin{bmatrix} y_{1}^{*} ... y_{n}^{*} \end{bmatrix} \begin{bmatrix} z_{1}\\ \vdots\\ z_{n} \end{bmatrix}.
+$$
+
+### Orthogonal
+> Vectors $|w\rangle$ and $|v\rangle$ are *orthogonal* if their inner product is zero.
+
+### Norm
+The norm of a vector $|v\rangle$ is defined by 
+
+$$
+|||v\rangle|| = \sqrt{\langle v|v\rangle}.
+$$
+
+### Unit vector
+> A *unit vector* is a vector $|v\rangle$ such that its *norm* is 1.
+We also say taht $|v\rangle$ is *normalized* if its *norm* is 1.
+
+Suppose $|w_{1}\rangle,...,|w_{d}\rangle$ is a basis set for some vector space $V$ with an inner product. The *GRAM-Schmidt* procedure can produce an orthonormal basis set $|v_{1}\rangle,...,|v_{d}\rangle$ for the vector space $V$. Define $|v_{1}\rangle \equiv |w_{1}\rangle/|||w_{1}\rangle||$, and for $1\leq k \leq d-1$ define $v_{k+1}$ by
+
+$$
+v_{k+1} = \frac{|w_{k+1}\rangle - \sum_{i=1}^{k}\langle v_{i}|w_{k+1}\rangle|v_{i}\rangle}{|||w_{k+1}\rangle - \sum_{i=1}^{k}\langle v_{i}|w_{k+1}\rangle|v_{i}\rangle||}.
+$$
+
+### Matrix representation
+The inner product on a Hilbert space can given a convenient matrix representation. Let $|w\rangle = \sum_{i}w_{i}|i\rangle$ and $|v\rangle = \sum_{j}v_{j}|j\rangle$ be representations of vector $|w\rangle$ and $|v\rangle$ with respect to some orthonormal basis $|i\rangle$. Then, since $\langle i |j\rangle\delta_{ij}$,
+
+$$
+\begin{array}{rl}
+\langle v|w\rangle = & \bigg( \sum_{i}v_{i}|i\rangle, \sum_{j}w_{j}|j\rangle\bigg) = \sum_{ij}v_{i}^{*}w_{j}\delta_{ij} = \sum_{i}v_{i}^{*}w_{i} \\
+\ = & \begin{bmatrix} v_{1}^{*} ... v_{n}^{*} \end{bmatrix} \begin{bmatrix} w_{1} \\ \vdots \\ w_{n}\end{bmatrix}
+\end{array}
+$$
+
+The inner product of two vectors is equal to the vector inner product between two matrix representations of those vectors, provided the representations are written with respect to the same orthonormal basis.
+
+### Outer product
+We can also represent linear operators which makes use of the inner product, known as the *inner product* representation. Suppose $|v\rangle$ is a vector in an inner product spave $V$, and $|w\rangle$ is a vector in an inner product space $W$. Define $|w\rangle\langle v|$ to be the linear operator **from $V$ to $W$** whose action is defined by 
+
+$$
+(|w\rangle \langle v|)(|v'\rangle) \equiv |w\rangle \langle v|v'\rangle = \langle v|v' \rangle|w\rangle.
+$$
+
+> When the *operator* $|w\rangle \langle v|$ acts on $|v'\rangle$, it results of multiplying $|w\rangle$ by the complex number $\langle v|v' \rangle$.
+
+### Completness relation
+
+Let $|i\rangle$ be any orthonormal basis for the vector space $V$, so an arbitrary vector $|v\rangle$ can be written $|v\rangle = \sum_{i}v_{i}|i\rangle$ for some set of complex number $v_{i}$. Since $\langle i|v\rangle$,
+
+$$
+\bigg( \sum_{i}|i\rangle\langle i|\bigg)|v\rangle = \sum_{i}|i\rangle\langle i|v\rangle = \sum_{i}v_{i}|i\rangle = |v\rangle.
+$$
+
+since the last equation is true for all $|v\rangle$ it follows that 
+
+$$
+\sum_{i}|i\rangle\langle i | = I, \ \text{completness relation}.
+$$
+
+Suppose $A: V \rightarrow W$ is a linear operator, $|v_{i}\rangle$ is an orthonormal basis for $V$, and $|w_{j}\rangle$ and orthonormal basis for $W$. Using the completeness reltaion twice we obtain
+
+$$
+\begin{array}{rl}
+A = & I_{W}AI_{V}\\
+\ = & \sum_{ij}|w_{j}\rangle\langle w_{j}|A|v_{i}\rangle\langle v_{i}|\\
+\ = & \sum_{ij}\langle w_{j}|A|v_{i}\rangle|w_{j}\rangle\langle v_{i}|
+\end{array}
+$$
+
+which is the outer product representation for $A$. An A has matrix element $\langle w_{j}|A|v_{i}\rangle$ in the $i$-th column and $j$-th row, respect to the inpur basis $|v_{i}\rangle$ and output basis $|w_{j}\rangle$.
+
+### Cauchy-Schwarz inequality
+%TODO
+
+## Eigenvectors and eigenvalues 
+
+## Adjoints and Hermitian operators 
+Suppose $A$ is any linear opeartor on a Hilbert space, $V$. It turns out that there exist a unique linear operator $A^{\dagger}$ on $V$ such that for all vectors $|v\rangle, |w\rangle \in V$,
+
+$$
+(|v\rangle,A|w\rangle) = (A^{\dagger}|v\rangle,|w\rangle).
+$$
+
+This operator is known as the *adjoint* or *Hermitian conjugate* of the operator $A$. 
+
+> $(AB)^{\dagger} = B^{\dagger}A^{\dagger}$. 
+
+By convention, if $|v\rangle$ is a vector then we know $|v\rangle^{\dagger} \equiv \langle v|$. Then we know that $(A|v\rangle)^{\dagger} = \langle v|A^{\dagger}$.
+
+An operator $A$ whose adjoint is $A$ is known as a *Hermitian* or *self-adjoint* operator. An important class od Hermitian operators is the *projectors*. Suppose $W$ is a $k$-dimensional vector subspace of the $i$-dimentional vector space $V$.
+
+
+## Tensor products 
+
+## Operator functions
+
+## The commutator and anti-commutator
+
+## The polar and singular value decomposition
