@@ -100,7 +100,7 @@ v_{k+1} = \frac{|w_{k+1}\rangle - \sum_{i=1}^{k}\langle v_{i}|w_{k+1}\rangle|v_{
 $$
 
 ### Matrix representation
-The inner product on a Hilbert space can given a convenient matrix representation. Let $|w\rangle = \sum_{i}w_{i}|i\rangle$ and $|v\rangle = \sum_{j}v_{j}|j\rangle$ be representations of vector $|w\rangle$ and $|v\rangle$ with respect to some orthonormal basis $|i\rangle$. Then, since $\langle i |j\rangle\delta_{ij}$,
+The inner product on a Hilbert space can given a convenient matrix representation. Let $|w\rangle = \sum_{i}w_{i}|i\rangle$ and $|v\rangle = \sum_{j}v_{j}|j\rangle$ be representations of vector $|w\rangle$ and $|v\rangle$ with respect to some orthonormal basis $|i\rangle$. Then, since $\langle i |j\rangle = \delta_{ij}$,
 
 $$
 \begin{array}{rl}
@@ -207,7 +207,94 @@ A positive operator $A$ is defined to be an operator such that for any vector $|
 ## Tensor products 
 The *tensor product* is a way of putting vector spaces together to form larger vector spaces. 
 
-Suppose $V$ and $W$ are vector spaces of dimension $m$ and $n$ respectively. For convenience we also suppose that $V$ and $W$ are Hilbert spaces. Then $V\otimes W$ is an $mn$ dimensional vector space.
+Suppose $V$ and $W$ are vector spaces of dimension $m$ and $n$ respectively. For convenience we also suppose that $V$ and $W$ are Hilbert spaces. Then $V\otimes W$ is an $mn$ dimensional vector space. In particular, if $|i\rangle$ and $|j\rangle$ are orthonormal bases for the spaces $V$ and $W$ then $|i\rangle \otimes |j\rangle$ is a basis for $V\otimes W$. Be often use the abbriviationd notations for $|v\rangle|w\rangle$ as $|vw\rangle$. Here are some of the basic tensor properties:
+
+1.  For an arbitrary scaler $z$ and elements $|v\rangle$ of $V$ and $|w\rangle$ for $W$,
+$$
+z(|v\rangle\otimes|w\rangle) = (z|v\rangle)\otimes |w\rangle = |v\rangle \otimes (z|w\rangle).
+$$
+
+2.  For arbitrary $|v_{1}\rangle$ and $|v_{2}\rangle$ in $V$ and $|w\rangle$ in $W$,
+$$
+(|v_{1}\rangle + |v_{2}\rangle) \otimes |w\rangle = |v_{1}\rangle \otimes |w\rangle + |v_{2}\rangle \otimes |w\rangle.
+$$
+
+3.  For arbitrary $|v\rangle$ in $V$ and $|w_{1}\rangle$ and $|w_{2}\rangle$ in $W$,
+$$
+|v\rangle \otimes (|w_{1}\rangle + |w_{2}\rangle) = |v\rangle \otimes |w_{1}\rangle + |v\rangle \otimes w_{2}\rangle.
+$$
+
+4.  Suppose we have operators $A$ and $B$ and $v\rangle$ and $|w\rangle$ are vectors in $V$ and $W$, respectively. Then we can defiine a linear operator $A\otimes B$ on $V\otimes W$ by the equation
+$$
+(A\otimes B)(|v\rangle \otimes |w\rangle) \equiv A|v\rangle \otimes B|w\rangle.
+$$
+The definition of $A\otimes B$ is then extended to all elements of $V\otimes W$, that is,
+$$
+(A\otimes B)\bigg(\sum_{i}a_{i}|v_{i}\rangle \otimes |w_{i}\rangle\bigg) \equiv \sum_{i}a_{i}A|v_{i}\rangle \otimes B|w_{i}\rangle.
+$$
+
+%TODO, Adding an exmple 
+
+An arbitrary linear opeartor $C$ mapping $V\otimes W$ to $V'\otimes W'$ can be represented as a linear combination of tensor products of operators mapping $V$ to $V'$ and $W$ to $W'$,
+$$
+C = \sum_{i}c_{i}A_{i}\otimes B_{i}
+$$
+by definition
+$$
+\bigg(\sum_{i}c_{i}A_{i}\otimes B_{i} \bigg)|v\rangle \otimes |w\rangle \equiv \sum_{i}c_{i}A_{i}|v\rangle \otimes B_{i}|w\rangle.
+$$
+
+### Kronecker product
+Suppose $A$ is an $m$ by $n$ matrix, and $B$ is a $p$ by $q$ matrix. Then we have the matrix representation for $A\otimes B$:
+
+$$
+A\otimes B = 
+\begin{bmatrix}
+A_{11}B & A_{11}B & ... & A_{1n}B \\
+A_{11}B & A_{11}B & ... & A_{2n}B \\
+\vdots & \vdots & \vdots & \vdots \\
+A_{m1}B & A_{m1}B & ... & A_{mn}B 
+\end{bmatrix}
+$$
+
+For example, the tensor product of vectors $(1,2)$ and $(2,3)$ is the vector 
+
+$$
+\begin{bmatrix} 1\\ 2 \end{bmatrix} \otimes \begin{bmatrix} 2\\ 3 \end{bmatrix} = 
+\begin{bmatrix} 1 \times 2 \\ 1\times 3\\ 2 \times 2\\ 2\times 3 \end{bmatrix} =
+\begin{bmatrix} 2\\ 3\\ 4\\ 6 \end{bmatrix} 
+$$
+
+The tensor of the Pauli-X and Pauli-Y is
+
+$$
+X\otimes Y = \begin{bmatrix} 0\cdot Y & 1\cdot Y \\ 1\cdot Y & 0\cdot Y  \end{bmatrix}
+= \begin{bmatrix} 0 & 0 & 0 & -i \\ 0 & 0 & i & 0 \\ 0 & -i & 0 & 0 \\ i & 0 & 0 & 0 \\ \end{bmatrix}
+$$
+
+Finally, We introduce the useful notation $|\psi\rangle^{\otimes k}$, which means $|\psi\rangle$ tensored with itself $k$ times. For example, $|\psi\rangle^{\otimes 2} = |\psi\rangle |\psi\rangle$.
+
+> $(A\otimes B)* = A* \otimes B*$; $(A \otimes B)^{T} = A^{T} \otimes B^{T}$; $(A\otimes B)^{\dagger} = A^{\dagger} \otimes B^{\dagger}$.
+
+> The tensor product of two unitary operators is unitary.
+
+> The tensor product of two Hermitian operators is Hermitian.
+
+> The tensor product of two positive operators is positive.
+
+> The tensor product of two projectors is a projector.
+
+A Hadamard operator on one qubit may be written as 
+
+$$
+H = \frac{1}{\sqrt{2}} \bigg[ (|0\rangle +|1\rangle) \langle 0| + (|0\rangle -|1\rangle) \langle 1|\bigg].
+$$
+
+The Hadamard transform on $n$ qubits, $H^{\otimes n}$, can be written as 
+
+$$
+H^{\otimes n} = \frac{1}{\sqrt{2^{n}}}\sum_{x,y}(-1)^{x\cdot y}|x\rangle \langle y|.
+$$
 
 
 ## Operator functions
