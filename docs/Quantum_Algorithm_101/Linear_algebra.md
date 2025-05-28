@@ -164,10 +164,51 @@ This operator is known as the *adjoint* or *Hermitian conjugate* of the operator
 
 By convention, if $|v\rangle$ is a vector then we know $|v\rangle^{\dagger} \equiv \langle v|$. Then we know that $(A|v\rangle)^{\dagger} = \langle v|A^{\dagger}$.
 
-An operator $A$ whose adjoint is $A$ is known as a *Hermitian* or *self-adjoint* operator. An important class od Hermitian operators is the *projectors*. Suppose $W$ is a $k$-dimensional vector subspace of the $i$-dimentional vector space $V$.
+### Projectors
 
+An operator $A$ whose adjoint is $A$ is known as a *Hermitian* or *self-adjoint* operator. An important class of Hermitian operators is the *projectors*. Suppose $W$ is a $k$-dimensional vector subspace of the $i$-dimentional vector space $V$.
+
+By using Gram-Schmidt procedure it is possible to construct an orthonormal basis $|1\rangle,...,|d\rangle$ for $V$ such that $|1\rangle,...,|k\rangle$ is an orthonormal basis for $W$. By definition,
+
+$$
+P \equiv \sum_{i=1}^{k}|i\rangle\langle i|
+$$
+
+is the *projector* onth the subspace $W$. 
+
+The *orthogonal complement* of $P$ is the operator $Q\equiv I-P$. $Q$ is a projector onto the vector space spanned by $|k+1\rangle,...,|d\rangle$, which we also refer to as the *orthogonal complement* of $P$, and may denote by $Q$. 
+
+> Any projector $P$ satisfies $P^{2} = P$.
+
+### Normal 
+
+An operator $A$ is said to be *normal* if $AA^{\dagger} = A^{\dagger}A$. A *spectral decomposition* theorm states that an operator is a normal operator if and only if it is diagonalizable.
+
+> A normal matrix is Hermitian if and only if it has real eigenvales.
+
+
+### Unitary
+
+A operator/matrix $U$ is said to be *unitary* if $U^{\dagger}U = I$. A unitary operator also satisfies $UU^{\dagger} = I$, and therefore $U$ is normal has a spectral decompostion. An unitary operators are important since they preserve inner products between vectors. To see this, let $|v\rangle$ and $|w\rangle$ be any two vectors. Then the inner product of $U|v\rangle$ and $U|w\rangle$ is the same as the inner product of $|v\rangle$ and $|w\rangle$,
+
+$$
+(U|v\rangle,U|w\rangle) = \langle v|U^{\dagger}U|w\rangle = \langle v|I|w\rangle = \langle v|w\rangle.
+$$
+
+since $(U|v\rangle)^{\dagger} = \langle v|U^{\dagger}$. This result suggests the following outer product representation of any unitary $U$. Let $|v_{i}\rangle$ be any orthonormal basis set. Define $|w_{i}\rangle \equiv U|v_{i}\rangle$, so $|w_{i}\rangle$ is also an orthonormal basis set, since unitary operators preserve inner products. Note that $U = \sum_{i}|w_{i}\rangle\langle v_{i}|$.
+
+### Positive operator
+A positive operator $A$ is defined to be an operator such that for any vector $|v\rangle$, $(|v,\rangle, A|v\rangle)$ is a real, non-negative number. If $(|v,\rangle, A|v\rangle)$ is *strictly* greater than zero for all $|v\rangle \neq 0$ then we say $A$ is *positive defininte*. 
+
+> Any positive operator is automatically Hermitian, and therefore by the spectral decomposition has diagonal representation $\sum_{i}\lambda_{i}|r\rangle\langle i|$. with non-negative eigenvalues $\lambda_{i}$.
+
+> Any operator $A$, $A^{\dagger}A$ is positive.
 
 ## Tensor products 
+The *tensor product* is a way of putting vector spaces together to form larger vector spaces. 
+
+Suppose $V$ and $W$ are vector spaces of dimension $m$ and $n$ respectively. For convenience we also suppose that $V$ and $W$ are Hilbert spaces. Then $V\otimes W$ is an $mn$ dimensional vector space.
+
 
 ## Operator functions
 
