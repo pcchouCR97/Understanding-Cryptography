@@ -314,7 +314,7 @@ $$
 
 The trace is easily seen to be *cyclic*, $\text{tr}(AB) = \text{tr}(BA)$, and *linear*, $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B), \text{tr}(zA) = z\text{A}$, where $A$ and $B$ are arbitrary matrices and $z$ is a complex number. From the cyclic property it follows that the trace of a matrix is invariant under the unitary *similarity transformation* $A \mapsto UAU^{\dagger}$, as $\text{tr}(UAU^{\dagger}) = \text{tr}(UU^{\dagger}A) = \text{tr} = \text{tr}(A)$. Thus, it makes sense to define the trace of an *operator* $A$ to be the trace of any matrix representation of $A$. 
 
-Suppose $|\psi\rangle$ is a unit vector and $A$ us an arbitrary operator. To evaluate $\text{tr}(A|psi\rangle\langle\psi|)$ use the Gram-Schmidt procedure to extend $|\psi\rangle$ to an orthonormal basis $|i\rangle$ which includes $|\psi\rangle$ as the first element. Then we have 
+Suppose $|\psi\rangle$ is a unit vector and $A$ us an arbitrary operator. To evaluate $\text{tr}(A|\psi\rangle\langle\psi|)$ use the Gram-Schmidt procedure to extend $|\psi\rangle$ to an orthonormal basis $|i\rangle$ which includes $|\psi\rangle$ as the first element. Then we have 
 
 $$
 \begin{array}{rl}
@@ -327,4 +327,125 @@ The result $\text{tr}(A|\psi\rangle\langle\psi|) = \langle \psi|A|\rangle$ is us
 
 ## The commutator and anti-commutator
 
+The *commutator* between two operators $A$ and $B$ is defined to be 
+
+$$
+[A,B] \equiv AB-BA.
+$$
+
+If $[A,B] = 0$, then we say $A$ *commutes* with $B$.
+
+The *anti-commutator* of two operators $A$ and $B$ is defined by 
+
+$$
+\{A,B \} \equiv AB+BA
+$$
+
+We say $A$ *anti-commutes* with $B$ if $\{A,B\} = 0$
+
+It turns out that many important properties of pairs of operators can be deducted from their commutator and anti-commutator. The most useful relation is the following connection between the commutator and the property of being able to *simultaneously diagonalize* Hermitian operators $A$ and $B$.
+
+
+Hertimian operators $A$ and $B$, write $A = \sum_{i}a_{i}|i\rangle\langle i|$, $B = \sum_{i}b_{i}|i\rangle\langle i|$, where $|i\rangle$ is some common orthonormal set of eigenvectors for $A$ and $B$.
+
+
+> (Simultaneous diagonalization theorem) Suppose $A$ and $B$ are Hermitian operators. Then $[A,B] =0$ if and only if there exists an orthonormal basis such that $A$ and $B$ are diagonal with respect to that basis. We say that $A$ and $B$ are *simultaneous diagonalizable* in this case. 
+
+In plain text, if $[A,B] = 0$ there exist an orthonormal basis such that both $A$ and $B$ are diagonal with respect to that basis.
+
+For example, if we want to determine if Pauli-X and Pauli-Y matrix are commute=.
+
+$$
+\begin{array}{rl}
+[X,Y] & = XY-YX\\
+ & = 2iZ,
+\end{array}
+$$
+
+so $X$ and $Y$ do not commute. Any we know that $X$ and $Y$ doesn't have common eigenvectors, as we expect from the simultaneous diagonalization theorm.
+
+> If $A$ and $B$ are diagonal in the same orthonormal basis then $[A,B] =0$
+
+### Commutation relations for the Pauli matrices
+
+We have 
+
+1.  $[X,Y] = 2iZ$
+2.  $[Y,Z] = 2iX$
+3.  $[Z,X] = 2iY$
+
+we can use $\epsilon_{jkl}$, the antisymmetric tensor on three indices, for which $\epsilon_{jkl} =0$ expect  for $\epsilon_{123} = \epsilon_{231} = \epsilon_{312} = 1$, and $\epsilon_{321} = \epsilon_{213} = \epsilon_{132} = -1$:
+
+$$
+[\sigma_{j},\sigma_{k}] = 2i\sum_{l=1}^{3}\epsilon_{jkl}\sigma_{l}.
+$$
+
+> $\{\sigma_{i}, \sigma_{j}\} = 0$ where $i\neq j$ are both chosen from the set 1,2,3. For i = (0,1,2,3), $\sigma_{i}^{2} = I$
+
+Here are some properties:
+
+>   $AB = \frac{[A,B]+\{A,B\}}{2}.$
+
+>   For$j,k = 1,2,3,$ $\sigma_{j}\sigma_{k} = \delta_{jk}I + i\sum_{l=1}^{3} \epsilon_{jkl}\sigma_{l}$.
+
+>   $[A,B]^{\dagger} = [B^{\dagger}, A^{\dagger}]$.
+
+>   If $A$ and $B$ are Hermitian operators, $i[A,B]$ is also a Hermitian.
+
+
 ## The polar and singular value decomposition
+
+### Polar decomposition
+The polar and singular value decompositions are useful ways of breaking linear operators up into simpler parts. In particular, these decompositions allow us to break general linear operators up into products of unitary operators and positive operators.
+
+!!! note "Polar decomposition"
+    Let $A$ be a linear operator on a vector space $V$. Then there exists unitary $U$ and positive operators $J$ and $K$ such that 
+
+    $$
+    A = UJ = KU,
+    $$
+
+    where the unique positive operators $J$ and $K$ satisfying these equations are defined by $J\equiv \sqrt{A^{\dagger}A}$ and $K\equiv \sqrt{A^{\dagger}A}$. If $A$ is invertible then $U$ is unique.
+
+
+We call the expression $A=UJ$ the *left polar decomposition* of $A$, and $A=KU$ the *right polar decomposition*. For example, give $A$,
+
+$$
+A = 
+\begin{bmatrix}
+0 & 2 \\ 0 & 0
+\end{bmatrix}
+$$
+
+We can calcualte $J = \sqrt{A^{\dagger}A}$,
+
+$$
+A^{\dagger}A = \begin{bmatrix} 0 & 0\\ 2 & 0 \end{bmatrix} \begin{bmatrix} 0 & 2\\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 0\\ 0 & 4 \end{bmatrix}
+$$
+
+$$
+J = \sqrt{A^{\dagger}A} = \begin{bmatrix} 0 & 0\\ 0 & 2 \end{bmatrix}
+$$
+
+Since $A = UJ$, we know 
+
+$$
+\begin{array}{rl}
+U = AJ^{-1} = & \begin{bmatrix} 0 & 2\\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 0\\ 0 & \frac{1}{2} \end{bmatrix}\\
+\ = & \begin{bmatrix} 0 & 0\\ 1 & 0 \end{bmatrix}
+\end{array}
+$$
+
+The matrix $U$ must be a unitary matrix.
+
+### Singluar Decompostion
+
+!!! note "Singluar Decompostion"
+    Let A be a square matrix. Then there exist unitary matrices $U$ and $V$ , and a diagonal matrix D with non-negative entries such that
+
+    $$
+    A = UDV
+    $$
+
+    The diagonal elements of $D$ are called the singular values of $A$. SVD works for all matrices, real or complex.
+

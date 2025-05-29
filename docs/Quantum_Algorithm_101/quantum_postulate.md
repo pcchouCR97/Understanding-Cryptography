@@ -1,9 +1,37 @@
 # Quantum Postulates
 
-## Description of the state of a system
-### Postulate I 
 
-> The state of an isolated physical system is represented, at a fixed time $t$, by a state vector $|\psi\rangle$ belonging to a Hilbert space $\mathcal{H}$ called the *state space.*
+## Postulate 1 - State space
+
+!!! note "Postulate 1"
+    Associated to any isolated physical system is a complex vector space with inner product (that is, a Hilbert space) known as the state space of the system. The system is completely described by its state vector, which is a unit vector in the system’s state space.
+
+A qubit has two-dimensional state. Suppose $|0\rangle$ and $|1\rangle$ form an orthonormal basis for that state space. Then an arbitrary statevector in the state space can be written 
+
+$$
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle
+$$
+
+where $\alpha$ and $\beta$ are complex numebrs.
+
+## Postulate 2 - Evolution
+
+
+## Postulate 3 - Quantum measurement
+
+## Postulate 4 - Distinguishing quantum states
+
+
+## Postulate 5 - Projective measurements
+
+## Postulate 6 - POVM measurements
+
+## Postulate 7 - Phase
+
+## Postulate 8 - Composite systems
+
+## Postulate 9 - Quantum mechanics: global view
+
 
 ### Composite system postualte
 
