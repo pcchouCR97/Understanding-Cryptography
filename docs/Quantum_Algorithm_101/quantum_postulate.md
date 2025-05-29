@@ -12,7 +12,7 @@ $$
 |\psi\rangle = \alpha|0\rangle + \beta|1\rangle
 $$
 
-where $\alpha$ and $\beta$ are complex numebrs.
+where $\alpha$ and $\beta$ are complex numebrs; $\alpha^{2} + \beta^{2} = 1$. The condition that $|\psi\rangle$ be a unit vector, $\langle \psi|\psi\rangle =1$
 
 ## Postulate 2 - Evolution
 
