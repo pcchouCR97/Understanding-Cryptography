@@ -55,7 +55,7 @@ Four extremely useful matrices which we should know are the *Pauli matrices*.
 $$
 \begin{array}{rr}
 \sigma_{0} \equiv I \equiv \begin{bmatrix} 1 & 0 \\ 0 &1 \end{bmatrix} & 
-\sigma_{1} \equiv \sigma_{x} \equiv X \equiv \begin{bmatrix} 1 & 0 \\ 0 &1 \end{bmatrix} \\
+\sigma_{1} \equiv \sigma_{x} \equiv X \equiv \begin{bmatrix} 0 & 1 \\ 1 &0 \end{bmatrix} \\
 \sigma_{2} \equiv \sigma_{y} \equiv Y \equiv \begin{bmatrix} 0 & -i \\ i &0 \end{bmatrix} &
 \sigma_{3} \equiv \sigma_{z} \equiv Z \equiv \begin{bmatrix} 1 & 0 \\ 0 &-1 \end{bmatrix} \\
 \end{array}
@@ -298,6 +298,32 @@ $$
 
 
 ## Operator functions
+
+%TODO
+Given a function $f$ from the complex numbers to the complex numbers, it is possible to define a corresponding matrix function on normal matrices by the following construction. Let $A = \sum_{a}a|a\rangle\langle a|$ be a spectral decomposition for a normal operator $A$. Define 
+$$
+f(A)\equiv \sum_{a}f(a)|a\rangle \langle a|
+$$
+Since $f(A)$ is uniquely defined. 
+
+### Trace
+The trace of $A$ is defined to be the sum of its diagonal elements,
+$$
+\text{tr}(A) \equiv \sum_{i} A_{ii}.
+$$
+
+The trace is easily seen to be *cyclic*, $\text{tr}(AB) = \text{tr}(BA)$, and *linear*, $\text{tr}(A+B) = \text{tr}(A) + \text{tr}(B), \text{tr}(zA) = z\text{A}$, where $A$ and $B$ are arbitrary matrices and $z$ is a complex number. From the cyclic property it follows that the trace of a matrix is invariant under the unitary *similarity transformation* $A \mapsto UAU^{\dagger}$, as $\text{tr}(UAU^{\dagger}) = \text{tr}(UU^{\dagger}A) = \text{tr} = \text{tr}(A)$. Thus, it makes sense to define the trace of an *operator* $A$ to be the trace of any matrix representation of $A$. 
+
+Suppose $|\psi\rangle$ is a unit vector and $A$ us an arbitrary operator. To evaluate $\text{tr}(A|psi\rangle\langle\psi|)$ use the Gram-Schmidt procedure to extend $|\psi\rangle$ to an orthonormal basis $|i\rangle$ which includes $|\psi\rangle$ as the first element. Then we have 
+
+$$
+\begin{array}{rl}
+\text{tr}(A|\psi\rangle\langle\psi|) & = \sum_{i}\langle i|A|\psi\rangle\langle\psi|i\rangle\\
+\ & = \langle \psi|A|\psi\rangle.
+\end{array}
+$$
+
+The result $\text{tr}(A|\psi\rangle\langle\psi|) = \langle \psi|A|\rangle$ is useful in evaluating the trace of an operator.
 
 ## The commutator and anti-commutator
 
