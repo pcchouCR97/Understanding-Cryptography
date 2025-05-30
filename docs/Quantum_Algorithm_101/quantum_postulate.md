@@ -88,7 +88,7 @@ Projective measurements actually turn out to be equivalent to the general measur
     where $P_{m}$ is the projector onto the eigenspace of $M$ with eigenvalue $m$/ The possible outcomes of the measurement correspond to the eigenvalues $m$, of the observable. Upon measuring the state $|\psi\rangle$, the probability of getting results $m$ is given by
 
     $$
-    p(m) = \langle \psi|P_{m}|\rangle
+    p(m) = \langle \psi|P_{m}|\psi\rangle
     $$
 
     Given that outcome $m$ occurred, the state of the quantum system immediately after measurement is 
@@ -128,7 +128,7 @@ $$
 
 For example, suppose we prepare a quantum system in an eigenstate $|\psi\rangle$ of some observable $M$, with corresponding eigenvalue $m$. What is the average observed value of $M$, and the standard deviation?
 
-We have an observable $M$, state $\psi\rangle$ is an eigenstate of $M$, so:
+We have an observable $M$, state $|\psi\rangle$ is an eigenstate of $M$, so:
 
 $$
 M|\psi\rangle = m|\psi\rangle
@@ -150,10 +150,10 @@ Rather than giving an observable to describe a projective measurement, often peo
 
 The coresponding observable implicit in this usage is $M = \sum_{m}mP_{m}$. Another widely used phrase, to 'measure in a basis $|m\rangle$', where $|m\rangle$ form an otrhonormal basis, simply means to perform the projective measurement with projectors $P_{m} = |m\rangle\langle m|$. Let's look at an example of projective measurements on single qubits. 
 
-First is the measurement of the observable $Z$. This has rigenvalues $+1$ and $-1$ with corresponding eigenvectors $|0\rangle$ and $|1\rangle$. Thus, for example, measurement of $Z$ on the state $|\psi\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ gives the result $+1$ with probability $\langle \psi|0\rangle \langle 0|\psi = 1/2$, and similarly the result $-1$ with probability $1/2$. Suppose $\overrightarrow{v}$ is any real three-dimensional unit vector. Then we can define an observable:
+First is the measurement of the observable $Z$. This has rigenvalues $+1$ and $-1$ with corresponding eigenvectors $|0\rangle$ and $|1\rangle$. Thus, for example, measurement of $Z$ on the state $|\psi\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ gives the result $+1$ with probability $\langle \psi|0\rangle \langle 0|\psi\rangle = 1/2$, and similarly the result $-1$ with probability $1/2$. Suppose $\overrightarrow{v}$ is any real three-dimensional unit vector. Then we can define an observable:
 
 $$
-\overrightarrow{v}\overrightarrow{\sigma} \equiv v_{1}\sigma_{1} + v_{2}\sigma_{2} + v_{3}\sigma_{3}.
+\overrightarrow{v} \cdot \overrightarrow{\sigma} \equiv v_{1}\sigma_{1} + v_{2}\sigma_{2} + v_{3}\sigma_{3}.
 $$
 
 > Measurement of this observable is sometimes referred to as a 'measurement of spin along the $\overrightarrow{v}$', for historical reasons.
