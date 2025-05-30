@@ -52,10 +52,11 @@ $$
 p(0) = \langle \psi|M_{0}^{\dagger}M_{0}|\psi\rangle = \langle \psi|M_{0}|\psi\rangle = |\alpha|^{2}
 $$
 similarly, the probability of getting the result of $1$ is $p(1) = |\beta|^{2}$. The state after measurement in the two cases is therefore 
+
 $$
-\begin{array}{rl}
-\frac{M_{0}|\psi\rangle}{|\alpha|} & = \frac{\alpha}{|\alpha|}|0\rangle\\
-\frac{M_{1}|\psi\rangle}{|\beta|} & = \frac{\beta}{|\beta|}|1\rangle.
+\begin{array}{c}
+\frac{M_{0}|\psi\rangle}{|\alpha|} = \frac{\alpha}{|\alpha|}|0\rangle,\\
+\frac{M_{1}|\psi\rangle}{|\beta|} = \frac{\beta}{|\beta|}|1\rangle.
 \end{array}
 $$
 
@@ -95,6 +96,68 @@ Projective measurements actually turn out to be equivalent to the general measur
     $$
     \frac{P_{m}|\psi\rangle}{\sqrt{p(m)}}.
     $$
+
+A projection measurement can be understoof as a special case of [Postulate 3 - Quantum measurement](../Quantum_Algorithm_101/quantum_postulate.md#postulate-3---quantum-measurement). Suppose the measurement operator in Postulate 3, in addition to the completenss relation $\sum_{m}M^{\dagger}M_{m} = I$, also satisfy the conditions that $M_{m}$ are orthogonal projectors, that is, the $M_{m}$ are Hermitian, and 
+
+$$
+M_{m}M_{m'} = \delta_{m,m'}M_{m}.
+$$
+
+With these, it reduces to a projective measurement as defined.
+
+Projective measuremnets have many useful properties. In particular, it is very easy to calculate average for projective measurements. By definition, the average value of the measurement ($[\mathbb{E}]$),
+
+$$
+\begin{array}{rl}
+[\mathbb{E}(M)] & = \sum_{m}mp(m)\\
+\ & = \sum_{m}\langle \psi|P_{m}|\psi\rangle\\
+\ & = \langle \psi|\sum_{m}P_{m}|\psi\rangle\\
+\ & = \langle \psi|M|\psi\rangle\\
+\end{array}
+$$
+
+This is so useful that the average value of the observable $M$ is often written $\langle M \rangle \equiv \langle \psi|M|\psi\rangle$. From this formula, the standard deviation, a measure of the typical spread of the observed values upon measurement
+of $M$, associated to observations of $M$,
+
+$$
+\begin{array}{rl}
+[\Delta(M)]^{2} & = \langle (M^{2} - \langle M \rangle^{2}) \rangle \\
+              \ & = \langle M^{2} \rangle - \langle M \rangle^{2}.
+\end{array}
+$$
+
+For example, suppose we prepare a quantum system in an eigenstate $|\psi\rangle$ of some observable $M$, with corresponding eigenvalue $m$. What is the average observed value of $M$, and the standard deviation?
+
+We have an observable $M$, state $\psi\rangle$ is an eigenstate of $M$, so:
+
+$$
+M|\psi\rangle = m|\psi\rangle
+$$
+
+The expectation value is 
+
+$$
+\langle M \rangle = \langle \psi|M|\psi \rangle = m
+$$
+
+since $|\psi\rangle$ is an eignestate of $M$ with eigenvalue $m$, the measurement will always yield $m$. The standard deviation is 
+
+$$
+[\Delta(M)]^{2} = \langle m^{2} - \langle m \rangle^{2} \rangle = 0.
+$$
+
+Rather than giving an observable to describe a projective measurement, often people simply list a complete set of orthogonal projectors $P_{m}$ satisfying the relations $\sum_{m}mP_{m} = I$ and $P_{m}P_{m'} = \delta_{mm'}P_{m}$.
+
+The coresponding observable implicit in this usage is $M = \sum_{m}mP_{m}$. Another widely used phrase, to 'measure in a basis $|m\rangle$', where $|m\rangle$ form an otrhonormal basis, simply means to perform the projective measurement with projectors $P_{m} = |m\rangle\langle m|$. Let's look at an example of projective measurements on single qubits. 
+
+First is the measurement of the observable $Z$. This has rigenvalues $+1$ and $-1$ with corresponding eigenvectors $|0\rangle$ and $|1\rangle$. Thus, for example, measurement of $Z$ on the state $|\psi\rangle = (|0\rangle + |1\rangle)/\sqrt{2}$ gives the result $+1$ with probability $\langle \psi|0\rangle \langle 0|\psi = 1/2$, and similarly the result $-1$ with probability $1/2$. Suppose $\overrightarrow{v}$ is any real three-dimensional unit vector. Then we can define an observable:
+
+$$
+\overrightarrow{v}\overrightarrow{\sigma} \equiv v_{1}\sigma_{1} + v_{2}\sigma_{2} + v_{3}\sigma_{3}.
+$$
+
+> Measurement of this observable is sometimes referred to as a 'measurement of spin along the $\overrightarrow{v}$', for historical reasons.
+
 
 ## Postulate 6 - POVM measurements
 
