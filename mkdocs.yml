@@ -54,6 +54,8 @@ nav:
       - Variational Circuit: Quantum_Algorithm_101/variational_circuit.md
       - Quantum Paralleslism: Quantum_Algorithm_101/quantum_paralleslism.md
       - Linear Algebra: Quantum_Algorithm_101/Linear_algebra.md
+      - Test: 
+        - Test level: Quantum_Algorithm_101/test_level.md
   - Quantum Mechanics:
       - Theorems:
         - No-cloning: quantum_mechanics/No-cloing.md
@@ -66,6 +68,11 @@ nav:
         - Algorithms: quantum/algorithms.md
       - Quantum Computation: quantum/computation.md
       - Applications: quantum/applications.md
+  - Introduction of Computer Science:
+      - Basics: 
+        - Computational complexity: Cs/computational_complexity.md
+        - P and NP problem: Cs/P_NP.md
+
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md

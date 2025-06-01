@@ -105,13 +105,19 @@ $$
 
 With these, it reduces to a projective measurement as defined.
 
+Of course, since the projective measurement is a special case of Postulate 3. We can also define the projectors more restrictedly
+
+$$
+P_{m}^{2} = P_{m}, P_{m}^{\dagger} = P_{m}, \sum_{m}P_{m} = I
+$$
+
 Projective measuremnets have many useful properties. In particular, it is very easy to calculate average for projective measurements. By definition, the average value of the measurement ($[\mathbb{E}]$),
 
 $$
 \begin{array}{rl}
 [\mathbb{E}(M)] & = \sum_{m}mp(m)\\
-\ & = \sum_{m}\langle \psi|P_{m}|\psi\rangle\\
-\ & = \langle \psi|\sum_{m}P_{m}|\psi\rangle\\
+\ & = \sum_{m}m\langle \psi|P_{m}|\psi\rangle\\
+\ & = \langle \psi|\bigg(m\sum_{m}P_{m}\bigg)|\psi\rangle\\
 \ & = \langle \psi|M|\psi\rangle\\
 \end{array}
 $$
@@ -158,12 +164,109 @@ $$
 
 > Measurement of this observable is sometimes referred to as a 'measurement of spin along the $\overrightarrow{v}$', for historical reasons.
 
+Exercise 1. Suppose we have qubit in the state $|0\rangle$, and we measure the observable $X$. What is the average value of $X$? What is the standard deviation of $X$?
+
+Exercise 2. Calculate the probability of botaining the result $+1$ for a measurement of $\overrightarrow{v} \cdot \overrightarrow{\sigma}$, given that the state prior to measurement is $|0\rangle$. What is the state of the system after the measurement if $+1$ is obtained?
+
 
 ## Postulate 6 - POVM measurements
 
 ## Postulate 7 - Phase
+Phase is a commonly used term in quantum mechanics, with several different meanings depends upon context. At this point it is convenient to review a couple of these meanings. 
+
+### Global phase
+Consider, for example, the state $e^{i\theta}|\psi\rangle$, where $|\psi\rangle$ is a state vector, and $\theta$ is a real number. We say that the state $e^{i\theta}|\psi\rangle$ is equal to $|\psi\rangle$, up to the *global phase factor $e^{i\theta}$.* It is interesting that the statistics od measurement predicted for these two state are the same. 
+
+> For this reason we may ignore global phase factors as being irrelevanr to the observed properties of the physical system.
+
+> Global phase doesn't change the direction of the Bloch vector at all.
+
+### Relative phase
+Howeverm, relative phase, on the other hand, is not something we can ignore. It refers to the phase difference between parts of a quantum superposition. For example, we have two states
+
+$$
+\frac{|0\rangle + |1\rangle}{\sqrt{2}} \ \text{and} \ \frac{|0\rangle +- |1\rangle}{\sqrt{2}},
+$$
+
+Both has the same amplitudes in magnitude $\frac{1}{\sqrt{2}}$, but the second state has a relative phase of $-1$ between $|0\rangle$ and $|1\rangle$. More generally still, two states are said to *differ by a relative phase* in some basis if each of the amplitudes in that basis is realted by such a phase factor.
+
+Suppose you have a qubit state 
+
+$$
+|\psi\rangle = \alpha|0\rangle + \beta|0\rangle, \ \alpha, \beta \in \mathbb{C}
+$$
+
+since each amplitude is a complex number, we write
+
+$$
+\alpha = |\alpha|e^{i\theta}
+$$
+
+from Eular identity. You already know that $|\alpha|^{2}$ is a measurement probability. The $\text{arg}(\alpha) = \text{phase}$. The relative phase is defined as 
+
+$$
+\phi = \text{arg}(\beta) - \text{arg}(\alpha)
+$$
+
+where $\text{arg}(\alpha)$ is a phase angle, $\text{tan}^{-1}(\frac{b}{a})$ from a complex number $\alpha = a + bi$. We can easily calculate that $\alpha = 1e^{i\pi/4}$ from $\alpha = \frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2}}i$.
+
+!!! example "Reltaive phase"
+    Suppose you are given a normalized qubit state:
+
+    $$
+    |\psi\rangle = \frac{1}{\sqrt{2}}|0\rangle + \frac{i}{\sqrt{2}}|1\rangle
+    $$
+
+    we say $\alpha = 1/\sqrt{2}$ and $\beta = i/\sqrt{2}$. From Eular equation,
+
+    $$
+    \alpha = |\alpha|e^{i\theta_{0}}, \beta = |\beta|e^{i\theta_{1}}
+    $$
+
+    we have $|\alpha| = 1/\sqrt{2}$ with $\theta_{0} = 0$ and $|\beta| = 1/\sqrt{2}$ with $\theta_{1} = \pi/2$. The relative phase can be derived as 
+
+    $$
+    \phi = \theta_{1} - \theta_{0} = \frac{\pi}{2}
+    $$
+
+    so the state can be written as 
+
+    $$
+    |\psi\rangle = \frac{1}{\sqrt{2}}(|0\rangle + e^{i\frac{\pi}{2}}|1\rangle).
+    $$
 
 ## Postulate 8 - Composite systems
+!!! note "Postulate 4"
+    The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. Moreover, if we have system numbered $1$ through $n$, and system $i$ is prepared in the state $|\psi_{i}{\rangle$, then the joint state of the total system is $|\psi_{1}\rangle \otimes |\psi_{2}\rangle \otimes \cdots \otimes |\psi_{n}\rangle$
+
+Postulate 4 also enables us to define one of the most interesting and puzzling ideas assocaited with composite quantum system - entanglement. Consider the two qubit state 
+
+$$
+|psi\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}
+$$
+
+There are no such states $|a\rangle$ and $|b\rangle$ that can make $|\psi\rangle = |a\rangle|b\rangle$.
+
+!!! note "Proof $|\psi\rangle = |a\rangle|b\rangle$ doesn't exist"
+    Suppose 
+
+    $$
+    |a\rangle \otimes |b\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}
+    $$
+
+    write 
+    
+    $$
+    |a\rangle = \alpha|0\rangle + \beta|1\rangle, \ |b\rangle = \gamma|0\rangle + \delta|1\rangle,
+    $$
+
+    then
+
+    $$
+    |a\rangle |b\rangle = \alpha\gamma|00\rangle + \alpha\delta|01\rangle + \beta\gamma|10\rangle + \beta\delta|11\rangle
+    $$
+
+    there are no such coefficient combinations $\alpha,\beta,\gamma,\delta$ exist.
 
 ## Postulate 9 - Quantum mechanics: global view
 
