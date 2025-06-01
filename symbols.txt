@@ -10,5 +10,12 @@ $\lvert 0 \rangle$
 </div>
 
 
-reference
-> M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
+[1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
+
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/bloch_sphere.jpg" alt="Description of the image" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Bloch shpere
+    </p>
+</div>

@@ -358,7 +358,7 @@ S =
 $$
 
 ## T gates
-T gate is given by:
+T gate is also called as a $\pi/8$ gate. T gate is given by:
 
 $$
 T = 
@@ -368,65 +368,94 @@ T =
 \end{bmatrix}
 $$
 
+You may wonder why $T$ gate is called the $\pi/8$ gate when it is $\pi/4$ that apperas in the definition. The reason is that the gate has historically often been referred to as the $\pi/8$ gate, simply because up to an unimportant global phase $T$ is equal to a gate which has $\text{exp}(\pm i\pi/8)$ appearing on its diagonals
+
+$$
+T = e^{i\pi/8}\begin{bmatrix} e^{-i\pi/8} & 0 \\ 0 & e^{i\pi/8}  \end{bmatrix}.
+$$
+
+
+Here are useful algebraic facts to keep in mind are 
+
+$$
+H = \frac{X+Z}{\sqrt{2}} \ \text{and} \ S = T^{2}.
+$$
+
+
+## Rotation operatos
+The Pauli matrices give rise to three useful classes of unitary matrices when they are exponentiated, the *rotation operaots* about $x,y$, and $z$ axes, defined by the equations:
+
+$$
+\begin{array}{ll}
+R_{x}(\theta) \equiv e^{-i\theta X/2} = \text{cos}\frac{\theta}{2}I - i \text{sin}\frac{\theta}{2}X &= \begin{bmatrix} \text{cos}\frac{\theta}{2} & -i\text{sin}\frac{\theta}{2} \\ -i\text{sin}\frac{\theta}{2} & \text{cos}\frac{\theta}{2} \end{bmatrix}\\
+R_{y}(\theta) \equiv e^{-i\theta X/2} = \text{cos}\frac{\theta}{2}I - i \text{sin}\frac{\theta}{2}Y &= \begin{bmatrix} \text{cos}\frac{\theta}{2} & -\text{sin}\frac{\theta}{2} \\ \text{sin}\frac{\theta}{2} & \text{cos}\frac{\theta}{2} \end{bmatrix}\\
+R_{z}(\theta) \equiv e^{-i\theta X/2} = \text{cos}\frac{\theta}{2}I - i \text{sin}\frac{\theta}{2}Z &= \begin{bmatrix} e^{-i\theta/2} & 0 \\ 0 & e^{i\theta/2} \end{bmatrix}
+\end{array}
+$$
+
+!!! note "Theorem 4.1 (Z-Y decomposition for a single qubit)" 
+    suppose $U$ is a unitary operation on a single qubit. Then there exist real numbers $\alpha$, $\beta$, $\gamma$, and $\delta$ such that 
+    $$
+    U = e^{i\alpha}R_{z}(\beta)R_{y}(\gamma)R_{z}(\delta).
+    $$
+    Since $U$ is unitary, the rows and columns of $U$ are orthonormal, from which it folow that there exist real numbers $\alpha$, $\beta$, $\gamma$, and $\delta$ such that 
+    $$
+    U = 
+    \begin{bmatrix}
+    e^{i(\alpha - \beta)/2-\delta/2}\text{cos}\frac{\gamma}{2} & -e^{i(\alpha - \beta)/2+\delta/2}\text{sin}\frac{\gamma}{2} \\ 
+    e^{i(\alpha + \beta)/2-\delta/2}\text{sin}\frac{\gamma}{2} & -e^{i(\alpha + \beta)/2+\delta/2}\text{cos}\frac{\gamma}{2}
+    \end{bmatrix}
+    $$
+
+### Exercises
+
+!!! example "Exercises 4.4"
+    Express the Hadamard gate $H$ as a product of $R_x$ and $R_z$ rotations and $e^{i\phi}$ for some $\phi$
+    <div style="text-align: center;">
+        <img src="../../Quantum_Algorithm_101/images/ex4.4.jpg" alt="ex4.4" style="width: 500px; height: 300px;">
+        <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        </p>
+    </div>
+
+!!! example "Exercises 4.5"
+    Proof that $(\widehat{n}\cdot \overrightarrow{\sigma}) = I$.
+    <div style="text-align: center;">
+        <img src="../../Quantum_Algorithm_101/images/ex4.5.jpg" alt="ex4.4" style="width: 500px; height: 300px;">
+        <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        </p>
+    </div>
+    <div style="text-align: center;">
+        <img src="../../Quantum_Algorithm_101/images/ex4.5_cont.jpg" alt="ex4.4" style="width: 500px; height: 300px;">
+        <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        </p>
+    </div>
+
+!!! example "Exercises 4.7"
+    Show that $XYX = -Y$ and use this rto prove that $XR_{y}(\theta)X = R_{y}(-\theta)$.
+    <div style="text-align: center;">
+        <img src="../../Quantum_Algorithm_101/images/ex4.7.jpg" alt="ex4.4" style="width: 500px; height: 300px;">
+        <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        </p>
+    </div>
+
+!!! example "Exercises 4.8"
+    An arbitrary single qubit unitary operator can be written in the form 
+
+    $$
+    U = e^{i\alpha}R_{\widehat{n}}(\theta)
+    $$
+
+    please find values for $\alpha$, $\theta$, and $\widehat{n}$ giving the Hadamard gate H.
+
+    <div style="text-align: center;">
+        <img src="../../Quantum_Algorithm_101/images/ex4.8.jpg" alt="ex4.4" style="width: 500px; height: 300px;">
+        <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        </p>
+    </div>
 
 ## References 
 
 [1] M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
 
 [2]. [https://pennylane.ai/qml/glossary/what-is-a-swap-gate](https://pennylane.ai/qml/glossary/what-is-a-swap-gate)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-## Reference
-1. https://www.quantum-inspire.com/kbase/pauli-x/
 
