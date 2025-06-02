@@ -68,7 +68,7 @@ nav:
         - Algorithms: quantum/algorithms.md
       - Quantum Computation: quantum/computation.md
       - Applications: quantum/applications.md
-  - Introduction of Computer Science:
+  - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md
         - P and NP problem: Cs/P_NP.md
