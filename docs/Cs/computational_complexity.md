@@ -70,3 +70,8 @@ On the other hand, **O(n!)** arises when the task is to examine every possible *
 A real-world analogy? Think of planning a **talent show** with `n` singers. You must decide who performs in which order. Each different sequence is a new possibility — and the total number of such lineups is again $n!$.
 
 So in short, **2ⁿ** shows up when you’re picking **any combination** (yes/no for each item). **n!** appears when you’re deciding **all possible orders** of things. In algorithm analysis, two of the steepest time complexities are **O(2^{n})** and **O(n!)**, both representing explosive growth as input size increases. But they arise from different types of problems.
+
+
+## References 
+
+[1] M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.

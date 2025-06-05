@@ -201,38 +201,6 @@ U^{\dagger}U = UU^{\dagger} = I,
 $$
 where $I$ is the identity matrix and $u^{\dagger}$ is the adjoint of U, that is, the matrix obtained by transposing $U$ and replaing each element by its complex conjugate. {==This means that any unitary matrix $U$ is invertible and its inverse is given by $U^\dagger$==}. in quantum mechanics, the operations represented by these matrices are called **quantum gates**.
 
-## CNOT Gate
-
-CNOT gate: The value of the second qubit is flipped if and only if the value of the first
-qubit is 1.
-
-Matrix Representation of the CNOT Gate
-In the computational basis $\{\lvert 00 \rangle,\lvert 01 \rangle, \lvert 10 \rangle, \lvert 11 \rangle\}$, the CONT gate is represented as a **4x4 matrix**:
-
-$$
-\text{CNOT} =
-\begin{bmatrix}
-1 & 0 & 0 & 0 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 0 & 1 \\
-0 & 0 & 1 & 0
-\end{bmatrix}
-$$
-
-- The first qubit is the control qubit.
-- The second qubit is the target qubit.
-
-And, if we apply `CNOT` gate on the element of the two-qubit computational basis, we can get,
-
-$$
-\begin{array}{cccc}
-    \text{CNOT}\lvert00\rangle = \lvert00\rangle,& 
-    \text{CNOT}\lvert01\rangle = \lvert01\rangle,& 
-    \text{CNOT}\lvert10\rangle = \lvert11\rangle,& 
-    \text{CNOT}\lvert11\rangle = \lvert10\rangle
-\end{array}
-$$
-
 ## Hadamard Gate
 
 The Hadamard gate is a single-qubit operation that maps the basis state $\lvert 0 \rangle$ to $\frac{\lvert 0 \rangle + \lvert 1 \rangle}{\sqrt{2}}$ and $\lvert 1 \rangle$ to $\frac{\lvert 0 \rangle - \lvert 1 \rangle}{\sqrt{2}}$, which creates an equal superposition of the basis states.
@@ -382,6 +350,69 @@ H = \frac{X+Z}{\sqrt{2}} \ \text{and} \ S = T^{2}.
 $$
 
 
+## Controlled-X (CNOT) Gate
+
+CNOT gate: The value of the second qubit is flipped if and only if the value of the first
+qubit is 1.
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/CNOT-5.jpg" alt="CNOT-5" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+    </p>
+</div>
+
+Matrix Representation of the CNOT Gate
+In the computational basis $\{\lvert 00 \rangle,\lvert 01 \rangle, \lvert 10 \rangle, \lvert 11 \rangle\}$, the CONT gate is represented as a **4x4 matrix**:
+
+$$
+\text{CNOT} =
+\begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{bmatrix}
+$$
+
+- The first qubit is the control qubit.
+- The second qubit is the target qubit.
+
+And, if we apply `CNOT` gate on the element of the two-qubit computational basis, we can get,
+
+$$
+\begin{array}{cccc}
+    \text{CNOT}\lvert00\rangle = \lvert00\rangle,& 
+    \text{CNOT}\lvert01\rangle = \lvert01\rangle,& 
+    \text{CNOT}\lvert10\rangle = \lvert11\rangle,& 
+    \text{CNOT}\lvert11\rangle = \lvert10\rangle
+\end{array}
+$$
+
+## Controlled-Y (CY) Gate
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/CY.jpg" alt="CY" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+    </p>
+</div>
+
+## Controlled-Z (CZ) Gate
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/CZ.jpg" alt="CZ" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+    </p>
+</div>
+
+## Controlled-H (CH) Gate
+
+<div style="text-align: center;">
+    <img src="../../Quantum_Algorithm_101/images/CH.jpg" alt="CH" style="width: 500px; height: 300px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+    </p>
+</div>
+
+
 ## Rotation operatos
 The Pauli matrices give rise to three useful classes of unitary matrices when they are exponentiated, the *rotation operaots* about $x,y$, and $z$ axes, defined by the equations:
 
@@ -452,6 +483,11 @@ $$
         <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         </p>
     </div>
+
+
+
+
+
 
 ## References 
 
