@@ -1,5 +1,6 @@
 # Quantum Fourier Transformation (QFT)
 
+## Introduction of QFT
 One of the most useful ways to solving a probllem in mathematics or computer science is to *transform* it into some other problem for which a solution is known. One such transformation is the *discrete Fourier transform*. in the usual mathematical notiation, the discrete Fourier transform takes vector is a fixed parameter. It outputs the $x_{0},...,x_{N-1}$ where the length $N$ of the vector is a fixed paramter. It outpus the transformed data, a vector of complex numbers $y_{0},...,y_{N-1}$, defined by 
 
 $$
@@ -77,3 +78,24 @@ The equivalence of the product representation and the definition follows from so
 ==TODO: eq 5.5 - 5.10==
 
 
+
+## Phase Estimation 
+
+The Quantum Fourier transformation is the key to a general procedure know as *phase estimation*, which in turn is the key for many quantum algorithms. Suppose a unitary operator $U$ has an eigenvector $|u\rangle$ with eigenvalue $e^{\2pi i\phi}$,  where the value of $\phi$ is unknown. The goal of the phase estimation is to estimate $\phi$. To perform the estimation we assume that we have available *black boxes (oracles)* capable of preparing the state $|u\rangle$ and performing the controlled-$U^{2^{j}}$ operation, for sutible non-negative integers $j$.
+
+The quantum phase estimation procedure uses two registers. The first register contains $t$ qubits initially in the state $|0\rangle$. How we choose $t$ depends on two things:
+
+1.  The number of digits of accuracy we wish to have in our estimate for $\phi$.
+2.  With what probability we wish the phase estimation precedure to be successful. 
+
+The second register begins in the state $|u\rangle$, and contains as many qubits as is necessary to store $|u\rangle$.
+
+Phase estimation is performed in two stages. 
+
+1.  First, the circuit begins by applying a Hadamard transform to the first register, followed by application of controlled-$U$ operations on the second register, with $U$ raised to successive powers of two. The final state of the first registers can be seen as:
+
+$$
+\frac{1}{2^{t/2}}(|0\rangle + e^{2\pi i (2^{t}-1)\phi}|1\rangle)(|0\rangle + e^{2\pi i (2^{t}-2)\phi}|1\rangle)...(|0\rangle + e^{2\pi i (2^{0})\phi}|1\rangle) = \frac{1}{2^{t/2}}\sum_{k=0}^{2^{t}-1}e^{2\pi i \phi k}|k\rangle
+$$
+
+We omit the second register from this description, since it stays in the state $|u\rangle$ throughout the computation.
