@@ -54,6 +54,7 @@ nav:
       - Variational Circuit: Quantum_Algorithm_101/variational_circuit.md
       - Quantum Paralleslism: Quantum_Algorithm_101/quantum_paralleslism.md
       - Linear Algebra: Quantum_Algorithm_101/Linear_algebra.md
+      - Fourier Transform: Quantum_Algorithm_101/fourier_transformation.md
       - Test: 
         - Test level: Quantum_Algorithm_101/test_level.md
   - Quantum Mechanics:
@@ -144,6 +145,7 @@ nav:
 plugins:
   - mkdocs-jupyter
   - glightbox
+  - search
 #  - mathjax
 #  - open-in-new-tab 
 
