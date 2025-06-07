@@ -99,3 +99,33 @@ $$
 $$
 
 We omit the second register from this description, since it stays in the state $|u\rangle$ throughout the computation.
+
+2.  The second stage of the phase estimation is to apply the *inverse* quantum Fourier transform on the first register. This is obtained by reversing the circuit for the quantum Fourier transform in the previous section, and can be done in $\Theta(t^{2})$ steps. The third and final stage of phase estimation is to read out the state of the first register by doing a measurement in the computational basis. An overall schematic of the algorithm is shown below:
+
+To sharpen our intuition as to why phase estimation works, suppose $\phi$ may be expressed exactly in $t$ bits, as $\phi = 0.\phi{1}...\phi{t}$. Then the state 
+
+$$
+\frac{1}{2^{t/2}}(|0\rangle + e^{2\pi i (2^{t}-1)\phi}|1\rangle)(|0\rangle + e^{2\pi i (2^{t}-2)\phi}|1\rangle)...(|0\rangle + e^{2\pi i (2^{0})\phi}|1\rangle) = \frac{1}{2^{t/2}}\sum_{k=0}^{2^{t}-1}e^{2\pi i \phi k}|k\rangle
+$$
+
+resulting from the first state of phase estimation may be written 
+
+$$
+\frac{1}{2^{t/2}}(|0\rangle + e^{2\pi i0.\phi_{t}}|1\rangle)(|0\rangle + e^{2\pi i0.\phi_{t-1}\phi_{t}}|1\rangle)...(|0\rangle + e^{2\pi i 0.\phi_{1}\phi_{2}...\phi_{t}}|1\rangle).
+$$
+
+The second stage of phase estimation is to apply the inverse quantum Fourier transform. But comparing the previous equation with the product form the Fourier transform, 
+
+$$
+|j_{1},...,j_{n}\rangle \mapsto \frac{(|0\rangle + e^{2\pi i0.j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{n-1}j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{1}j_{2}\cdots j_{n}}|1\rangle)}{2^{n/2}}.
+$$
+
+we see that the output state from the second stage is the product state $|\phi_{1}...\phi_{t}\rangle$. A measurement in the computational basis therefore gives us $\phi$ exactly!
+
+In sum, the phase estimation algorithm allows one to estiamte the phase $\phi$ of an eigenvalue of a unitary operator $U$, given the corresponding eigenvector $|u\rangle$. An essential feature at the heart of this procedure is the ability of the inverse Fourier transform to perform the transformation
+
+$$
+\frac{1}{2^{t/2}}\sum_{j=0}^{2^{t}-1}e^{2\pi i\phi j}|j\rangle|u\rangle \mapsto |\widetilde{\phi}\rangle |e\rangle,
+$$
+
+where $|\widetilde{\phi}\rangle$ denotes a state which is a good estimator for $\phi$ when measured.
