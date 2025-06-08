@@ -250,3 +250,7 @@ When you talk about the rotation xyz, there are no xyz in hilbert space, its all
 - Gates = unitary transformations
 - Example: Z gate, Hadamard gate
 - Acts like rotation/reflection in complex space
+
+## References 
+
+[1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
