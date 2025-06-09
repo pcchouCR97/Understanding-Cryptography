@@ -141,6 +141,73 @@ $$
 
 where $a_{0},...,a_{M}$ are postiive integers. The continued fractions algorithm is a method for determining the continued fraction expansion of an arbitrary real number.
 
+Let's say you obtained a result $\phi = 31/128$ from the phase estiamtion and you want to retrive the order $r$. We can use the continued fraction alforithm and find it's convergent. We start with inverting $31/128$ to $128/31$ and express as $a_0 +$ some fraction 
+
+$$
+\frac{128}{31} = 4+\frac{4}{31},
+$$
+
+then we can express $\frac{4}{31}$ by using continued fraction algorithm as,
+
+$$
+\frac{128}{31} = 4+\frac{1}{\frac{31}{4}} = 4+\frac{1}{7+\frac{3}{4}} = 4+\frac{1}{7+\frac{1}{\frac{4}{3}}},
+$$
+
+if we continue with this algorithm, we eventally obtain
+
+$$
+\frac{128}{31} = 4+\frac{1}{7+\frac{1}{1+\frac{1}{\frac{1}{3}}}}
+$$
+
+The algorithm terminates, since $\frac{1}{3}$ doesn't need to invert. We have 
+
+$$
+[a_{0},a_{1},a_{2},a_{3}] = [4,7,1,3]
+$$
+
+Next, we can work on the convergent based on [number theory](https://en.wikipedia.org/wiki/Number_theory). Let's start with $h_{n}/k_{n}$ where it's defined as
+
+$$
+\frac{h_n}{k_n} = 
+\begin{cases}
+h_{n} = a_{n}h_{n-1}+h_{n-2}\\
+k_{n} = a_{n}k_{n-1}+k_{n-2}\\
+\end{cases}
+, n = 0,...,M
+$$
+
+where
+
+$$
+\frac{h_n}{k_n} = 
+\begin{cases}
+h_{-2} = 0,\quad h_{-1} = 1 \\
+k_{-2} = 1,\quad k_{-1} = 0
+\end{cases}
+$$
+
+after a little bit of calcualtion, we have $\frac{1}{4},\frac{7}{29},\frac{8}{33},\frac{1}{128}$ for $[a_{0},a_{1},a_{2},a_{3}] = [4,7,1,3]$. We can do a quick check that 
+
+$$
+\begin{array}{rccccl}
+a_{0} & \rightarrow & \frac{s_{0}}{r_{0}} & = & \frac{1}{4} & = & 0.25\\
+a_{1} & \rightarrow & \frac{s_{1}}{r_{1}} & = & \frac{7}{29} & = & 0.241237...\\
+a_{2} & \rightarrow & \frac{s_{2}}{r_{2}} & = & \frac{8}{33} & = & 0.242424...\\
+a_{3} & \rightarrow & \frac{s_{3}}{r_{3}} & = & \frac{31}{128} & = & 0.2412875\\
+\end{array}
+$$
+
+they look fairy close to your result $\phi = 31/128$. Then we can verify each $r$ by 
+
+$$
+x^{r} = 1\ (\text{mod} \ N)
+$$
+
+then we are done! *Congratulations you just find the $r$! Easy peasy!*😃
+
+!!! note "Cost of the continued fraction algorithm"
+    If $\phi = s/r$ is a rational number, and $s$ and $r$ are $L$ bit integers, then the continued fraction expansion for $\phi$ can be computed using $O(L^3)$ opeartions - $O(L)$ 'split and invert' steps, each using $O(L^{2})$ gates or elementary arithmetic.
+
 ### Algorithm overview
 ==**Inputs:**==
 
@@ -197,3 +264,6 @@ $$
 [5]. Coprime integers (wiki) [https://en.wikipedia.org/wiki/Coprime_integers](https://en.wikipedia.org/wiki/Coprime_integers)
 
 [6]. Greatest common divisor (wiki) [https://en.wikipedia.org/wiki/Greatest_common_divisor](https://en.wikipedia.org/wiki/Greatest_common_divisor)
+
+[7]. qiskit-community-tutorials/algorithms
+/shor_algorithm.ipynb [https://github.com/qiskit-community/qiskit-community-tutorials/blob/master/algorithms/shor_algorithm.ipynb](https://github.com/qiskit-community/qiskit-community-tutorials/blob/master/algorithms/shor_algorithm.ipynb)

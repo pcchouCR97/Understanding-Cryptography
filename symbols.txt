@@ -19,3 +19,18 @@ $\lvert 0 \rangle$
         Bloch shpere
     </p>
 </div>
+
+cases
+$$
+\frac{h_n}{k_n} = 
+\begin{cases}
+h_{n} = a_{n}h_{n-1}+h_{n-2}\\
+k_{n} = a_{n}k_{n-1}+k_{n-2}\\
+\end{cases}
+, n = 0,...,M
+$$
+
+
+emoji website:
+
+https://getemoji.com/

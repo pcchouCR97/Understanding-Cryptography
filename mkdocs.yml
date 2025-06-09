@@ -148,8 +148,9 @@ plugins:
   - mkdocs-jupyter
   - glightbox
   - search
+  - open-in-new-tab
 #  - mathjax
-#  - open-in-new-tab 
+
 
 extra_javascript:
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
