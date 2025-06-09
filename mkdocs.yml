@@ -148,7 +148,8 @@ plugins:
   - mkdocs-jupyter
   - glightbox
   - search
-  - open-in-new-tab
+#TODO fix 
+#  - open-in-new-tab #(cannot be installed in ci.yml) 
 #  - mathjax
 
 
