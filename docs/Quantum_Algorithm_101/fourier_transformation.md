@@ -227,15 +227,6 @@ where $|\widetilde{\phi}\rangle$ denotes a state which is a good estimator for $
 ### Performance and requriements
 
 
-
-## Applications: order-finding and factoring
-
-The phase estimation procedure can be used to solve a variety of interesting problems.We now describe two of the most interesting of these problems: the order-finding problem, and the factoring problem.
-
-To understand the quantum algorithms for factoring and order-finding requires a
-little background in number theory
-
-
 ## References 
 
 [1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
