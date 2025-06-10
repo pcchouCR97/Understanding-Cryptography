@@ -76,7 +76,7 @@ nav:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md
         - P and NP problem: Cs/P_NP.md
-
+  
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md

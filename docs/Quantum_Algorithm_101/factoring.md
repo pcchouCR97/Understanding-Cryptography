@@ -4,6 +4,8 @@ Given a positive compositve integer $N$, what prime numbers when multiplied toge
 
 > Theorem 1: Suppose $N$ is an $L$ bit composite number, and $x$ is a non-trival solution to the equation $x^{2} = 1(\text{mod}\ N)$ in the range $1\leq x \leq N$, that is , neither $x = 1(\text{mod} N)$ nor $x = N-1 = -1(\text{mod}\ N)$. Then at least one of gcd$(x-1,N)$ and gcd$(x+1,N)$ is a non-trival factor of $N$ that can be computed using $O(L^{3})$ operations.
 
+---
+
 > Theorem 2: Suppose $N = p_{1}^{\alpha_1}\cdots p_{m}^{\alpha_m}$ is the prime factorization of an odd composite positive integer. let $x$ be an integer chosen uniformaly at random, subject to the requirements that $1\leq x \leq N-1$ and $x$ is co-prime to $N$. let $r$ be the order of $x \text{mod}\ N$. Then
 
 $$
@@ -12,9 +14,45 @@ $$
 
 ==algorithm==
 
+The number thoery that underlines Shor's algorithm relates to periodic modulo sequences. Let's have a look at an example of such a sequence. let's consider the sequence of the power of two:
 
+$$
+1,2,4,8,16,32,64,128,256,512,1024,...
+$$
+
+Now let's compute modulo 15 on each entry,
+
+$$
+1,2,4,8,1,2,4,8,1,2,4,...
+$$
+
+and we can easily see that sequence repeats every four numbers, and this is the periodic modulo sequence with a period of four.
+
+The reduction of factorization of $N$ to the problem of finding the period of an integer $x$ less than $N$ and greater than 41$ depends on the following result from number theory:
+
+> The function $\mathcal{F} = x^{r} (\text{mod}\ N)$ is periodic function, where $x$ is an integer coprime to $N$ and $r\geq0$.
+
+Note that two numers are coprime, if the only positive integer that divides both of them is 1, $\text{gcd}(2,9) = 1$ and $\text{gcd}(8,15) = 1$, for an examples. On the other hand, $\text{gcd}(2,8) = 2$, so $2$ and $8$ are not coprime.
+
+> Since $\mathcal{F}(a)$ is a periodic function, it has some period $r$. Knowing that $x^{0} \text{mod} \ N =1$, this means that $x^{r} \text{mod} \ N =1$ since the function is periodic, and thus $r$ is just the first non-zero power where $x^{r} = 1 \text{mod}$ (the result that we are looking for in the [order finding](./order_finding.md) problem).
+
+Based on some basic algebras:
+
+$$
+\begin{array}{c}
+x^{r} \equiv 1\ \text{mod}\\
+x^{r} = (x^{r/2})^{2} \equiv 1\ \text{mod}\\
+(x^{r/2})^{2} - 1 \equiv 0\ \text{mod}\\
+(x^{r/2} + 1)(x^{r/2} - 1) \equiv 0\ \text{mod}
+\end{array}
+$$
+
+The product $(x^{r/2} + 1)(x^{r/2} - 1) \equiv 0 \text{mod}$ is an integer multiple of $N$, the number to be factored. Thus, as long as $(x^{r/2} + 1)$ of $(x^{r/2} - 1)$ is not a multiple of $N$, then at least one of $(x^{r/2} + 1)$ or $(x^{r/2} - 1)$ must have a nontrivial factor in common with $N$.
+
+Therefore, we can also know that calculate $\text{gcd}(x^{r/2} + 1,N)$ and $\text{gcd}(x^{r/2} - 1,N)$ will obtain a factor of $N$, which can be accomlished by using Euclidean algorithm.
 
 ## Period Finding
+Let's first describe the quantum period finding algorithm. This algorithm takes two coprime integers, $x$ and $N$, and ouputs $r$, the period of $\mathcal{F}(a) = x^{a}\ \text{mod} \ N$.
 
 ## References 
 
@@ -32,3 +70,5 @@ $$
 
 [7]. qiskit-community-tutorials/algorithms
 /shor_algorithm.ipynb [https://github.com/qiskit-community/qiskit-community-tutorials/blob/master/algorithms/shor_algorithm.ipynb](https://github.com/qiskit-community/qiskit-community-tutorials/blob/master/algorithms/shor_algorithm.ipynb)
+
+[8]. Realization of a scalable Shor algorithm by Thomas Monz, Daniel Nigg, Esteban A. Martinez, Matthias F. Brandl, Philipp Schindler, Richard Rines, Shannon X. Wang, Isaac L. Chuang, Rainer Blatt [https://arxiv.org/abs/1507.08852](https://arxiv.org/abs/1507.08852)
