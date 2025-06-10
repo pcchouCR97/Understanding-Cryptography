@@ -246,11 +246,6 @@ $$
 
     is only valid in basic phase estimation examples where $U$ acts on 1 qubit and has eigenstates like $|1\rangle \rightarrow e^{2\pi i \theta}|1\rangle$.
 
-
-## Factoring 
-
-
-
 ## References 
 
 [1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.

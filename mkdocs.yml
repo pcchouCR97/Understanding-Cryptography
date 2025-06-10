@@ -56,7 +56,8 @@ nav:
       - Linear Algebra: Quantum_Algorithm_101/Linear_algebra.md
       - Quantum Fourier transform:
         - Fourier Transform: Quantum_Algorithm_101/fourier_transformation.md
-        - Order-finding and factoring (Shor's Algorithm): Quantum_Algorithm_101/order_m_factoring.md
+        - Order-finding (Shor's Algorithm): Quantum_Algorithm_101/order_finding.md
+        - Factoring (Shor's Algorithm): Quantum_Algorithm_101/factoring.md
       - Test: 
         - Test level: Quantum_Algorithm_101/test_level.md
   - Quantum Mechanics:
