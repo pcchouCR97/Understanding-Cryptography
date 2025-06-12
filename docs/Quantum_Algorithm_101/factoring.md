@@ -12,7 +12,21 @@ $$
 p(r\ \text{is even and }x^{r/2} \neq -1 (\text{mod}\ N)) \geq 1 - \frac{1}{2^{m}}.
 $$
 
-==algorithm==
+### Algorithm overview
+==**Inputs:**== A composite number $N$.
+
+==**Outputs:**== A non-trival factor of $N$. 
+
+==**Runtime:**== $O(L^{3})$ operations.
+
+==**Procedure:**== 
+
+1.  If $N$ es even, return the factor 2.
+2.  Deteremine whether $N = a^{b}$ for integers $a\geq 1$ and $b\geq 2$, if so return the factor $a$.
+3.  Randomly choose $x$ in the range $1$ to $N-1$. if $\text{gcd}(x,N)\geq 1$ then return the factor $gcd(x,N)$.
+4.  Use the order-finding subroutine to find the order $r$ of $x \text{mod} \ N$.
+5.  If $r$ is even and $x^{r/2} \neq -1(\text{mod}\ N)$  then compute $gcd(x^{r/2}-1,N)$ and $gcd(x^{r/2}+1,N)$, and test to see if one of these is a non-trival factor, returning that factor if so. Otherwise, the algorithm fails.
+
 
 The number thoery that underlines Shor's algorithm relates to periodic modulo sequences. Let's have a look at an example of such a sequence. let's consider the sequence of the power of two:
 

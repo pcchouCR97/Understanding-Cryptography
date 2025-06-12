@@ -217,7 +217,7 @@ then we are done! *Congratulations you just find the $r$! Easy peasy!*😃
 
 ==**Outputs:**== The least integer $r>0$ such that $x^{r} = 1\ (\text{mod}N)$
 
-==**Runtime:**== $O{L^{3}}$ operations.
+==**Runtime:**== $O(L^{3})$ operations.
 
 ==**Procedure:**== 
 
