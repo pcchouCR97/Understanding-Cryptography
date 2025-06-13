@@ -44,6 +44,45 @@ $$
 
 which is a easy to verfify noting that $\sum_{k=0}^{r-1}e^{2\pi ilx/r} = r$ for integer $x$ an integer multiple of $r$, and zero otherwise. The approximate equality in step $3$ is required since $2^t$ may not be an integer multiple of $r$ in general. After applying the inverse Fourier transform at the step 4 we can get $l/r$, where $l$ is chosed randomly. $r$ can be calcualted by using a continued fraction expansion.
 
+## From Factorization to Period Finding
+The number thoery that underlines Shor's algorithm relates to periodic modulo sequences. Let's have a look at an example of such a sequence. let's consider the sequence of the power of two:
+
+$$
+1,2,4,8,16,32,64,128,256,512,1024,...
+$$
+
+Now let's compute modulo 15 on each entry,
+
+$$
+1,2,4,8,1,2,4,8,1,2,4,...
+$$
+
+and we can easily see that sequence repeats every four numbers, and this is the periodic modulo sequence with a period of four.
+
+The reduction of factorization of $N$ to the problem of finding the period of an integer $x$ less than $N$ and greater than 41$ depends on the following result from number theory:
+
+> The function $\mathcal{F} = x^{r} (\text{mod}\ N)$ is periodic function, where $x$ is an integer coprime to $N$ and $r\geq0$.
+
+Note that two numers are coprime, if the only positive integer that divides both of them is 1, $\text{gcd}(2,9) = 1$ and $\text{gcd}(8,15) = 1$, for an examples. On the other hand, $\text{gcd}(2,8) = 2$, so $2$ and $8$ are not coprime.
+
+> Since $\mathcal{F}(a)$ is a periodic function, it has some period $r$. Knowing that $x^{0} \text{mod} \ N =1$, this means that $x^{r} \text{mod} \ N =1$ since the function is periodic, and thus $r$ is just the first non-zero power where $x^{r} = 1 \text{mod}$ (the result that we are looking for in the [order finding](./order_finding.md) problem).
+
+Based on some basic algebras:
+
+$$
+\begin{array}{c}
+x^{r} \equiv 1\ \text{mod}\\
+x^{r} = (x^{r/2})^{2} \equiv 1\ \text{mod}\\
+(x^{r/2})^{2} - 1 \equiv 0\ \text{mod}\\
+(x^{r/2} + 1)(x^{r/2} - 1) \equiv 0\ \text{mod}
+\end{array}
+$$
+
+The product $(x^{r/2} + 1)(x^{r/2} - 1) \equiv 0 \text{mod}$ is an integer multiple of $N$, the number to be factored. Thus, as long as $(x^{r/2} + 1)$ of $(x^{r/2} - 1)$ is not a multiple of $N$, then at least one of $(x^{r/2} + 1)$ or $(x^{r/2} - 1)$ must have a nontrivial factor in common with $N$.
+
+Therefore, we can also know that calculate $\text{gcd}(x^{r/2} + 1,N)$ and $\text{gcd}(x^{r/2} - 1,N)$ will obtain a factor of $N$, which can be accomlished by using Euclidean algorithm.
+
+
 ## References 
 
 [1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
