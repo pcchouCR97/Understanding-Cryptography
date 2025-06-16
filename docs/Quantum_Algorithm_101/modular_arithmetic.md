@@ -23,6 +23,7 @@ We can see that two different numbers can be represented as congruent in mod 6. 
         Moduler 2 arithemtic example
     </p>
 </div>
+
 # Congruence
 
 # Addition

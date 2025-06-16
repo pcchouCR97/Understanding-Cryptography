@@ -54,11 +54,7 @@ nav:
       - Variational Circuit: Quantum_Algorithm_101/variational_circuit.md
       - Quantum Paralleslism: Quantum_Algorithm_101/quantum_paralleslism.md
       - Linear Algebra: Quantum_Algorithm_101/Linear_algebra.md
-      - Quantum Fourier transform:
-        - Fourier Transform: Quantum_Algorithm_101/fourier_transformation.md
-        - Order-finding (Shor's Algorithm): Quantum_Algorithm_101/order_finding.md
-        - Factoring (Shor's Algorithm): Quantum_Algorithm_101/factoring.md
-        - Period finding (Shor's Algorithm): Quantum_Algorithm_101/period_finding.md
+      
       - Test: 
         - Test level: Quantum_Algorithm_101/test_level.md
   - Quantum Mechanics:
@@ -67,17 +63,29 @@ nav:
         - No-deleting: quantum_mechanics/No-deleting.md
         - No-hiding: quantum_mechanics/No-hiding.md
         - No-teleportation: quantum_mechanics/No-teleportation.md
-  - Quantum Computing:
+  - Quantum Copmutation:
+      #- Quantum circuits:
+
+      - Quantum Fourier transform:
+        - Fourier Transform: quantum_computation/fourier_transformation.md
+        - Order-finding (Shor's Algorithm): quantum_computation/order_finding.md
+        - Factoring (Shor's Algorithm): quantum_computation/factoring.md
+        - Period finding (Shor's Algorithm): quantum_computation/period_finding.md
+      #- Quantum search Algorithms:
+      - Learning hub:
+        - Calculating 1+1 using quantum gates: quantum_computation/jupyter_qc/adder0.ipynb
+        
       - Basics: 
-        - Basics: quantum/basics.md
-        - Algorithms: quantum/algorithms.md
-      - Quantum Computation: quantum/computation.md
-      - Applications: quantum/applications.md
+        - Basics: quantum_computation/basics.md
+        - Algorithms: quantum_computation/algorithms.md
+      - Quantum Computation: quantum_computation/computation.md
+      - Applications: quantum_computation/applications.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md
         - P and NP problem: Cs/P_NP.md
   
+
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md
