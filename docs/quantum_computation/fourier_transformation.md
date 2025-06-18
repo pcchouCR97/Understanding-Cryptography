@@ -10,18 +10,18 @@ $$
 The *quantum Fourier transformation* is exactly the same transformation, although the conventional notation for the quantum Fourier transformation is somewhat different. The quantum Fourier transform on an orthonormal basis $|0\rangle,...,|N-1\rangle$ is defined to be a *linear opearator* with the following action on the basis state,
 
 $$
-|j\rangle \mapsto \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{2\pi ijk/N} |k\rangle.
+|j\rangle \rightarrow \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{2\pi ijk/N} |k\rangle.
 $$
 
 Equivalently, the action on an arbitrary state may be written 
 
 $$
-\sum_{j=0}^{N-1}x_{j}|j\rangle \mapsto \sum_{k=0}^{N-1}x_{k}|k\rangle,
+\sum_{j=0}^{N-1}x_{j}|j\rangle \rightarrow \sum_{k=0}^{N-1}x_{k}|k\rangle,
 $$
 
 where the amplitudes $y_k$ are the discrete Fourier transform of the amplitudes $x_j$. It is not obvious from the definition, but this transformation is a [**unitary transformation**](../Quantum_Algorithm_101/hilbert_space.md#unitary-operators), and thus can be implmented as the dynamics for a quantum computer. 
 
-!!! Example "Give a direct poof that the linear transformation defined by $|j\rangle \mapsto \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{2\pi ijk/N} |k\rangle$ is unitary"
+!!! Example "Give a direct poof that the linear transformation defined by $|j\rangle \rightarrow \frac{1}{\sqrt{N}}\sum_{k=0}^{N-1}e^{2\pi ijk/N} |k\rangle$ is unitary"
 
 !!! Example "Explicitly compute the Fourier transform of the $n$ qubit state $|00...0\rangle$"
 
@@ -36,7 +36,7 @@ $$
 The product representation of the quantum Fourier transformation can be shown as 
 
 $$
-|j_{1},...,j_{n}\rangle \mapsto \frac{(|0\rangle + e^{2\pi i0.j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{n-1}j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{1}j_{2}\cdots j_{n}}|1\rangle)}{2^{n/2}}.
+|j_{1},...,j_{n}\rangle \rightarrow \frac{(|0\rangle + e^{2\pi i0.j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{n-1}j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{1}j_{2}\cdots j_{n}}|1\rangle)}{2^{n/2}}.
 $$
 
 > This production representation is so useful that you amy even wish to consider this to be the ==*definition*== of the Quantum Fourier transformation.
@@ -44,7 +44,7 @@ $$
 For above example $|j\rangle = |101\rangle$,
 
 $$
-|j\rangle \mapsto \frac{1}{2^{3/2}}\bigotimes_{k=1}^{3}(|0\rangle + e^{2\pi \cdot 0.j_{k}j_{k+1}...j_{n}}|1\rangle)
+|j\rangle \rightarrow \frac{1}{2^{3/2}}\bigotimes_{k=1}^{3}(|0\rangle + e^{2\pi \cdot 0.j_{k}j_{k+1}...j_{n}}|1\rangle)
 $$
 
 We compute eacj phase using the binary fraction notation for the first qubit:
@@ -68,7 +68,7 @@ $$
 so the third term is $|0\rangle + e^{2\pi i \cdot 1/2}|1\rangle$. Putting everything together 
 
 $$
-|101\rangle \mapsto \frac{1}{2^{3/2}}(|0\rangle + e^{2\pi i\cdot 5/8}|1\rangle)\otimes(|0\rangle + e^{2\pi i \cdot 1/4} |1\rangle)\otimes(|0\rangle + e^{2\pi i \cdot 1/2}|1\rangle)
+|101\rangle \rightarrow \frac{1}{2^{3/2}}(|0\rangle + e^{2\pi i\cdot 5/8}|1\rangle)\otimes(|0\rangle + e^{2\pi i \cdot 1/4} |1\rangle)\otimes(|0\rangle + e^{2\pi i \cdot 1/2}|1\rangle)
 $$
 
 This is the QFT of $|101\rangle$ in product form.
@@ -79,7 +79,7 @@ The equivalence of the product representation and the definition follows from so
 
 $$
 \begin{array}{ll}
-|j\rangle& \mapsto \frac{1}{2^{n/2}}\sum_{k=1}^{2^{n}-1} e^{2\pi ijk/2^{n}}|k\rangle \\
+|j\rangle& \rightarrow \frac{1}{2^{n/2}}\sum_{k=0}^{2^{n}-1} e^{2\pi ijk/2^{n}}|k\rangle \\
  & = d
 \end{array}
 $$
@@ -199,12 +199,12 @@ $$
 The second stage of phase estimation is to apply the inverse quantum Fourier transform. By comparing the previous equation with the product form the Fourier transform, 
 
 $$
-|j_{1},...,j_{n}\rangle \mapsto \frac{(|0\rangle + e^{2\pi i0.j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{n-1}j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{1}j_{2}\cdots j_{n}}|1\rangle)}{2^{n/2}}.
+|j_{1},...,j_{n}\rangle \rightarrow \frac{(|0\rangle + e^{2\pi i0.j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{n-1}j_{n}}|1\rangle)(|0\rangle + e^{2\pi i0.j_{1}j_{2}\cdots j_{n}}|1\rangle)}{2^{n/2}}.
 $$
 
 we see that the output state from the second stage is the product state $|\phi_{1}...\phi_{t}\rangle$. 
 $$
-\frac{1}{2^{t/2}}(|0\rangle + e^{2\pi i0.\phi_{t}}|1\rangle)(|0\rangle + e^{2\pi i0.\phi_{t-1}\phi_{t}}|1\rangle)...(|0\rangle + e^{2\pi i 0.\phi_{1}\phi_{2}...\phi_{t}}|1\rangle) \text{QFT}^{\dagger}\mapsto |\phi_{1}...\phi_{t}\rangle
+\frac{1}{2^{t/2}}(|0\rangle + e^{2\pi i0.\phi_{t}}|1\rangle)(|0\rangle + e^{2\pi i0.\phi_{t-1}\phi_{t}}|1\rangle)...(|0\rangle + e^{2\pi i 0.\phi_{1}\phi_{2}...\phi_{t}}|1\rangle) \text{QFT}^{\dagger}\rightarrow |\phi_{1}...\phi_{t}\rangle
 $$
 
 A measurement in the computational basis therefore gives us $\phi$ exactly!
@@ -219,7 +219,7 @@ A measurement in the computational basis therefore gives us $\phi$ exactly!
 In sum, the phase estimation algorithm allows one to estiamte the phase $\phi$ of an eigenvalue of a unitary operator $U$, given the corresponding eigenvector $|u\rangle$. An essential feature at the heart of this procedure is the ability of the inverse Fourier transform to perform the transformation
 
 $$
-\frac{1}{2^{t/2}}\sum_{j=0}^{2^{t}-1}e^{2\pi i\phi j}|j\rangle|u\rangle \mapsto |\widetilde{\phi}\rangle |e\rangle,
+\frac{1}{2^{t/2}}\sum_{j=0}^{2^{t}-1}e^{2\pi i\phi j}|j\rangle|u\rangle \rightarrow |\widetilde{\phi}\rangle |e\rangle,
 $$
 
 where $|\widetilde{\phi}\rangle$ denotes a state which is a good estimator for $\phi$ when measured.
