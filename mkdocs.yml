@@ -65,7 +65,7 @@ nav:
         - No-teleportation: quantum_mechanics/No-teleportation.md
   - Quantum Copmutation:
       #- Quantum circuits:
-      - Quantum Fourier transform:
+      - Quantum Fourier Transform:
         - Fourier Transform: quantum_computation/fourier_transformation.md
         - Order-finding (Shor's Algorithm): quantum_computation/order_finding.md
         - Factoring (Shor's Algorithm): quantum_computation/factoring.md
@@ -79,6 +79,8 @@ nav:
         - Algorithms: quantum_computation/algorithms.md
       - Quantum Computation: quantum_computation/computation.md
       - Applications: quantum_computation/applications.md
+      - Quantum Search Algorithm: 
+        - The Quantum Search Algorithm: quantum_computation/q_search_algorithm.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md

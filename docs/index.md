@@ -1,23 +1,38 @@
-# Welcome to Quantum Optimization and Machine Learning
+# Welcome to Quantum Algorithm!
 
 Schrödinger equation? Superposition? how about wave fucntion? How about the Collapse? Have you heard any of these buzzing word? 
 
+This is a collection of my learnings and projects on quantum optimization and machine learning. You can start *(Optimization)* from here and *(Machine Learning)* from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
+
+## 🎯 Real-World Quantum Applications
+
+### 🧠 Quantum Phase Estimation
+
+- [Shor's Algorithm](quantum_computation/jupyter_qc/Shor's.ipynb):  
+  In this Jupyter notebook, I implemented **Shor’s algorithm from scratch** using only Qiskit’s basic quantum gates — no built-in libraries. Successfully factor $N = 15$.
+
+### 🔍 Grover Search
+
+*Coming soon!* A powerful method for searching unsorted databases quadratically faster than classical algorithms.
+
+### ⚙️ Quantum Optimization
+
+- [Air Traffic Controller Problem](Projs/jupyter_Opt/(C)Air_Traffic_Control_1_Runway.ipynb):  
+  This notebook applies **quantum optimization (VQE)** to a realistic aircraft scheduling problem, considering real aircraft types, wake turbulence, and safety constraints.  
+  It demonstrates how quantum algorithms can tackle complex logistics problems — with future potential in operational aviation systems.
 
 
-
-This is a collection of my learnings and projects on quantum optimization and machine learning. You can start _(Optimization)_ from here and _(Machine Learning)_ from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
-
-# Quick links 
-## Quantum Optimization and Machine Learning
+## Learning Notes
+### Quantum Optimization and Machine Learning
 If you are familiar with classical optimization or machine learning methods, you can start quantum world, please follow any one of these links down below.
-### Optimization 
+#### Optimization 
 *   [Quadratic Unconstrained Binary Optimization (QUBO)](QuantumOpt/QOpt/QUBO.md)
 *   [Adiabatic Quantum Computing & Quantum Annealing (AQQA)](QuantumOpt/QOpt/AQQA.md)
 *   [Quantum Approximate Optimization Algorithm (QAOA)](QuantumOpt/QOpt/QAOA.md)
 *   [Grover Adaptive Search (GAS)](QuantumOpt/QOpt/GAS.md)
 *   [Variational Quantum Eignesolver (VQE)](QuantumOpt/QOpt/VQEIntro.md)
 
-### Machine Learning
+#### Machine Learning
 *   [Quantum Support Vector Machines (QSVM)](QuantumOpt/QML/QSVM.md)
 *   [Quantum Neural Networks (QNN)](QuantumOpt/QML/QNN.md)
 *   [Quantum Hybrid Architectures (QHybrid)](QuantumOpt/QML/QHyb.md)
@@ -36,5 +51,3 @@ If you are a beginner in these areas, don't worry, we can start with something e
 *   [Quantum 101](Math_Fundamentals/foundation.md)
 *   Mahcine Learning 101
 *   Optimization 101
-
-# Please explore some real-world problem!
