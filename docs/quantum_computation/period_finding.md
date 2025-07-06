@@ -59,9 +59,9 @@ $$
 
 and we can easily see that sequence repeats every four numbers, and this is the periodic modulo sequence with a period of four.
 
-The reduction of factorization of $N$ to the problem of finding the period of an integer $x$ less than $N$ and greater than 41$ depends on the following result from number theory:
+The reduction of factorization of $N$ to the problem of finding the period of an integer $x$ less than $N$ and greater than $1$ depends on the following result from number theory:
 
-> The function $\mathcal{F} = x^{r} (\text{mod}\ N)$ is periodic function, where $x$ is an integer coprime to $N$ and $r\geq0$.
+> The function $\mathcal{F}(a) = x^{a} (\text{mod}\ N)$ is periodic function, where $x$ is an integer coprime to $N$ and $a \geq 0$.
 
 Note that two numers are coprime, if the only positive integer that divides both of them is 1, $\text{gcd}(2,9) = 1$ and $\text{gcd}(8,15) = 1$, for an examples. On the other hand, $\text{gcd}(2,8) = 2$, so $2$ and $8$ are not coprime.
 

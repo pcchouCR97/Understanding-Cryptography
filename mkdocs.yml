@@ -74,7 +74,7 @@ nav:
       #- Quantum search Algorithms:
       - Learning hub:
         - Calculating 1+1 using quantum gates: quantum_computation/jupyter_qc/adder0.ipynb
-        
+        - Shor's Algorithm: quantum_computation/jupyter_qc/Shor's.ipynb
       - Basics: 
         - Basics: quantum_computation/basics.md
         - Algorithms: quantum_computation/algorithms.md
@@ -85,7 +85,6 @@ nav:
         - Computational complexity: Cs/computational_complexity.md
         - P and NP problem: Cs/P_NP.md
   
-
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md
