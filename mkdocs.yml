@@ -65,7 +65,6 @@ nav:
         - No-teleportation: quantum_mechanics/No-teleportation.md
   - Quantum Copmutation:
       #- Quantum circuits:
-
       - Quantum Fourier transform:
         - Fourier Transform: quantum_computation/fourier_transformation.md
         - Order-finding (Shor's Algorithm): quantum_computation/order_finding.md
