@@ -66,4 +66,77 @@ The quantum search algorithm then consists of repeated application of a quantum 
     $$
     |x\rangle \rightarrow -(-1)^{\delta_{x}0}|s\rangle.
     $$
+
 4.  Apply the `H` transform $H^{\otimes n}$. 
+
+### Implmentation on Quantum computer 
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_0.png" alt="quantum_search_algorithm_0" style="width: 755px; height: 231px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Schematic circuit for the quantum search algorithm.
+    </p>
+</div>
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_1.png" alt="quantum_search_algorithm_1" style="width: 762px; height: 270px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Circuit for the Grover iteration, \( G \).
+    </p>
+</div>
+
+Each of the operations in the Groveer iteration can be efficiently implemneted on a quantum computer. The `H` in step 2 and 4 require $n = log{N}$ operations each. The conditional phase in step 3 can be implemented using $O(n)$ gates. The cost of the oracle call depends upon the specific application. The combined effect of step 2,3, and 4 is 
+
+$$
+H^{\otimes n} (2|0\rangle\langle 0| - I)H^{\otimes n} = 2|\psi\rangle\langle\psi| - I,
+$$
+
+where $|\psi\rangle$ is the equally weighted superspoition of state 
+
+$$
+|\psi\rangle = \frac{1}{N^{1/2}}\sum_{x=0}^{N-1}|x\rangle.
+$$
+
+Thus we denote the Grover iteration, $G$, can be written as 
+
+$$
+G = (2|\psi\rangle\langle\psi|)O.
+$$
+
+## Geometric visualization
+
+The Grover iteration, $G = (2|\psi\rangle\langle\psi|)O$, can be seen as a rotation in the two=dimensional space spanned by the starting vector $|\psi\rangle$ and the state consisting of a uniform superposition of solutions to the search problem. Let's define $\sum_{x}^{'}$ as a sum over all $x$ which are solutions to the problem, and $\sum_{x}^{''}$ in dicates a sum over all $x$ which are not solutions to the search problem. Define normalized states
+
+$$
+\begin{array}{l}
+|\alpha\rangle \equiv \frac{1}{\sqrt{N-M}}\sum_{x}^{''}|x\rangle \\
+|\beta\rangle \equiv \frac{1}{\sqrt{M}}\sum_{x}^{'}|x\rangle
+\end{array}
+$$
+
+We must know that the initial state $|\psi\rangle$ may be re-expressed as 
+
+$$
+|\psi\rangle = \sqrt{\frac{N-M}{N}}|\alpha\rangle + \sqrt{\frac{M}{N}}|\beta\rangle,
+$$
+
+so the initial state of the quantum computer is in the space ==spanned by $|\alpha\rangle$ and $|\beta\rangle$.==
+
+
+The effect of $G$ can be understood as following:
+
+1.  Operation $O$ performs a *reflection* about the vector $|\alpha$ in the plane defined by $|\alpha\rangle$ and $|\beta\rangle$. 
+
+2.  $2|\psi\rangle\langle \psi| - I$ performs a reflection in the plane defined by $|\alpha$ and $|\beta\rangle$, about the vector $|\psi\rangle$. And the product of two reflections is a rotation!
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_2.png" alt="quantum_search_algorithm_2" style="width: 435px; height: 475px;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        The action of single Grover iteration, \( G \).
+    </p>
+</div>
+
+
+## References 
+
+[1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
