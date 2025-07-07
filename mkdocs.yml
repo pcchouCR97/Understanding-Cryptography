@@ -63,7 +63,7 @@ nav:
         - No-deleting: quantum_mechanics/No-deleting.md
         - No-hiding: quantum_mechanics/No-hiding.md
         - No-teleportation: quantum_mechanics/No-teleportation.md
-  - Quantum Copmutation:
+  - Quantum Computation:
       #- Quantum circuits:
       - Quantum Fourier Transform:
         - Fourier Transform: quantum_computation/fourier_transformation.md
