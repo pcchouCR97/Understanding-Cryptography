@@ -133,8 +133,8 @@ The effect of $G$ can be understood as following:
 
     $$
     \begin{array}{l}
-    \text{cos}\frac{\theta}{2}\sqrt{\frac{N-M}{N}}\\
-    \text{sin}\frac{\theta}{2}\sqrt{\frac{M}{N}}
+    \text{cos}\frac{\theta}{2} = \sqrt{\frac{N-M}{N}}\\
+    \text{sin}\frac{\theta}{2} = \sqrt{\frac{M}{N}}
     \end{array}
     $$
     
@@ -156,7 +156,7 @@ $$
 <div style="text-align: center;">
     <img src="../../quantum_computation/images/quantum_search_algorithm_2.png" alt="quantum_search_algorithm_2" style="width: 435px; height: 475px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
-        The action of single Grover iteration, \( G \). The sate vector \( |\psi\rangle \) is rotated by \( \theta \) towards the superposition \( \beta \) of all solutions to the search problem. 1. The state vector \( |\psi\rangle \) is positioned at angle of \( \theta/2 \) from \( |\alpha\rangle \). 2. The oracle \( O \) reflects the state vector about the state \( |\alpha\rangle \). Then, the opeartor \( 2|\psi\rangle\langle \psi| -I \) reflects it about \( |\psi\rangle \). After repeated Grover iteration, the state vector gets close to \( |\beta\rangle \), at which point an observation in the computational basis outputs a solution to the search problem with high probability.
+        The action of single Grover iteration, \( G \). The sate vector \( |\psi\rangle \) is rotated by \( \theta \) towards the superposition \( \beta \) of all solutions to the search problem. 1. The state vector \( |\psi\rangle \) is positioned at angle of \( \theta/2 \) from \( |\alpha\rangle \). 2. The oracle \( O \) reflects the state vector about the state \( |\alpha\rangle \). 3., the opeartor \( 2|\psi\rangle\langle \psi| -I \) reflects it about \( |\psi\rangle \). After repeated Grover iteration, the state vector gets close to \( |\beta\rangle \), at which point an observation in the computational basis outputs a solution to the search problem with high probability.
     </p>
 </div>
 
@@ -170,7 +170,35 @@ In sum, $G$ is a rotation in the two-dimensional space spanned by $|\alpha\rangl
 
 
 ## Performance
-The question is: how many times must the Grover iteration be repeated to rotate $|\psi\rangle$ near $|\beta\rangle$?
+The question is: how many times must the Grover iteration be repeated to rotate $|\psi\rangle$ near $|\beta\rangle$? The initial state $|\psi\rangle = \sqrt{\frac{N-M}{N}}|\alpha\rangle + \sqrt{\frac{M}{N}}|\beta\rangle$, so rotating through across $\sqrt{M/N}$ radians takes the system to $|\beta\rangle$. Let $\text{CI}{x}$ denote the integer closest to the real number $x$, where by convention we round halves down, $\text{CI}(3.5) = 3$, for example. Then repeating the Grover iteration
+
+$$
+R = \text{CI}\bigg(\frac{\text{cos}^{-1}\sqrt{M/N}}{\theta} \bigg)
+$$
+
+times rotates $|\psi\rangle$ to within an angle $\theta/2 \leq \pi/4$ of $|\beta\rangle$. For 
+
+> This means you only have to let the state rotates to within 45 degrees of vector $|\beta\rangle$ and we will have high probability to get the solution when measure.
+
+If $M\leq N/2$, and we know that a lower bound on $\theta$ will give an upper bound on $R:
+
+$$
+\frac{\theta}{2} \geq \text{sin}\frac{\theta}{2} = \sqrt{\frac{M}{N}} \Rightarrow \theta \geq 2 \sqrt{\frac{M}{N}}
+$$
+
+then:
+
+$$
+R \leq \lceil\frac{\pi}{2\theta} \rceil \leq \lceil \frac{\pi}{4}\sqrt{\frac{N}{M}} \rceil
+$$
+
+This gives 
+
+$$
+R = O(\sqrt{N/M})
+$$
+
+> We need only $O(\sqrt{N/M})$ oracle calls
 
 
 ## References 
