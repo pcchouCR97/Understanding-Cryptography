@@ -200,6 +200,35 @@ $$
 
 > We need only $O(\sqrt{N/M})$ oracle calls
 
+### Algorithm 
+
+1.  **Inputs**: 
+    *   A black box oracle $O$ which performs the transformation $O|x\rangle|q\rangle = |x\rangle|q\oplus f(x)\rangle$, where $f(x) = 0$ for all $0\leq x < 2^{n}$ except $x_0$, for which $f(x_0) = 1$.
+    *   $n+1$ qubits in the state $|0\rangle$
+
+2.  **Outputs**: $x_0$
+3.  **Runtime**: $O(\sqrt{2^{n}})$ operations. Succeeds with probability $O(1)$.
+4.  **Procedure**:
+
+    $$
+    \begin{array}{lll}
+    1. & |0\rangle^{\otimes n}|0\rangle & \text{initial state}\\
+    2. & \rightarrow \frac{1}{\sqrt{2^{n}}}\sum_{x=0}^{2^{n-1}}|x\rangle \bigg(\frac{|0\rangle - |1\rangle}{\sqrt{2}} \bigg) & \text{apply} \ H^{\otimes n} \text{ to the first } n \text{ qubits, and } HX \text{ to the last qubit.}\\
+    3. & \rightarrow [(2|\psi\rangle\langle\psi| - I)O]^{R}\frac{1}{\sqrt{2^{n}}}\sum_{x = 0}^{2^{n-1}}|x\rangle (\frac{|0\rangle-|1\rangle}{\sqrt{2}}) & \text{apply the Grover iteration} R \approx \lceil \pi\sqrt{2^{n}/4} \rceil \text{times.}\\
+     & \approx |x_{0}\rangle [\frac{|0\rangle - |1\rangle}{\sqrt{2}}] & \\
+    4. & \rightarrow x_{0} & \text{measure the first} \ n \ \text{qubtis}
+    \end{array}
+    $$
+    
+> If $M \geq N/2$, pad the search space to size $2N$ with dummy non-solutions so Grover’s algorithm remains efficient with $\mathcal{O}(\sqrt{N/M})$ oracle calls.
+
+
+## Quantum search as a quantum siumulation (optional)
+
+*This section focus on giving the intuition of why grover search works*
+
+
+
 
 ## References 
 

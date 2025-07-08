@@ -70,7 +70,6 @@ nav:
         - Order-finding (Shor's Algorithm): quantum_computation/order_finding.md
         - Factoring (Shor's Algorithm): quantum_computation/factoring.md
         - Period finding (Shor's Algorithm): quantum_computation/period_finding.md
-      #- Quantum search Algorithms:
       - Learning hub:
         - Calculating 1+1 using quantum gates: quantum_computation/jupyter_qc/adder0.ipynb
         - Shor's Algorithm: quantum_computation/jupyter_qc/Shor's.ipynb
@@ -81,6 +80,7 @@ nav:
       - Applications: quantum_computation/applications.md
       - Quantum Search Algorithm: 
         - The Quantum Search Algorithm: quantum_computation/q_search_algorithm.md
+        - Quantum Counting: quantum_computation/qsa_quantum_counting.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md
