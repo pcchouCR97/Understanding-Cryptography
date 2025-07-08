@@ -127,14 +127,50 @@ The effect of $G$ can be understood as following:
 
 1.  Operation $O$ performs a *reflection* about the vector $|\alpha$ in the plane defined by $|\alpha\rangle$ and $|\beta\rangle$. 
 
-2.  $2|\psi\rangle\langle \psi| - I$ performs a reflection in the plane defined by $|\alpha$ and $|\beta\rangle$, about the vector $|\psi\rangle$. And the product of two reflections is a rotation!
+2.  $2|\psi\rangle\langle \psi| - I$ performs a reflection in the plane defined by $|\alpha$ and $|\beta\rangle$, about the vector $|\psi\rangle$. And the product of two reflections is a rotation!.
+
+3.  The state $G^{k}|\psi\rangle$ remains in the space spanned by $|\alpha\rangle$ and $|\beta\rangle$ for all $k$ and it also tells us the rotation angle. Let's set 
+
+    $$
+    \begin{array}{l}
+    \text{cos}\frac{\theta}{2}\sqrt{\frac{N-M}{N}}\\
+    \text{sin}\frac{\theta}{2}\sqrt{\frac{M}{N}}
+    \end{array}
+    $$
+    
+    thus, $|\psi\rangle = \text{cos}{\theta}{2}|\alpha\rangle + \text{sin}{\theta}{2}|\beta\rangle$.
+
+
+As image shows below, the two reflections which comprise $G$ take $|\psi\rangle$ to 
+
+$$
+G|\psi\rangle = \text{cos}\frac{3\theta}{2}|\alpha\rangle + \text{sin}\frac{3\theta}{2}|\beta\rangle,
+$$
+
+so the rotation angle is in fact $\theta$. It follow that continued application of $G$ takes the state to 
+
+$$
+G^{k}|\psi\rangle = \text{cos} \bigg(\frac{2k+1}{2}\theta \bigg) |\alpha\rangle + \text{sin}\bigg(\frac{2k+1}{2}\theta \bigg) |\beta\rangle.
+$$
 
 <div style="text-align: center;">
     <img src="../../quantum_computation/images/quantum_search_algorithm_2.png" alt="quantum_search_algorithm_2" style="width: 435px; height: 475px;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
-        The action of single Grover iteration, \( G \).
+        The action of single Grover iteration, \( G \). The sate vector \( |\psi\rangle \) is rotated by \( \theta \) towards the superposition \( \beta \) of all solutions to the search problem. 1. The state vector \( |\psi\rangle \) is positioned at angle of \( \theta/2 \) from \( |\alpha\rangle \). 2. The oracle \( O \) reflects the state vector about the state \( |\alpha\rangle \). Then, the opeartor \( 2|\psi\rangle\langle \psi| -I \) reflects it about \( |\psi\rangle \). After repeated Grover iteration, the state vector gets close to \( |\beta\rangle \), at which point an observation in the computational basis outputs a solution to the search problem with high probability.
     </p>
 </div>
+
+> Only $O\sqrt{N/M}$ applications of $G$ are required to rotate the state vector close to $|\beta\rangle$.
+
+In sum, $G$ is a rotation in the two-dimensional space spanned by $|\alpha\rangle$ and $|\beta\rangle$, rotating the sapce by $\theta$ radians per application of $G$. 
+
+> Repeated application of the computational basis produces with high probability one of the outcomes superposed in $|\beta\rangle$, that is, a solution to the search problem!
+
+!!! Example
+
+
+## Performance
+The question is: how many times must the Grover iteration be repeated to rotate $|\psi\rangle$ near $|\beta\rangle$?
 
 
 ## References 
