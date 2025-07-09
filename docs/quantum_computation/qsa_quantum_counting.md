@@ -27,6 +27,25 @@ $$
 
 we see that the corresponding eigenvalues are $e^{i\theta}$ and $e^{i(2\pi - \theta)}$. We expoand our search space to $2N$ to ensure that $\text{sin}^{2}(\theta/2) = M/2N$.
 
+See below circuit, 
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/quantum_counting_circuit.png" alt="quantum_counting_circuit" style="width: 725px; height: auto;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Circuit for performing approximate quantum counting on a quantum computer
+    </p>
+</div>
+
+
+
+1.  **Goal**: To estimate $\theta$ to $m$ bits of accuracy, with probability of success at least $1-\epsilon$
+2.  **Component**: 
+    1.  **The first register**: $t \equiv m + \lceil \text{log}(2+\frac{1}{2\epsilon}) \rceil$ qubits, as per the phase estimation algorithm.
+    2.  **The second register**: The second register is initialized to an equal superposition of all possible inputs $\sum_{x}|x\rangle$ by a `H` gate.
+
+Since the state is a superposition of the eigenstates $|a\rangle$ and $|b\rangle$, so (by the results of sec 5.2) the circuit below gives us an estimate of $\theta$ or $2 \pi - \theta$ accurate to within $|\Delta \theta|\leq 2^{-m}$, with probability at least $1-\epsilon$.
+
+
 ## References 
 
 [1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
