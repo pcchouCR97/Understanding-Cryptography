@@ -8,6 +8,10 @@ Here are some key applications:
 
 2.  To decide whether the solution even exist, depending on whether the numbert of solutions is zero, or non-zero. This is useful when we are facing NP-complete problems.
 
+> The quantum counting technique only tells how many values $x$ satisfy $f(x)=1$, not what the solutions are.
+
+> To actually find a solution, you run Grovers' search, which gives one solution with high probability.
+
 ## Phase estimation
 
 Quantum counting is an application of the phase estimation procedure to estimate the eigenvalues of the Grover iteration $G$. Suppose $|a\rangle$ and $|b\rangle$ are two eigenvectors of the Grover iteration in the space spanned by $|a\rangle$ and $|\beta\rangle$. Let $\theta$ be the angle of rotation determined by the Grover iteration. From equation,
@@ -67,6 +71,51 @@ Substituting $\text{sin}^{2}(\frac{\theta}{2}) = M/2N$ and $|\Delta \theta| \leq
 $$
 |\Delta M| < \bigg(\sqrt{2MN} + \frac{N}{2^{m+1}}\bigg) 2^{-m}.
 $$
+
+!!! example 
+    If we have $N = 1024$, $M = 16$, and $m = \rceil n/2 \lceil +1 = 6$, so $2^{-6} = 1/64$. We can calcualte $|\Delta M|$ as 
+
+    $$
+    |\Delta M| < \bigg(\sqrt{2MN} + \frac{N}{2^{m+1}}\bigg) 2^{-m} \approx 189.02 \cdot \frac{1}{64} \approx 2.95
+    $$
+
+    Estimated error in $M$ is $< 2.95$, so your quantum counting outputs somesthing close to $16$ (likr $15.2$), it's within the expected bound.
+
+!!! Note 
+    
+    -   $O(\sqrt{N})$ refers to Grover search. 
+        -   This call seach over a space of size $N$ with one unknown marked item
+        -   It takes about $R = \frac{\pi}{4}\sqrt{N}$ iterations (oracle calls)
+        -   Assume $M = 1$ when no knowledge of how many solutions 
+
+    -   $O(\sqrt{M})$
+        -   Refers to the accuracy of quantum counting
+        -   You're trying to estimate $M$ (number of marked items)
+        -   After running phase estimation and computing $\widehat{M}$, the estimate has an error of 
+
+            $$
+            |\Delta M| = O(\sqrt{M})
+            $$
+
+            where $m \approx 0.5\ \text{log }N$.
+
+### I don't know how many M adhead of time
+
+To perfoem Grover's algorithm, we need to know the number of solutions $M$ to choose the right number of iterations $R$. But in many cases, you don't know $M$ ahead of time.
+
+To address issue, we can first use quantum counting algorithm to first estimate $\theta$ and $M$ to high accuracy using phase estimation, and then to apply the quantum search algorithm, repeating the Grover iteration a number of times determined by
+
+$$
+R = CI\bigg(\frac{\text{cos}^{-1}\sqrt{M/N}}{\theta} \bigg)
+$$
+
+with the estimates for $\theta$ and $M$ obtained by phase estimation substituted to determine $R$. Although your estimated $\theta$ can be a little off, with $m = \lceil n/2 \rceil +1$, the angular error stays within $3\pi/8$. This gives a success probability of at least $\text{cos}^{2}(\frac{3\pi}{8}) \approx 0.15$. even if phse estimation only succeeds $5/6$ of the time, the total success is 
+
+$$
+\frac{5}{6} \cdot 0.15 \approx 0.12
+$$
+
+which is still usable. We can repeat a few times to boost the probability.
 
 
 
