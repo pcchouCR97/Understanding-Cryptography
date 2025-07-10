@@ -43,7 +43,31 @@ See below circuit,
     1.  **The first register**: $t \equiv m + \lceil \text{log}(2+\frac{1}{2\epsilon}) \rceil$ qubits, as per the phase estimation algorithm.
     2.  **The second register**: The second register is initialized to an equal superposition of all possible inputs $\sum_{x}|x\rangle$ by a `H` gate.
 
-Since the state is a superposition of the eigenstates $|a\rangle$ and $|b\rangle$, so (by the results of sec 5.2) the circuit below gives us an estimate of $\theta$ or $2 \pi - \theta$ accurate to within $|\Delta \theta|\leq 2^{-m}$, with probability at least $1-\epsilon$.
+Since the state is a superposition of the eigenstates $|a\rangle$ and $|b\rangle$, so (by the results of sec 5.2) the circuit below gives us an estimate of $\theta$ or $2 \pi - \theta$ accurate to within $|\Delta \theta|\leq 2^{-m}$, with probability at least $1-\epsilon$. 
+
+An estimate for $2\pi - \theta$ is claerly equivalent to an estimate of $\theta$ with the same level of accuracy, so effectively the phase estiamtion algorithm determines $\theta$ to an accuracy $2^{-m}$ with probability $1-\epsilon$.
+
+Using the equation $\text{sin}^{2} = M/2N$ and our estimate for $\theta$ we obtain an estimate of the *number of solitions, $M$*. The error of M is 
+
+$$
+\begin{array}{ll}
+\frac{|\Delta M|}{2N} & = |\text{sin}^{2}\bigg(\frac{\theta + \Delta \theta}{2} \bigg) - \text{sin}^{2}\bigg( \frac{\theta}{2} \bigg)| \\
+ & =  \bigg(\text{sin}\bigg( \frac{\theta + \Delta \theta}{2}\bigg) + \text{sin}\bigg( \frac{\theta}{2} \bigg) \bigg)|\text{sin}\bigg(\frac{\theta + \Delta \theta}{2} \bigg) - \text{sin}\bigg( \frac{\theta}{2} \bigg)|
+\end{array}
+$$
+
+From calculus $|\text{sin}(\frac{\theta + \Delta \theta}{2}) - \text{sin}(\frac{\theta}{2})| \leq \frac{|\Delta \theta|}{2}$ and trigonometry $|\text{sin}(\frac{\theta + \Delta \theta}{2})| < \text{sin}(\frac{\theta}{2}) + \frac{|\Delta \theta|}{2}$, 
+
+$$
+\frac{|\Delta M|}{2N} < \bigg( 2 \text{sin}\bigg(\frac{\theta}{2} \bigg) + \frac{|\Delta \theta|}{2} \bigg) \frac{|\Delta \theta|}{2}.
+$$
+
+Substituting $\text{sin}^{2}(\frac{\theta}{2}) = M/2N$ and $|\Delta \theta| \leq 2^{-m}$ gives our final estimate for the error in our estimate of $M$,
+
+$$
+|\Delta M| < \bigg(\sqrt{2MN} + \frac{N}{2^{m+1}}\bigg) 2^{-m}.
+$$
+
 
 
 ## References 
