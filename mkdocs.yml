@@ -64,7 +64,6 @@ nav:
         - No-hiding: quantum_mechanics/No-hiding.md
         - No-teleportation: quantum_mechanics/No-teleportation.md
   - Quantum Computation:
-      #- Quantum circuits:
       - Quantum Fourier Transform:
         - Fourier Transform: quantum_computation/fourier_transformation.md
         - Order-finding (Shor's Algorithm): quantum_computation/order_finding.md
@@ -81,6 +80,7 @@ nav:
       - Quantum Search Algorithm: 
         - The Quantum Search Algorithm: quantum_computation/q_search_algorithm.md
         - Quantum Counting: quantum_computation/qsa_quantum_counting.md
+        - Quadratic speed up NP-complete problems: quantum_computation/NP_complete_problems.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md

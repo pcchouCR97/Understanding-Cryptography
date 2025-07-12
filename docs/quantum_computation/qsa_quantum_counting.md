@@ -118,7 +118,6 @@ $$
 which is still usable. We can repeat a few times to boost the probability.
 
 
-
 ## References 
 
 [1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
