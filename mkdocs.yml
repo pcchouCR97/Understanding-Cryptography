@@ -82,11 +82,24 @@ nav:
         - Quantum Counting: quantum_computation/qsa_quantum_counting.md
         - Quadratic speed up NP-complete problems: quantum_computation/qsa_NP_complete_problems.md
         - Block box algorithm limits: quantum_computation/qsa_black_box_limits.md
+      - Quantum computer:
+        - Conditions for quantum computation: quantum_computation/q_computer_conditions.md
+        - Harmonic oscillator quantum computer: quantum_computation/q_computer_hoscillator.md
+        - Optical photo quantum computer: quantum_computation/q_computer_optphoto.md
+        - Optical cavity quantum electrodynamics: quantum_computation/q_computer_optcavity.md
+        - Ion traps: quantum_computation/q_computer_iontrap.md
+        - Nuclear magnetic resonance: quantum_computation/q_computer_nuclearmag.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md
         - P and NP problem: Cs/P_NP.md
   
+  - Quantum information:
+      - Quantum noise and quantum operations: quantum_infomation/qnoise_n_qoperation.md
+      - Quantum error-correction: quantum_infomation/qerror_correction.md
+
+
+
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md
@@ -96,6 +109,8 @@ nav:
   #    - Fundamentals: qcryptography/fundamentals.md
   #    - QKD: 
   #      - BB84: qcryptography/BB84.md
+
+
   - Quantum ML and Optimization:
       - Optimization Algorithms:
         - Quadratic Unconstrained Binary Optimization (QUBO): 
