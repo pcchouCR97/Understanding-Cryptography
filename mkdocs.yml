@@ -78,9 +78,10 @@ nav:
       - Quantum Computation: quantum_computation/computation.md
       - Applications: quantum_computation/applications.md
       - Quantum Search Algorithm: 
-        - The Quantum Search Algorithm: quantum_computation/q_search_algorithm.md
+        - The Quantum Search Algorithm: quantum_computation/qsa_q_search_algorithm.md
         - Quantum Counting: quantum_computation/qsa_quantum_counting.md
-        - Quadratic speed up NP-complete problems: quantum_computation/NP_complete_problems.md
+        - Quadratic speed up NP-complete problems: quantum_computation/qsa_NP_complete_problems.md
+        - Block box algorithm limits: quantum_computation/qsa_black_box_limits.md
   - Computer Science:
       - Basics: 
         - Computational complexity: Cs/computational_complexity.md

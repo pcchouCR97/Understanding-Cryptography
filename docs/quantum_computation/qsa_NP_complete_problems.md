@@ -75,3 +75,6 @@ $$
 \end{array}
 $$
 
+## References 
+
+[1]. M. A. Nielsen and I. L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Ed., Cambridge: Cambridge University Press, 2010.
