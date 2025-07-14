@@ -57,12 +57,12 @@ nav:
       
       - Test: 
         - Test level: Quantum_Algorithm_101/test_level.md
-  - Quantum Mechanics:
-      - Theorems:
-        - No-cloning: quantum_mechanics/No-cloing.md
-        - No-deleting: quantum_mechanics/No-deleting.md
-        - No-hiding: quantum_mechanics/No-hiding.md
-        - No-teleportation: quantum_mechanics/No-teleportation.md
+  #- Quantum Mechanics:
+  #    - Theorems:
+  #      - No-cloning: quantum_mechanics/No-cloing.md
+  #      - No-deleting: quantum_mechanics/No-deleting.md
+  #      - No-hiding: quantum_mechanics/No-hiding.md
+  #      - No-teleportation: quantum_mechanics/No-teleportation.md
   - Quantum Computation:
       - Quantum Fourier Transform:
         - Fourier Transform: quantum_computation/fourier_transformation.md
@@ -98,8 +98,6 @@ nav:
       - Quantum noise and quantum operations: quantum_infomation/qnoise_n_qoperation.md
       - Quantum error-correction: quantum_infomation/qerror_correction.md
 
-
-
   #- Cryptography:
   #    - Fundamentals: cryptography/fundamentals.md
   #    - Symmetric Cryptography: cryptography/symmetric.md
@@ -109,7 +107,6 @@ nav:
   #    - Fundamentals: qcryptography/fundamentals.md
   #    - QKD: 
   #      - BB84: qcryptography/BB84.md
-
 
   - Quantum ML and Optimization:
       - Optimization Algorithms:
@@ -142,16 +139,18 @@ nav:
           - QHybrid Intro: QuantumOpt/QML/QHyb.md
         - Quantum Generative Adversarial Networks (QGAN): 
           - QGANS Intro: QuantumOpt/QML/QGANS.md
-  - Classical ML and Optimization:
-    - Optimization Algorithms:
-      - Gradient descent: ClscOptML/COpt/Gradient.md
-    - Machine Learning: 
-      - Support Vector Machines (SVM): ClscOptML/CML/SVM.md
+
+  #- Classical ML and Optimization:
+  #  - Optimization Algorithms:
+  #    - Gradient descent: ClscOptML/COpt/Gradient.md
+  #  - Machine Learning: 
+  #    - Support Vector Machines (SVM): ClscOptML/CML/SVM.md
+
   - Real-world Problems:
       - Scheduling:
-        - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
+        # - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
         - Nurse Scheduling Using Qiskit: Projs/jupyter_Opt/(C)nurse_scheduling_qiskit.ipynb
-        - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
+        # - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
         - Air traffic control - Optimal Runway Allocation for Single-Plane Assignments in a Multi-Runway Airport: Projs/jupyter_Opt/(C)Air_Traffic_Control_1_Runway.ipynb
       - Finance:
         - Quantum Amplitude Estimation: 
@@ -174,16 +173,18 @@ plugins:
   - mkdocs-jupyter
   - glightbox
   - search
+#  - mermaid2
 #TODO fix 
 #  - open-in-new-tab #(cannot be installed in ci.yml) 
 #  - mathjax
 
+#mermaid2:
+#  javascript: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 
 extra_javascript:
   - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML
-  #- https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js
-  #- https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  - https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js
+  #- https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js
+  #- https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
 
 markdown_extensions:
   - pymdownx.arithmatex
