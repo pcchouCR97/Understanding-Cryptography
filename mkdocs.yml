@@ -1,6 +1,6 @@
-site_name: Quantum & Cryptography Docs
-site_description: A collection of my learnings and projects on Quantum Computing and Cryptography.
-site_author: Your Name
+site_name: Quantum Computation and Quantum Information
+site_description: A collection of my learnings and projects on Quantum Computing and Information.
+site_author: Po-Chih Chou
 theme: 
   name: material
   palette:

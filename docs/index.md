@@ -4,18 +4,18 @@ Schrödinger equation? Superposition? how about wave fucntion? How about the Col
 
 This is a collection of my learnings and projects on quantum optimization and machine learning. You can start *(Optimization)* from here and *(Machine Learning)* from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
 
-## 🎯 Real-World Quantum Applications
+## Real-World Quantum Applications
 
-### 🧠 Quantum Phase Estimation
+### Quantum Phase Estimation
 
 - [Shor's Algorithm](quantum_computation/jupyter_qc/Shor's.ipynb):  
   In this Jupyter notebook, I implemented **Shor’s algorithm from scratch** using only Qiskit’s basic quantum gates — no built-in libraries. Successfully factor $N = 15$.
 
-### 🔍 Grover Search
+### Grover Search
 
-*Coming soon!* A powerful method for searching unsorted databases quadratically faster than classical algorithms.
+*Coming soon!* 
 
-### ⚙️ Quantum Optimization
+### Quantum Optimization
 
 - [Air Traffic Controller Problem](Projs/jupyter_Opt/(C)Air_Traffic_Control_1_Runway.ipynb):  
   This notebook applies **quantum optimization (VQE)** to a realistic aircraft scheduling problem, considering real aircraft types, wake turbulence, and safety constraints.  
