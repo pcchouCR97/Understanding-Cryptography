@@ -1,7 +1,5 @@
 # Welcome to Quantum Algorithm!
 
-Schrödinger equation? Superposition? how about wave fucntion? How about the Collapse? Have you heard any of these buzzing word? 
-
 This is a collection of my learnings and projects on quantum optimization and machine learning. You can start *(Optimization)* from here and *(Machine Learning)* from here. But don't worry, I also provide a overview and practical implementation of the classical optimization and machine learning methodoloies. 
 
 ## Real-World Quantum Applications
