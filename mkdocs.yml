@@ -147,7 +147,7 @@ nav:
   #    - Support Vector Machines (SVM): ClscOptML/CML/SVM.md
 
   - Real-world Problems:
-      - Scheduling:
+      - Scheduling and Logistics:
         # - Nurse Scheduling: Projs/Projs_Opt/Proj_Nurse_Scheduling.md
         - Nurse Scheduling Using Qiskit: Projs/jupyter_Opt/(C)nurse_scheduling_qiskit.ipynb
         # - Flow Shop Scheduling: Projs/Projs_Opt/Proj_Flow_Shop_Scheduling.md
