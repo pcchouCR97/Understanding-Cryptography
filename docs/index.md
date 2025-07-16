@@ -43,9 +43,3 @@ If you are not familiar with both, you are welcome to start with any one of clas
 ### Machine Learning
 *   [Support Vector Machines (SVM)](ClscOptML/CML/SVM.md)
 
-### Quantum Mechanics, Machine Learning, and Optimization 101
-If you are a beginner in these areas, don't worry, we can start with something easy from 
-
-*   [Quantum 101](Math_Fundamentals/foundation.md)
-*   Mahcine Learning 101
-*   Optimization 101
