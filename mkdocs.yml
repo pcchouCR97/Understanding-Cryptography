@@ -84,6 +84,7 @@ nav:
         - Block box algorithm limits: quantum_computation/qsa_black_box_limits.md
       - Quantum computer:
         - Conditions for quantum computation: quantum_computation/q_computer_conditions.md
+        - Neural atom quantum computer: quantum_computation/q_computer_neutral_atom.md
         - Harmonic oscillator quantum computer: quantum_computation/q_computer_hoscillator.md
         - Optical photo quantum computer: quantum_computation/q_computer_optphoto.md
         - Optical cavity quantum electrodynamics: quantum_computation/q_computer_optcavity.md
