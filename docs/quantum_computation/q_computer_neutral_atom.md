@@ -21,6 +21,15 @@ Atoms that have been excited to very large principal quantum number $n$ are know
 
 Consider two neutral atoms in their respective ground states. When they close to each other, their interaction potential is dominated by van Der Waals force $V_{qq} \approx \frac{\mu_{B}^{2}}{R^{6}}$ where $\mu_{B}$ is the Bohr Magneton and $R$ is the distance between the atoms. This interaction is very weak, around $10^{-5}$ Hz for $R=10\mu m$. When one of the atoms is put into a Rydberg state (again, a state that has very principle quantum number $n$), the interaction between the two atoms is dominated by second order [dipole-dipole interaction (LibreTests Chemistry)](https://chem.libretexts.org/Bookshelves/Physical_and_Theoretical_Chemistry_Textbook_Maps/Supplemental_Modules_(Physical_and_Theoretical_Chemistry)/Physical_Properties_of_Matter/Atomic_and_Molecular_Properties/Intermolecular_Forces/Specific_Interactions/Dipole-Dipole_Interactions) which is also weak. When both of the atoms are excited to a Rydberg state, then the resonant dipole-dipole interaction becomes $V_{rr} = \frac{(n^{2}ea_{0})^{2}}{R^{3}}$ where $a_{0}$ is the Bohr radius. This interaction is around 100MHz at $R = 10 \mu m$, around twelve orders of mafnitude larger. This interaction potential induces a blockade, where-in, ==if one atom is excited to a Rydberg state, the other nearby atoms cannot be excited to a Rydberg state because the two-atom Rydberg state is far detuned.== This phenomenon is called the Rydberg blockade. Rydberg mediated gates make use of this blockade as a control mechanism to implement two qubit controlled gates.
 
+#### Rydberg blockade
+Suppose we are considering two isolated neutral atoms in a magneto-optical trap. Ignoring the coupling of hyperfine levels that make the qubit and motional degrees of freedom, the Hamiltonian of this system can be written as:
+
+$$
+H = H_{1} + H_{2} + V_{rr}|r\rangle_{1}\langle r|\otimes |r\rangle_{2}\langle r|
+$$
+
+, where $H_{i} = \frac{1}{2}(\Omega |1\rangle_{1}\langle r| + \Omega^{*} |r\angle_{r}\langle 1|) - \Delta|r\rangle_{i}\langle r|$ is the Hamiltonian of $i$-th atom, $\Omega$ is the Rabi frequency of coupling between the Rydberg states and the $|1\rangle$ state and $\Delta$ is the detuning.
+
 
 ## References 
 
