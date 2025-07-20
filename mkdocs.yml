@@ -18,6 +18,7 @@ theme:
     - search.highlight
     - search.share
     - math 
+    - content.tooltips
   #logo: assets/logo.png  # Optional: Add a custom logo
   favicon: assets/favicon.ico  # Optional: Add a favicon
 
@@ -195,6 +196,11 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - tables
+  - abbr
+  - attr_list
+  - pymdownx.snippets:
+      auto_append:
+            - includes/abbreviations.md
   
   # Font Formatting: https://squidfunk.github.io/mkdocs-material/reference/formatting/
   - pymdownx.critic
