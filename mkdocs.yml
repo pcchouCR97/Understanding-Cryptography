@@ -76,8 +76,8 @@ nav:
       - Basics: 
         - Basics: quantum_computation/basics.md
         - Algorithms: quantum_computation/algorithms.md
+        - Phase kickback: quantum_computation/phase_kickback.md
       - Quantum Computation: quantum_computation/computation.md
-      - Applications: quantum_computation/applications.md
       - Quantum Search Algorithm: 
         - The Quantum Search Algorithm: quantum_computation/qsa_q_search_algorithm.md
         - Quantum Counting: quantum_computation/qsa_quantum_counting.md

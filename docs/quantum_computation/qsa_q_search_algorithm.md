@@ -72,14 +72,21 @@ The quantum search algorithm then consists of repeated application of a quantum 
 ### Implmentation on Quantum computer 
 
 <div style="text-align: center;">
-    <img src="../../quantum_computation/images/quantum_search_algorithm_0.png" alt="quantum_search_algorithm_0" style="width: 755px; height: 231px;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_0.png" alt="quantum_search_algorithm_0" style="width: 755px; height: autopx;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         Schematic circuit for the quantum search algorithm.
     </p>
 </div>
 
 <div style="text-align: center;">
-    <img src="../../quantum_computation/images/quantum_search_algorithm_1.png" alt="quantum_search_algorithm_1" style="width: 762px; height: 270px;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_1.png" alt="quantum_search_algorithm_1" style="width: 762px; height: auto;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
+        Circuit for the Grover iteration, \( G \).
+    </p>
+</div>
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/Grover_1.jpg" alt="Grover_1" style="width: auto; height: auto;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         Circuit for the Grover iteration, \( G \).
     </p>
@@ -154,9 +161,15 @@ G^{k}|\psi\rangle = \text{cos} \bigg(\frac{2k+1}{2}\theta \bigg) |\alpha\rangle 
 $$
 
 <div style="text-align: center;">
-    <img src="../../quantum_computation/images/quantum_search_algorithm_2.png" alt="quantum_search_algorithm_2" style="width: 435px; height: 475px;">
+    <img src="../../quantum_computation/images/quantum_search_algorithm_2.png" alt="quantum_search_algorithm_2" style="width: 435px; height: auto;">
     <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
         The action of single Grover iteration, \( G \). The sate vector \( |\psi\rangle \) is rotated by \( \theta \) towards the superposition \( \beta \) of all solutions to the search problem. 1. The state vector \( |\psi\rangle \) is positioned at angle of \( \theta/2 \) from \( |\alpha\rangle \). 2. The oracle \( O \) reflects the state vector about the state \( |\alpha\rangle \). 3., the opeartor \( 2|\psi\rangle\langle \psi| -I \) reflects it about \( |\psi\rangle \). After repeated Grover iteration, the state vector gets close to \( |\beta\rangle \), at which point an observation in the computational basis outputs a solution to the search problem with high probability.
+    </p>
+</div>
+
+<div style="text-align: center;">
+    <img src="../../quantum_computation/images/Grover_2.jpg" alt="Grover_2" style="width: auto; height: auto;">
+    <p style="font-size: 16px; font-style: italic; color: gray; margin-top: 5px;">
     </p>
 </div>
 
